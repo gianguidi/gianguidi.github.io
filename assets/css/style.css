@@ -147,33 +147,14 @@ p{margin:0 0 12px}
 /* Portrait */
 .hero-photo{
   position: relative;
-  border: 1px solid var(--border);
-  padding: 10px;
-  overflow: hidden;
-  transition: border-color 180ms ease;
+  border: none;
+  padding: 0;
+  overflow: visible;
 }
-.hero-photo:hover{border-color: var(--accent)}
-.portrait img{display:block; width:100%; height:auto}
-
-.portrait-base{
-  opacity:1;
-  transition: opacity 220ms ease;
-}
-
-.portrait-hover{
-  position:absolute;
-  inset:10px;
-  opacity:0;
-  transform: scale(1.01);
-  transition: opacity 220ms ease, transform 220ms ease;
-}
-
-.hero-photo:hover .portrait-base{opacity:0}
-.hero-photo:hover .portrait-hover{opacity:1; transform: scale(1.00)}
-
-/* Respect reduced-motion preferences */
-@media (prefers-reduced-motion: reduce){
-  .portrait-base, .portrait-hover, .hero-photo{transition:none !important}
+.hero-photo picture, .hero-photo img{
+  display:block;
+  width:100%;
+  height:auto;
 }
 
 /* Content */
