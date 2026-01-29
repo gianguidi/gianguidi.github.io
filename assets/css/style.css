@@ -284,3 +284,10 @@ p{margin:0 0 12px}
 .brand:visited{color: var(--text)}
 
 .hover-hint{margin-top:10px; font-size: 14px}
+
+
+/* Music media */
+.music-links{margin: 10px 0 0}
+.music-links a{text-decoration: underline; text-underline-offset: 3px}
+.video-wrap{margin-top: 14px; width: 100%}
+.video-wrap video{width:100%; aspect-ratio:16/9; height:auto; display:block; border:0; background: transparent}
