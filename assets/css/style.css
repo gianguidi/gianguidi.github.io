@@ -149,12 +149,29 @@ p{margin:0 0 12px}
   position: relative;
   border: none;
   padding: 0;
-  overflow: visible;
+  overflow: hidden;
 }
-.hero-photo picture, .hero-photo img{
-  display:block;
-  width:100%;
-  height:auto;
+.portrait img{display:block; width:100%; height:auto}
+
+.portrait-base{
+  opacity:1;
+  transition: opacity 220ms ease;
+}
+
+.portrait-hover{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transform: scale(1.01);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.hero-photo:hover .portrait-base{opacity:0}
+.hero-photo:hover .portrait-hover{opacity:1; transform: scale(1.00)}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce){
+  .portrait-base, .portrait-hover{transition:none !important}
 }
 
 /* Content */
