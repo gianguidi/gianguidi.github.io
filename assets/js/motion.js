@@ -44,7 +44,7 @@
     introduced = true;
     const copy = document.querySelectorAll('.hero-copy > .eyebrow, .hero-copy > h1, .hero-copy > .hero-intro, .hero-copy > .cta-row');
     copy.forEach((element, index) => reveal(element, index * 100));
-    animate(document.querySelector('.portrait-image'), [
+    animate(document.querySelector('.portrait-stage'), [
       { opacity: 0, transform: 'scale(.975)' },
       { opacity: 1, transform: 'scale(1)' }
     ], { duration: 1100, delay: 100 });

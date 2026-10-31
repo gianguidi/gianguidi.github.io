@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" fill="none">
+  <defs><linearGradient id="lenses" x1="540" y1="363" x2="540" y2="448" gradientUnits="userSpaceOnUse"><stop stop-color="#252b33"/><stop offset="1" stop-color="#0c1119"/></linearGradient></defs>
+  <path d="m365 380-35-12m383 12 35-12" stroke="#141b24" stroke-width="10" stroke-linecap="round"/>
+  <path d="M520 386q16-12 32 0" stroke="#111720" stroke-width="11" stroke-linecap="round"/>
+  <path d="M363 371q75-20 160-3l-10 55q-8 23-67 23-58-1-71-26Z" fill="url(#lenses)" stroke="#111720" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M551 368q84-17 163 3l-14 49q-14 25-70 26-60 0-69-23Z" fill="url(#lenses)" stroke="#111720" stroke-width="7" stroke-linejoin="round"/>
+  <path d="m390 384 59-8m131 7 54-7" stroke="#dce6f3" stroke-opacity=".16" stroke-width="4" stroke-linecap="round"/>
+</svg>

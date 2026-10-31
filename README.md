@@ -46,3 +46,12 @@ The list is selected work, not a claim to reproduce the entire Scholar profile.
 
 The CV link and CV-specific tracking have been removed from the current homepage.
 Legacy `index_v1.html` is an unlinked historical version, not the deployed homepage.
+
+## Portrait detail
+
+On fine-pointer hover, native SVG overlays add sunglasses in light mode and a navy
+sleep mask with a small moon in dark mode. Both share the original 900×900 portrait
+coordinate system. They are decorative, hidden from assistive technology, do not
+move the layout, and follow reduced-motion settings. Touch devices keep the plain
+portrait. The accessories are editable vector assets; the source photograph is
+unchanged.
