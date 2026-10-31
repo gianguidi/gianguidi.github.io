@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 560" fill="none">
+  <defs>
+    <linearGradient id="waterBody" x1="314" y1="123" x2="452" y2="410" gradientUnits="userSpaceOnUse"><stop stop-color="#dcecf8"/><stop offset=".25" stop-color="#9fc3e4"/><stop offset=".65" stop-color="#5688b7"/><stop offset="1" stop-color="#284f7b"/></linearGradient>
+    <linearGradient id="waterEdge" x1="286" y1="160" x2="470" y2="373" gradientUnits="userSpaceOnUse"><stop stop-color="#ecf4fb"/><stop offset=".5" stop-color="#bfd8ec"/><stop offset="1" stop-color="#416b94"/></linearGradient>
+    <linearGradient id="light" x1="309" y1="164" x2="389" y2="343" gradientUnits="userSpaceOnUse"><stop stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#ecf4fb" stop-opacity="0"/></linearGradient>
+    <linearGradient id="ripple" x1="124" y1="412" x2="639" y2="460" gradientUnits="userSpaceOnUse"><stop stop-color="#7da9d3" stop-opacity="0"/><stop offset=".48" stop-color="#7da9d3" stop-opacity=".8"/><stop offset="1" stop-color="#7da9d3" stop-opacity="0"/></linearGradient>
+    <linearGradient id="server" x1="75" y1="268" x2="233" y2="393" gradientUnits="userSpaceOnUse"><stop stop-color="#eff7fc"/><stop offset=".45" stop-color="#c4d8ec"/><stop offset="1" stop-color="#83a6c9"/></linearGradient>
+    <linearGradient id="smallSide" x1="229" y1="323" x2="264" y2="339" gradientUnits="userSpaceOnUse"><stop stop-color="#7da9d3"/><stop offset="1" stop-color="#a7c2dc"/></linearGradient>
+    <radialGradient id="wash"><stop stop-color="#c4d8ec" stop-opacity=".6"/><stop offset="1" stop-color="#ecf4fb" stop-opacity="0"/></radialGradient>
+    <filter id="dropShadow" x="-60%" y="-150%" width="220%" height="400%"><feGaussianBlur stdDeviation="12"/></filter>
+  </defs>
+  <ellipse cx="392" cy="337" rx="305" ry="198" fill="url(#wash)"/>
+  <ellipse cx="388" cy="422" rx="125" ry="21" fill="#284f7b" fill-opacity=".17" filter="url(#dropShadow)"/>
+  <g stroke="url(#ripple)"><ellipse cx="390" cy="431" rx="126" ry="29" stroke-width="1.5"/><ellipse cx="390" cy="432" rx="186" ry="45" stroke-width="1.2" opacity=".65"/><ellipse cx="390" cy="434" rx="255" ry="62" opacity=".4"/></g>
+  <path d="M385 112c-12 48-40 79-72 120-32 42-44 71-39 106 7 52 51 86 106 85 58-1 106-37 109-93 2-35-15-68-45-107-29-37-50-66-59-111Z" fill="url(#waterBody)" stroke="url(#waterEdge)" stroke-width="2"/>
+  <path d="M374 153c-6 39-27 67-48 101-22 35-30 65-19 91 7 16 19 25 32 28-28-43-17-77 6-112 18-29 34-63 29-108Z" fill="url(#light)"/>
+  <path d="M447 260c19 31 25 55 20 78-8 39-40 62-72 65" stroke="#d6e9f7" stroke-opacity=".4" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M239 346c42-43 46-93 70-120m169 59c38 8 62 25 87 55 16 20 33 34 68 40" stroke="#7da9d3" stroke-width="2" stroke-linecap="round"/>
+  <path d="M248 363c33-20 44-44 53-68m184 11c27 8 42 22 64 45 25 27 42 39 69 43" stroke="#a7c7e3" stroke-width="1.5" stroke-linecap="round" opacity=".65"/>
+  <g>
+    <ellipse cx="177" cy="408" rx="96" ry="14" fill="#284f7b" fill-opacity=".12" filter="url(#dropShadow)"/>
+    <path d="m87 289 34-21 139 28-30 23Z" fill="#e9f3fa"/>
+    <path d="m230 319 30-23v101l-30 20Z" fill="url(#smallSide)"/>
+    <path d="M87 289l143 30v98L87 387Z" fill="url(#server)" stroke="#7da9d3" stroke-opacity=".5"/>
+    <path d="m101 313 113 23m-113 3 113 23m-113 3 113 23" stroke="#7f9fbd" stroke-width="2"/>
+    <path d="m107 319 46 9m-46 17 46 9m-46 17 46 9" stroke="#426b92" stroke-width="2.5" stroke-linecap="round"/>
+    <g fill="#284f7b"><ellipse cx="205" cy="338" rx="2" ry="2.5"/><ellipse cx="205" cy="364" rx="2" ry="2.5"/><ellipse cx="205" cy="390" rx="2" ry="2.5"/></g>
+  </g>
+  <g stroke="#7da9d3" stroke-width="1.5" fill="#ecf4fb"><circle cx="632" cy="380" r="5"/><circle cx="309" cy="226" r="4"/></g>
+</svg>

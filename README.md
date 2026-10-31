@@ -1,6 +1,6 @@
 # Gianluca Guidi — research portfolio
 
-A responsive, build-free HTML/CSS/JavaScript site for GitHub Pages at
+A responsive, build-free HTML/CSS/JavaScript research site for GitHub Pages at
 https://gianguidi.github.io/gian/.
 
 ## Local preview
@@ -28,7 +28,8 @@ system preference. The menu remains accessible without JavaScript. Motion follow
 the visitor's reduced-motion preference. The site uses SF Pro/San Francisco through native Apple font stacks on macOS and
 iOS, with system fallbacks elsewhere. No web-font download is required.
 Warm paper surfaces, subtle grain, and navy gradients are defined in CSS.
-`assets/js/motion.js` adds a one-time entrance, scroll reveals, and a small desktop
+`assets/js/motion.js` adds a launch-style entrance, one-time scroll reveals, a
+desktop sticky story that connects energy, water, and health, and a small
 portrait/background depth effect. Effects follow reduced-motion preferences and
 leave all content readable when animation APIs or JavaScript are unavailable. The existing Google Analytics property is retained.
 
@@ -55,3 +56,16 @@ coordinate system. They are decorative, hidden from assistive technology, do not
 move the layout, and follow reduced-motion settings. Touch devices keep the plain
 portrait. The accessories are editable vector assets; the source photograph is
 unchanged.
+
+## Launch-page composition
+
+The homepage opens with a centered two-line statement, supporting research focus,
+and a frameless portrait. A dark narrative section introduces the three connected
+research themes; large alternating feature panels follow with conceptual SVG
+illustrations. The graphics do not encode facility locations, measurements, or
+findings. Publications and media retain their full records in quieter sections.
+
+The desktop narrative uses native scrolling and `position: sticky`; it never
+intercepts wheel/touch input. On touch layouts, short viewports, without JavaScript, and when reduced motion is
+preferred, the narrative is a normal compact section. Sticky typography and spacing
+scale with viewport height so the full narrative fits common laptop screens.

@@ -3,10 +3,11 @@
   const root = document.documentElement;
   const hero = document.querySelector('.hero');
   const header = document.querySelector('.site-header');
+  const story = document.querySelector('.story-section');
   if (!hero || !header) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const desktopPointer = window.matchMedia('(pointer: fine) and (min-width: 901px)');
+  const desktopPointer = window.matchMedia('(pointer: fine) and (min-width: 901px) and (min-height: 600px)');
   const supportsAnimation = typeof hero.animate === 'function';
   const seen = new WeakSet();
   const active = new Set();
@@ -64,7 +65,7 @@
         observer.unobserve(entry.target);
       });
     }, { threshold: .08, rootMargin: '0px 0px -6% 0px' });
-    document.querySelectorAll('.section-heading, .research-card, .media-feature, .about-grid > div, .software-inner > div, .music-grid > div, .contact-section > .container').forEach(element => {
+    document.querySelectorAll('.story-content, .section-heading, .research-card, .media-feature, .about-grid > div, .software-inner > div, .music-grid > div, .contact-section > .container').forEach(element => {
       if (!seen.has(element)) observer.observe(element);
     });
   }
@@ -74,12 +75,26 @@
     header.classList.toggle('is-scrolled', window.scrollY > 16);
     if (reducedMotion.matches || !desktopPointer.matches || document.visibilityState === 'hidden') {
       hero.style.removeProperty('--hero-progress');
+      if (story) {
+        story.style.removeProperty('--story-progress');
+        delete story.dataset.storyActive;
+      }
       return;
     }
     const bounds = hero.getBoundingClientRect();
-    if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
-    const progress = Math.min(1, Math.max(0, -bounds.top / Math.max(1, bounds.height)));
-    hero.style.setProperty('--hero-progress', progress.toFixed(4));
+    if (bounds.bottom > 0 && bounds.top < window.innerHeight) {
+      const progress = Math.min(1, Math.max(0, -bounds.top / Math.max(1, bounds.height)));
+      hero.style.setProperty('--hero-progress', progress.toFixed(4));
+    }
+    if (story) {
+      const scene = story.getBoundingClientRect();
+      if (scene.bottom > 0 && scene.top < window.innerHeight) {
+        const travel = Math.max(1, scene.height - window.innerHeight + 64);
+        const progress = Math.min(1, Math.max(0, (64 - scene.top) / travel));
+        story.dataset.storyActive = String(Math.min(2, Math.floor(progress * 3)));
+        story.style.setProperty('--story-progress', progress.toFixed(4));
+      }
+    }
   }
 
   function scheduleScroll() {

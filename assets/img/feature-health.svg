@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 560" fill="none">
+  <defs>
+    <linearGradient id="slab" x1="195" y1="236" x2="545" y2="449" gradientUnits="userSpaceOnUse"><stop stop-color="#f7fbff"/><stop offset="1" stop-color="#cadceb"/></linearGradient>
+    <linearGradient id="face" x1="0" y1="0" x2="72" y2="160" gradientUnits="userSpaceOnUse"><stop stop-color="#f5faff"/><stop offset="1" stop-color="#c7daeb"/></linearGradient>
+    <linearGradient id="side" x1="42" y1="30" x2="92" y2="174" gradientUnits="userSpaceOnUse"><stop stop-color="#8faccc"/><stop offset="1" stop-color="#587ca5"/></linearGradient>
+    <linearGradient id="top" x1="0" y1="14" x2="92" y2="50" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#dfeefb"/></linearGradient>
+    <linearGradient id="air" x1="103" y1="210" x2="645" y2="330" gradientUnits="userSpaceOnUse"><stop stop-color="#7da9d3" stop-opacity="0"/><stop offset=".28" stop-color="#7da9d3" stop-opacity=".8"/><stop offset=".7" stop-color="#284f7b" stop-opacity=".72"/><stop offset="1" stop-color="#7da9d3" stop-opacity="0"/></linearGradient>
+    <radialGradient id="node"><stop stop-color="#fff"/><stop offset=".4" stop-color="#ecf4fb"/><stop offset="1" stop-color="#8fb5d7"/></radialGradient>
+    <radialGradient id="wash"><stop stop-color="#b4cfe7" stop-opacity=".35"/><stop offset="1" stop-color="#c4d8ec" stop-opacity="0"/></radialGradient>
+    <filter id="soft" x="-50%" y="-100%" width="200%" height="300%"><feGaussianBlur stdDeviation="15"/></filter>
+    <filter id="shadow" x="-40%" y="-20%" width="180%" height="170%"><feDropShadow dx="0" dy="18" stdDeviation="13" flood-color="#284f7b" flood-opacity=".12"/></filter>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3"/></filter>
+    <g id="home">
+      <path d="M0 23 46 0 92 23 46 46Z" fill="url(#top)"/>
+      <path d="M0 23 46 46v123L0 146Z" fill="url(#face)"/>
+      <path d="m46 46 46-23v123l-46 23Z" fill="url(#side)"/>
+      <path d="M1 24 46 47 91 24M46 47v120" stroke="#fff" stroke-opacity=".72" stroke-width="1.2"/>
+      <path d="m12 61 20 10m-20 20 20 10m-20 20 20 10" stroke="#8eaecb" stroke-opacity=".45" stroke-width="2"/>
+      <path d="m60 72 17-8m-17 34 17-8m-17 34 17-8" stroke="#cfdfed" stroke-opacity=".45" stroke-width="2"/>
+    </g>
+  </defs>
+  <ellipse cx="390" cy="344" rx="292" ry="196" fill="url(#wash)"/>
+  <ellipse cx="382" cy="434" rx="214" ry="35" fill="#284f7b" fill-opacity=".13" filter="url(#soft)"/>
+  <path d="M135 328 371 210a20 20 0 0 1 18 0l236 118a10 10 0 0 1 0 18L389 464a20 20 0 0 1-18 0L135 346a10 10 0 0 1 0-18Z" fill="#b9cfe2"/>
+  <path d="M135 316 371 198a20 20 0 0 1 18 0l236 118a10 10 0 0 1 0 18L389 452a20 20 0 0 1-18 0L135 334a10 10 0 0 1 0-18Z" fill="url(#slab)" stroke="#f7fbff" stroke-width="1.5"/>
+  <g stroke="#a3bfd9" stroke-opacity=".35" stroke-width="1"><path d="m205 296 235 118m-181-145 235 118m-181-145 235 118m-61-120L252 358m181-145L198 331m289-91L252 358m289-91L306 385"/></g>
+  <g stroke="url(#air)" stroke-linecap="round"><path d="M100 259c45-109 152-144 279-126 163 22 244 111 276 200" stroke-width="2"/><path d="M110 278c47-109 149-143 272-126 156 21 236 104 262 183" stroke-width="1" opacity=".7"/><path d="M125 295c47-106 144-139 259-123 144 20 219 95 244 164" stroke-width="1" opacity=".4"/></g>
+  <g filter="url(#shadow)">
+    <use href="#home" transform="translate(306 155) scale(.84 1.05)"/>
+    <use href="#home" transform="translate(415 186) scale(.83 .88)"/>
+    <use href="#home" transform="translate(213 242) scale(.86 .84)"/>
+    <use href="#home" transform="translate(353 262) scale(1.08 1.02)"/>
+    <use href="#home" transform="translate(491 285) scale(.72 .68)"/>
+  </g>
+  <path d="M112 341c88 117 302 150 431 69 75-46 98-108 75-159" stroke="url(#air)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M130 353c87 99 280 123 402 49 72-44 91-99 72-145" stroke="url(#air)" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+  <g fill="#9bbfe0" fill-opacity=".45" filter="url(#glow)"><circle cx="177" cy="171" r="13"/><circle cx="603" cy="260" r="13"/><circle cx="416" cy="445" r="13"/></g>
+  <g fill="url(#node)" stroke="#ecf4fb" stroke-width="1.4"><circle cx="177" cy="171" r="6"/><circle cx="603" cy="260" r="6"/><circle cx="416" cy="445" r="6"/></g>
+</svg>

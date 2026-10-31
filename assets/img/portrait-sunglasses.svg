@@ -1,8 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" fill="none">
-  <defs><linearGradient id="lenses" x1="540" y1="363" x2="540" y2="448" gradientUnits="userSpaceOnUse"><stop stop-color="#252b33"/><stop offset="1" stop-color="#0c1119"/></linearGradient></defs>
-  <path d="m365 380-35-12m383 12 35-12" stroke="#141b24" stroke-width="10" stroke-linecap="round"/>
-  <path d="M520 386q16-12 32 0" stroke="#111720" stroke-width="11" stroke-linecap="round"/>
-  <path d="M363 371q75-20 160-3l-10 55q-8 23-67 23-58-1-71-26Z" fill="url(#lenses)" stroke="#111720" stroke-width="7" stroke-linejoin="round"/>
-  <path d="M551 368q84-17 163 3l-14 49q-14 25-70 26-60 0-69-23Z" fill="url(#lenses)" stroke="#111720" stroke-width="7" stroke-linejoin="round"/>
-  <path d="m390 384 59-8m131 7 54-7" stroke="#dce6f3" stroke-opacity=".16" stroke-width="4" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="acetate" x1="538" y1="349" x2="538" y2="462" gradientUnits="userSpaceOnUse"><stop stop-color="#202227"/><stop offset=".22" stop-color="#07090c"/><stop offset=".8" stop-color="#101216"/><stop offset="1" stop-color="#26282c"/></linearGradient>
+    <linearGradient id="g15" x1="538" y1="371" x2="538" y2="448" gradientUnits="userSpaceOnUse"><stop stop-color="#182d27"/><stop offset=".5" stop-color="#10211c"/><stop offset="1" stop-color="#07130f"/></linearGradient>
+    <linearGradient id="rivet" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f0f0eb"/><stop offset="1" stop-color="#8d939b"/></linearGradient>
+  </defs>
+  <path d="m356 377-29-13m394 12 28-13" stroke="#111317" stroke-width="11" stroke-linecap="round"/>
+  <path d="M513 365q25-15 49 0l-3 21q-21-16-41 0Z" fill="url(#acetate)"/>
+  <path d="M349 355q78-17 165 1 14 3 17 21l-12 57q-5 23-61 28-54 4-78-14-23-25-31-93Z" fill="url(#acetate)" stroke="#05070a" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M545 377q3-18 17-21 86-18 164-1-8 67-32 93-23 18-77 14-55-5-60-28Z" fill="url(#acetate)" stroke="#05070a" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M376 376q63-13 132-1l-9 49q-4 17-45 21-37 3-56-9-16-19-22-60Z" fill="url(#g15)" stroke="#303639" stroke-opacity=".5" stroke-width="1.2"/>
+  <path d="M568 375q68-12 133 1-6 41-23 60-18 12-55 9-41-4-45-21Z" fill="url(#g15)" stroke="#303639" stroke-opacity=".5" stroke-width="1.2"/>
+  <path d="M361 358q74-12 148 4m58 0q73-16 146-4" stroke="#c4cad1" stroke-opacity=".17" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="m356 366 10-3 10 3-10 3Zm344 0 10-3 10 3-10 3Z" fill="url(#rivet)"/>
+  <path d="m393 383 57-6m139 6 55-6" stroke="#d4e2dc" stroke-opacity=".13" stroke-width="3.5" stroke-linecap="round"/>
 </svg>
