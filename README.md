@@ -25,8 +25,8 @@ Editorials and preprints retain explicit labels. All papers are shown when print
 
 Theme preferences use the existing `theme` localStorage key and fall back to the
 system preference. The menu remains accessible without JavaScript. Motion follows
-the visitor's reduced-motion preference. Google Fonts are optional; system font
-fallbacks are provided. The existing Google Analytics property is retained.
+the visitor's reduced-motion preference. The site uses the native Apple/system font stack without a web-font dependency.
+Warm paper surfaces, subtle grain, and navy gradients are defined in CSS. The existing Google Analytics property is retained.
 
 ## Publication and media update — 30 October 2026
 

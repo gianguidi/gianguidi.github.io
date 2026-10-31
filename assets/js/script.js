@@ -16,7 +16,7 @@
     const label = `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`;
     themeButton.setAttribute('aria-label', label);
     themeButton.title = label;
-    document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#171d19' : '#f5f3ec';
+    document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#101927' : '#f8f7f3';
   }
   applyTheme();
   themeButton.style.display = 'grid';
