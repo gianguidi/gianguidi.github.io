@@ -43,7 +43,7 @@
   function introduce() {
     if (introduced || window.location.hash || window.scrollY > 80) return;
     introduced = true;
-    const copy = document.querySelectorAll('.hero-copy > .eyebrow, .hero-copy > h1, .hero-copy > .hero-intro, .hero-copy > .cta-row');
+    const copy = document.querySelectorAll('.hero-copy > h1, .hero-copy > .hero-affiliation, .hero-copy > .hero-intro, .hero-copy > .cta-row');
     copy.forEach((element, index) => reveal(element, index * 100));
     animate(document.querySelector('.portrait-stage'), [
       { opacity: 0, transform: 'scale(.975)' },

@@ -50,17 +50,17 @@ Legacy `index_v1.html` is an unlinked historical version, not the deployed homep
 
 ## Portrait detail
 
-On fine-pointer hover, native SVG overlays add sunglasses in light mode and a navy
-sleep mask with a small moon in dark mode. Both share the original 900×900 portrait
+On fine-pointer hover, transparent accessories add realistic black acetate
+sunglasses in light mode and a navy sleep mask with a small moon in dark mode. Both share the original 900×900 portrait
 coordinate system. They are decorative, hidden from assistive technology, do not
 move the layout, and follow reduced-motion settings. Touch devices keep the plain
-portrait. The accessories are editable vector assets; the source photograph is
-unchanged.
+portrait. The sunglasses are a generated photographic cutout; the sleep mask is an editable
+SVG. The source portrait photograph is unchanged.
 
 ## Launch-page composition
 
-The homepage opens with a centered two-line statement, supporting research focus,
-and a frameless portrait. A dark narrative section introduces the three connected
+The homepage opens with Gianluca’s name and Harvard affiliation, the research
+focus, and a frameless portrait. A dark narrative section introduces the three connected
 research themes; large alternating feature panels follow with conceptual SVG
 illustrations. The graphics do not encode facility locations, measurements, or
 findings. Publications and media retain their full records in quieter sections.
@@ -69,3 +69,12 @@ The desktop narrative uses native scrolling and `position: sticky`; it never
 intercepts wheel/touch input. On touch layouts, short viewports, without JavaScript, and when reduced motion is
 preferred, the narrative is a normal compact section. Sticky typography and spacing
 scale with viewport height so the full narrative fits common laptop screens.
+
+## Sunglasses asset
+
+The current light-mode accessory is
+`assets/img/portrait-sunglasses-realistic.webp`, generated with the built-in image
+generator and exported onto the portrait’s transparent 900×900 coordinate system.
+Its complete prompt and fitting details are recorded in
+`assets/img/portrait-sunglasses-realistic.prompt.txt`. Earlier vector artwork is
+retained for version history but is no longer used by the page.
