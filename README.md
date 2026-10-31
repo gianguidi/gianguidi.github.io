@@ -1,43 +1,44 @@
-# Gianluca Guidi — GitHub Pages site
+# Gianluca Guidi — research portfolio
 
-This is a simple static site (HTML/CSS/JS) designed to be published with **GitHub Pages**.
+A responsive, build-free HTML/CSS/JavaScript site for GitHub Pages at
+https://gianguidi.github.io/gian/.
 
-## Deploy (recommended)
+## Local preview
 
-1. Create a new repository on GitHub (e.g., `gianluca-guidi.github.io`).
-2. Upload the contents of this folder to the repo root.
-3. On GitHub, go to **Settings → Pages**.
-4. Under **Build and deployment**, select:
-   - Source: **Deploy from a branch**
-   - Branch: **main** (or `master`) and folder **/(root)**
-5. Save — GitHub will publish your site.
+Run `python3 -m http.server 8000` from the repository root and open
+http://localhost:8000. No package installation or build step is required.
 
-## Customize
+## Editing
 
-- Update text in `index.html`
-- Update styling in `assets/css/style.css`
-- Update behavior in `assets/js/script.js`
+- `index.html`: biography, research, publication records, media, and contact links.
+- `assets/css/style.css`: layout, responsive breakpoints, light/dark palettes.
+- `assets/js/script.js`: menu, theme preference, publication filters, anchor handling,
+  active navigation, and existing analytics events.
+- `assets/img/`: portraits, video poster, and favicon.
+- `assets/video/project42.mp4`: existing Project42 performance.
 
-## External links used
+Publications are static HTML so they remain discoverable and readable without
+JavaScript. The enhanced view opens with published and accepted journal work.
+Each `.publication` has a unique `id` and a `data-category` of `journal` or
+`preprint`. Research cards and direct links reveal a hidden paper automatically.
+Editorials and preprints retain explicit labels. All papers are shown when printing.
 
-- CV: https://drive.google.com/file/d/17LqTkebmua9HSXWL3Y4vgqJZKrrbFaKt/view?usp=sharing
-- Google Scholar: https://scholar.google.com/citations?hl=it&user=mu45z3kAAAAJ
-- GitHub: https://github.com/gianguidi
-- LinkedIn: https://www.linkedin.com/in/gianluca-guidi/
-- ResearchGate: https://www.researchgate.net/profile/Gianluca-Guidi
+Theme preferences use the existing `theme` localStorage key and fall back to the
+system preference. The menu remains accessible without JavaScript. Motion follows
+the visitor's reduced-motion preference. Google Fonts are optional; system font
+fallbacks are provided. The existing Google Analytics property is retained.
 
-Media links are listed in `index.html` under “Media & outreach”.
+## Publication and media update — 30 October 2026
 
+The Nature Sustainability acceptance is author-confirmed. Its link points to the
+public preprint; a final journal DOI and publication date have not been invented.
+The water work remains labeled as a preprint. The AJPH editorial is a separate
+publication from the health-based power-grid preprint.
 
-## Photo
-Hero portrait files:
-- `assets/img/portrait.jpg`
-- `assets/img/portrait.webp`
+Google Scholar's profile page could not be retrieved in the editing environment.
+The update was cross-checked against journal, PubMed, preprint, and institutional
+records. See [CONTENT_SOURCES.md](CONTENT_SOURCES.md) for the source inventory.
+The list is selected work, not a claim to reproduce the entire Scholar profile.
 
-## Theme
-A light/dark toggle is included (button in the header). The choice is saved in localStorage.
-
-
-## Dual portrait
-- Light mode uses `assets/img/portrait-color.*`
-- Dark mode uses `assets/img/portrait-bw.*`
+The CV link and CV-specific tracking have been removed from the current homepage.
+Legacy `index_v1.html` is an unlinked historical version, not the deployed homepage.
