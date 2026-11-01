@@ -20,8 +20,8 @@ This is a simple static site (HTML/CSS/JS) designed to be published with **GitHu
 
 ## External links used
 
-- CV: https://drive.google.com/file/d/17LqTkebmua9HSXWL3Y4vgqJZKrrbFaKt/view?usp=sharing
 - Google Scholar: https://scholar.google.com/citations?hl=it&user=mu45z3kAAAAJ
+- Harvard Dataverse (hyperscale emissions data): https://doi.org/10.7910/DVN/SKKTAG
 - GitHub: https://github.com/gianguidi
 - LinkedIn: https://www.linkedin.com/in/gianluca-guidi/
 - ResearchGate: https://www.researchgate.net/profile/Gianluca-Guidi

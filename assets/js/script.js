@@ -7,6 +7,31 @@
 
   if (year) year.textContent = new Date().getFullYear();
 
+  // "+ more" buttons: reveal the rest of a list, and fold it back
+  document.querySelectorAll("button.more").forEach((btn) => {
+    const list = document.getElementById(btn.getAttribute("aria-controls"));
+    if (!list) return;
+    btn.addEventListener("click", () => {
+      const open = list.classList.toggle("open");
+      btn.setAttribute("aria-expanded", String(open));
+      btn.textContent = open ? "Show fewer" : btn.dataset.more;
+      if (!open) list.scrollIntoView({ block: "nearest" });
+    });
+  });
+
+  // Fade sections in as they scroll into view
+  const reveals = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -30px 0px" });
+    reveals.forEach((el) => io.observe(el));
+  } else {
+    reveals.forEach((el) => el.classList.add("in"));
+  }
+
   // Mobile menu toggle
   if (toggle && links) {
     toggle.addEventListener("click", () => {
