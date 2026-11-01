@@ -33,467 +33,165 @@
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gianluca Guidi · Harvard</title>
-  <meta name="description" content="Gianluca Guidi is a researcher at Harvard who measures the hidden costs of AI: the electricity, water and air pollution behind data centers, and what they mean for public health and policy." />
+  <title>Gianluca Guidi</title>
+  <meta name="description" content="Gianluca Guidi measures the hidden costs of AI and what they mean for society and policy. Postdoctoral Research Fellow at Harvard." />
   <meta property="og:title" content="Gianluca Guidi" />
-  <meta property="og:description" content="Measuring the hidden costs of AI: the electricity, water and air pollution behind data centers, and what they mean for public health and policy." />
+  <meta property="og:description" content="I measure the hidden costs of AI and what they mean for society and policy." />
   <meta property="og:image" content="https://gianguidi.github.io/gian/assets/img/portrait-color.jpg" />
   <meta property="og:url" content="https://gianguidi.github.io/gian/" />
   <meta name="twitter:card" content="summary" />
-  <meta name="theme-color" content="#111827" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#fbfbfa" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
-  <script>document.documentElement.classList.add("js")</script>
+  <script>
+    // pick light or dark before first paint: a saved choice wins, otherwise follow the system
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") d.setAttribute("data-theme", t); } catch (e) {}
+    })();
+  </script>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="Go to top">Gianluca Guidi</a>
-
-      <nav class="nav" aria-label="Primary">
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
-        <div id="nav-links" class="nav-links">
-          <a href="#research">Research</a>
-          <a href="#publications">Publications</a>
-          <a href="#media">Media</a>
-          <a href="#about">About</a>
-          <a href="#software">Code &amp; data</a>
-          <a href="#music">Music</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">Dark</button>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main">
-    <section id="top" class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Ciao! <span class="wave" aria-hidden="true">👋</span></p>
-          <h1>I'm <span class="accent">Gianluca Guidi</span></h1>
-          <p class="hero-lead">
-            I measure the hidden costs of AI and what they mean for society and policy.
-          </p>
-          <p class="subtitle">Postdoctoral Research Fellow, Harvard T.H. Chan School of Public Health</p>
-          <p class="subtitle">PhD, Italian National Doctorate in AI for Social Sciences</p>
-
-          <div class="cta-row">
-            <a class="btn" href="#research">Read the research</a>
-            <a class="btn btn-ghost" href="https://scholar.google.com/citations?hl=it&user=mu45z3kAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
-          </div>
-
-          <div class="social-row" aria-label="Social links">
-            <a href="https://github.com/gianguidi" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://www.linkedin.com/in/gianluca-guidi/" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://www.researchgate.net/profile/Gianluca-Guidi" target="_blank" rel="noopener">ResearchGate</a>
-            <a id="cy-effective-orcid-url" href="https://orcid.org/0009-0009-8629-4620" target="_blank" rel="me noopener noreferrer">
-              <img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" class="orcid-icon" alt="ORCID iD icon" />
-              ORCID
-            </a>
-            <a href="mailto:ggianluca@hsph.harvard.edu">Email</a>
-          </div>
-        </div>
-
-        <div class="hero-photo" aria-label="Portrait (hover)">
-          <picture class="portrait portrait-base">
-            <source srcset="assets/img/portrait-bw.webp" type="image/webp" />
-            <img src="assets/img/portrait-bw.jpg" alt="Portrait photo of Gianluca Guidi (black and white)" width="900" height="900" />
-          </picture>
-          <picture class="portrait portrait-hover" aria-hidden="true">
-            <source srcset="assets/img/portrait-hover.webp" type="image/webp" />
-            <img src="assets/img/portrait-hover.png" alt="" width="900" height="900" loading="lazy" />
-          </picture>
-        </div>
+  <main class="page">
+    <header class="intro">
+      <button class="avatar" type="button" aria-label="Photo of Gianluca Guidi">
+        <img src="assets/img/portrait-bw.jpg" alt="Gianluca Guidi" width="900" height="900" />
+        <img class="alt" src="assets/img/portrait-hover.png" alt="" width="900" height="900" loading="lazy" />
+      </button>
+      <div>
+        <h1>Gianluca Guidi</h1>
+        <p class="role">Postdoc, Harvard</p>
       </div>
+      <button class="mode" type="button" aria-label="Switch between light and dark" title="Light / dark">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.25" /><path d="M10 2.75a7.25 7.25 0 0 1 0 14.5z" /></svg>
+      </button>
+    </header>
 
-      <!-- Credibility at a glance -->
-      <div class="container proof">
-        <div class="proof-row">
-          <span class="proof-label">Published in</span>
-          <span class="proof-names"><span>Nature Sustainability</span><span>Nature Communications</span><span>American Journal of Public Health</span><span>Scientific Reports</span></span>
-        </div>
-        <div class="proof-row">
-          <span class="proof-label">Featured in</span>
-          <span class="proof-names"><span>The Guardian</span><span>MIT Technology Review</span><span>Forbes</span><span>Frankfurter Allgemeine</span><span>Harvard Business School</span></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Every section below: title on the left, content on the right -->
-    <section id="research" class="section">
-      <div class="container split">
-        <h2>Research</h2>
-        <div>
-          <p class="lead reveal">
-            AI runs on a physical backbone. I trace it end to end: from the data center, to the power plants and
-            water that feed it, to the air people breathe and the communities that carry the costs.
-          </p>
-          <div class="themes">
-            <article class="theme reveal">
-              <span class="theme-n">01</span>
-              <h3 class="theme-title">Energy &amp; emissions</h3>
-              <p>How much electricity AI data centers use, which power plants supply it, and the carbon that follows.</p>
-              <p class="theme-key">Key work: <a href="#pub-natsus">Nature Sustainability, 2026</a> · <a href="#pub-dc">100+ citations</a></p>
-            </article>
-            <article class="theme reveal">
-              <span class="theme-n">02</span>
-              <h3 class="theme-title">Water</h3>
-              <p>The two water footprints of data centers: cooling on site, and the water used to generate their power.</p>
-              <p class="theme-key">Key work: <a href="#pub-water">Hidden Water Geography, 2026</a></p>
-            </article>
-            <article class="theme reveal">
-              <span class="theme-n">03</span>
-              <h3 class="theme-title">Air pollution &amp; health</h3>
-              <p>Where fine-particle pollution from the plants powering AI and crypto travels, and who breathes it.</p>
-              <p class="theme-key">Key work: <a href="#pub-bitcoin">Nature Communications, 2025</a></p>
-            </article>
-            <article class="theme reveal">
-              <span class="theme-n">04</span>
-              <h3 class="theme-title">Policy: who pays</h3>
-              <p>Turning evidence into decisions on siting and power sourcing, and sharing the costs fairly.</p>
-              <p class="theme-key">Key work: <a href="#pub-ajph">American Journal of Public Health, 2026</a></p>
-            </article>
-          </div>
-          <p class="impact reveal">
-            <span class="impact-label">Real-world impact</span>
-            Our health assessment of a proposed 3,500-MW gas plant in rural Virginia estimated pollution reaching over
-            1.2 million people. After the findings went public, the project was withdrawn.
-            <a href="https://grist.org/energy/this-rural-community-fought-one-of-the-countrys-biggest-gas-powered-data-centers-and-won/" target="_blank" rel="noopener">Read the story in Grist</a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="publications" class="section">
-      <div class="container split">
-        <h2>Publications</h2>
-        <div>
-          <p class="muted reveal">
-            Selected work. The complete list is on
-            <a href="https://scholar.google.com/citations?hl=it&user=mu45z3kAAAAJ" target="_blank" rel="noopener">Google Scholar</a>.
-          </p>
-          <ol class="rows" id="pubs-list">
-            <li class="row reveal" id="pub-ajph">
-              <span class="when">2026</span>
-              <div>
-                <a class="title" href="https://ajph.aphapublications.org/doi/full/10.2105/AJPH.2026.308678" target="_blank" rel="noopener">Who Pays for Artificial Intelligence? Energy, Climate, and Health</a>
-                <p class="meta"><strong>Guidi G</strong>, Dominici F</p>
-                <p class="venue"><em>American Journal of Public Health</em> 116(10):1454–1455</p>
-              </div>
-            </li>
-            <li class="row reveal" id="pub-natsus">
-              <span class="when">2026</span>
-              <div>
-                <a class="title" href="https://arxiv.org/abs/2606.05420" target="_blank" rel="noopener">Assessing the Carbon Emissions and Energy Consumption of U.S. Hyperscale Data Centers</a>
-                <p class="meta"><strong>Guidi G</strong>, Dominici F, Squartini T, Sprinkle C, Gilmour J, Butler K, Bell E, Delaney S, Bargagli-Stoffi FJ</p>
-                <p class="venue"><em>Nature Sustainability</em> <span class="flag">Accepted</span></p>
-              </div>
-            </li>
-            <li class="row reveal" id="pub-bitcoin">
-              <span class="when">2025</span>
-              <div>
-                <a class="title" href="https://www.nature.com/articles/s41467-025-58287-3" target="_blank" rel="noopener">The environmental burden of the United States’ bitcoin mining boom</a>
-                <p class="meta"><strong>Guidi G</strong>, Dominici F, Steinsultz N, Dance G, Henneman L, Richardson H, Castro E, Bargagli-Stoffi FJ, Delaney S</p>
-                <p class="venue"><em>Nature Communications</em> 16:2970</p>
-              </div>
-            </li>
-            <li class="row reveal" id="pub-water">
-              <span class="when">2026</span>
-              <div>
-                <a class="title" href="https://arxiv.org/abs/2607.02531" target="_blank" rel="noopener">The Hidden Water Geography of U.S. Hyperscale Data Centers in the AI Era</a>
-                <p class="meta"><strong>Guidi G</strong>, Dominici F</p>
-                <p class="venue">Preprint, arXiv <span class="flag">Featured by Harvard Salata Institute &amp; HBS AI Institute</span></p>
-              </div>
-            </li>
-            <li class="row reveal" id="pub-dc">
-              <span class="when">2024</span>
-              <div>
-                <a class="title" href="https://arxiv.org/abs/2411.09786" target="_blank" rel="noopener">Environmental Burden of United States Data Centers in the Artificial Intelligence Era</a>
-                <p class="meta"><strong>Guidi G</strong>, Dominici F, Gilmour J, Butler K, Bell E, Delaney S, Bargagli-Stoffi FJ</p>
-                <p class="venue">Preprint, arXiv <span class="flag">100+ citations</span></p>
-              </div>
-            </li>
-            <!-- Shown after "+ more" -->
-            <li class="row extra" id="pub-coal">
-              <span class="when">2026</span>
-              <div>
-                <a class="title" href="https://europepmc.org/article/pmc/pmc13648786" target="_blank" rel="noopener">Delayed Coal Plant Retirements in the Era of Data Centers Carry a Measurable Mortality Cost</a>
-                <p class="meta">Bong S, <strong>Guidi G</strong>, Cork M, Henneman LRF, Dominici F</p>
-                <p class="venue">Preprint, medRxiv</p>
-              </div>
-            </li>
-            <li class="row extra" id="pub-gas">
-              <span class="when">2026</span>
-              <div>
-                <a class="title" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7350551" target="_blank" rel="noopener">Public Health and Economic Burden of a Proposed 3,500-MW Natural Gas Plant in Virginia: A PM2.5 Dispersion and Impact Analysis</a>
-                <p class="meta">Dalla Torre P, Cork M, <strong>Guidi G</strong>, Dominici F</p>
-                <p class="venue">Preprint, SSRN <span class="flag">Project withdrawn after findings went public</span></p>
-              </div>
-            </li>
-            <li class="row extra">
-              <span class="when">2024</span>
-              <div>
-                <a class="title" href="https://www.nature.com/articles/s41598-024-57351-0" target="_blank" rel="noopener">Tracing two decades of carbon emissions using a network approach</a>
-                <p class="meta"><strong>Guidi G</strong>, Mastrandrea R, Facchini A, Squartini T, Kennedy C</p>
-                <p class="venue"><em>Scientific Reports</em> 14(1):7251</p>
-              </div>
-            </li>
-            <li class="row extra">
-              <span class="when">2024</span>
-              <div>
-                <a class="title" href="https://arxiv.org/abs/2410.09029" target="_blank" rel="noopener">Towards a Health-Based Power Grid Optimization in the Artificial Intelligence Era</a>
-                <p class="meta">Battiloro C*, <strong>Guidi G*</strong>, Bargagli-Stoffi FJ, Dominici F · *equal contribution</p>
-                <p class="venue">Preprint, arXiv</p>
-              </div>
-            </li>
-            <li class="row extra">
-              <span class="when">WIP</span>
-              <div>
-                <span class="title">The Global Carbon Trade Network. A complex network analysis of the graphs induced by the Global Carbon emissions trade</span>
-                <p class="meta"><strong>Guidi G</strong>, Squartini T</p>
-                <p class="venue">Working paper</p>
-              </div>
-            </li>
-          </ol>
-          <button class="more" type="button" aria-expanded="false" aria-controls="pubs-list" data-more="+ 5 more publications">+ 5 more publications</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="media" class="section">
-      <div class="container split">
-        <h2>Media</h2>
-        <div>
-          <p class="muted reveal">My research in the news, from international outlets to Harvard.</p>
-          <ol class="rows" id="media-list">
-            <li class="row reveal">
-              <span class="when">Jun 2025</span>
-              <div><a class="title" href="https://www.theguardian.com/technology/2025/jun/27/trump-tax-bill-ai-climate-emissions" target="_blank" rel="noopener">Trump’s tax bill seeks to prevent AI regulations. Experts fear a heavy toll on the planet</a><p class="meta">The Guardian</p></div>
-            </li>
-            <li class="row reveal">
-              <span class="when">May 2025</span>
-              <div><a class="title" href="https://www.technologyreview.com/2025/05/20/1116327/ai-energy-usage-climate-footprint-big-tech/" target="_blank" rel="noopener">We did the math on AI’s energy footprint. Here’s the story you haven’t heard</a><p class="meta">MIT Technology Review</p></div>
-            </li>
-            <li class="row reveal">
-              <span class="when">Dec 2024</span>
-              <div><a class="title" href="https://www.technologyreview.com/2024/12/13/1108719/ais-emissions-are-about-to-skyrocket-even-further/" target="_blank" rel="noopener">AI’s emissions are about to skyrocket even further</a><p class="meta">MIT Technology Review</p></div>
-            </li>
-            <li class="row reveal">
-              <span class="when">Jan 2025</span>
-              <div><a class="title" href="https://www.forbes.com/sites/francescadominici/2025/01/20/how-ai-could-help-reduce-climate-change-and-air-pollution/" target="_blank" rel="noopener">How AI Could Help Reduce Climate Change And Air Pollution</a><p class="meta">Forbes</p></div>
-            </li>
-            <li class="row reveal">
-              <span class="when">Oct 2026</span>
-              <div><a class="title" href="https://aiinstitute.hbs.edu/the-dual-geography-of-ais-water-footprint/" target="_blank" rel="noopener">The Dual-Geography of AI’s Water Footprint</a><p class="meta">Harvard Business School AI Institute</p></div>
-            </li>
-            <!-- Shown after "+ more" -->
-            <li class="row extra">
-              <span class="when">Jul 2026</span>
-              <div><a class="title" href="https://salatainstitute.harvard.edu/study-maps-water-footprint-of-ai-data-centers/" target="_blank" rel="noopener">Study maps water footprint of AI data centers</a><p class="meta">Harvard Salata Institute</p></div>
-            </li>
-            <li class="row extra">
-              <span class="when">Nov 2025</span>
-              <div><a class="title" href="https://publichealthpost.org/environment/bitcoins-toxic-footprint/" target="_blank" rel="noopener">Bitcoin’s Toxic Footprint</a><p class="meta">Public Health Post</p></div>
-            </li>
-            <li class="row extra">
-              <span class="when">Jun 2025</span>
-              <div><a class="title" href="https://grist.org/energy/this-rural-community-fought-one-of-the-countrys-biggest-gas-powered-data-centers-and-won/" target="_blank" rel="noopener">This rural community fought one of the country’s biggest gas-powered data centers — and won</a><p class="meta">Grist</p></div>
-            </li>
-            <li class="row extra">
-              <span class="when">Dec 2024</span>
-              <div><a class="title" href="https://www.faz.net/aktuell/wissen/erde-klima/energiehunger-von-ki-fossile-energietraeger-und-atomstrom-110188743.html" target="_blank" rel="noopener">The Energy Hunger of the AI Boom and its Consequences</a><p class="meta">Frankfurter Allgemeine Zeitung · in German</p></div>
-            </li>
-            <li class="row extra">
-              <span class="when">Dec 2024</span>
-              <div><a class="title" href="https://www.ai4business.it/intelligenza-artificiale/le-emissioni-dellintelligenza-artificiale-pronte-a-una-crescita-esponenziale/" target="_blank" rel="noopener">Le Emissioni dell’Intelligenza Artificiale Pronte a una Crescita Esponenziale</a><p class="meta">AI4Business · in Italian</p></div>
-            </li>
-            <li class="row extra">
-              <span class="when"></span>
-              <div><a class="title" href="https://www.thecooldown.com/green-business/ai-regulations-rejected-congress-trump/" target="_blank" rel="noopener">Researchers sound the alarm on controversial AI plan rejected by lawmakers</a><p class="meta">The Cooldown</p></div>
-            </li>
-          </ol>
-          <button class="more" type="button" aria-expanded="false" aria-controls="media-list" data-more="+ 6 more articles">+ 6 more articles</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section">
-      <div class="container split">
-        <h2>About</h2>
-        <div>
-          <div class="prose reveal">
-            <p>
-              I’m a Postdoctoral Research Fellow at the Harvard T.H. Chan School of Public Health, working in
-              <a href="https://scholar.google.com/citations?hl=en&user=RSwElNMAAAAJ" target="_blank" rel="noopener">Francesca Dominici</a>’s
-              research group. I study how artificial intelligence and digital infrastructure interact with energy systems,
-              water resources, the environment, and public health, with a focus on quantifying impacts, identifying
-              trade-offs, and informing evidence-based policy.
-            </p>
-            <p>
-              My toolkit combines machine learning, statistical modeling, complex networks, and air-quality modeling with
-              large-scale environmental and public-health data. I work across public health, computer science,
-              environmental science, and energy systems.
-            </p>
-          </div>
-          <h3>Mentors</h3>
-          <ol class="rows">
-            <li class="row reveal">
-              <span class="when">Postdoc</span>
-              <div class="names"><a href="https://scholar.google.com/citations?hl=en&user=RSwElNMAAAAJ" target="_blank" rel="noopener">Francesca Dominici</a></div>
-            </li>
-            <li class="row reveal">
-              <span class="when">PhD</span>
-              <div class="names">
-                <a href="https://scholar.google.com/citations?hl=en&user=-tMSEmwAAAAJ" target="_blank" rel="noopener">Tiziano Squartini</a>
-                <a href="https://scholar.google.com/citations?hl=en&user=G-WPCrMAAAAJ" target="_blank" rel="noopener">Diego Garlaschelli</a>
-              </div>
-            </li>
-            <li class="row reveal">
-              <span class="when">PhD committee</span>
-              <div class="names">
-                <a href="https://scholar.google.com/citations?hl=it&user=zNgdZdkAAAAJ" target="_blank" rel="noopener">Falco J. Bargagli Stoffi</a>
-                <a href="https://scholar.google.com/citations?hl=en&user=5efz6osAAAAJ" target="_blank" rel="noopener">Dino Pedreschi</a>
-                <a href="https://scholar.google.com/citations?hl=en&user=Eug48ewAAAAJ" target="_blank" rel="noopener">Giulio Rossetti</a>
-                <a href="https://scholar.google.com/citations?hl=it&user=Wh8odLEAAAAJ" target="_blank" rel="noopener">Rossana Mastrandrea</a>
-              </div>
-            </li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <section id="software" class="section">
-      <div class="container split">
-        <h2>Code &amp; data</h2>
-        <div>
-          <p class="muted reveal">
-            Open science: the code and data behind the papers, on
-            <a href="https://github.com/gianguidi" target="_blank" rel="noopener">GitHub</a> and
-            <a href="https://doi.org/10.7910/DVN/SKKTAG" target="_blank" rel="noopener">Harvard Dataverse</a>.
-          </p>
-          <ol class="rows">
-            <li class="row reveal">
-              <span class="when">Data</span>
-              <div><a class="title" href="https://doi.org/10.7910/DVN/SKKTAG" target="_blank" rel="noopener">Hyperscalers Emissions and Energy Consumption in the US</a><p class="meta">Harvard Dataverse · doi:10.7910/DVN/SKKTAG</p></div>
-            </li>
-            <li class="row reveal">
-              <span class="when">Code</span>
-              <div><a class="title mono" href="https://github.com/gianguidi/hyperscale-emissions" target="_blank" rel="noopener">hyperscale-emissions</a><p class="meta">Electricity use and carbon emissions of U.S. hyperscale data centers</p></div>
-            </li>
-            <li class="row reveal">
-              <span class="when">Code</span>
-              <div><a class="title mono" href="https://github.com/gianguidi/hyperscale-water-geography" target="_blank" rel="noopener">hyperscale-water-geography</a><p class="meta">Cooling water and power-plant water behind U.S. hyperscale data centers</p></div>
-            </li>
-            <li class="row reveal">
-              <span class="when">Code</span>
-              <div><a class="title mono" href="https://github.com/gianguidi/bitcoin_mining_env_burden" target="_blank" rel="noopener">bitcoin_mining_env_burden</a><p class="meta">Electricity use, PM2.5 pollution, and affected communities of U.S. bitcoin mining</p></div>
-            </li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <section id="music" class="section">
-      <div class="container split">
-        <h2>Music</h2>
-        <div class="reveal">
-          <div class="prose">
-            <p class="lead">
-              <img class="music-badge" src="https://static.wixstatic.com/media/816bc4_6dcfeee8d1c14f8e89a2632e3f0804a9~mv2.png/v1/fill/w_63%2Ch_59%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/Screenshot%202026-01-25%20at%2015_25_edited_pn.png" alt="Project42 logo" loading="lazy" />
-              When I'm not counting kilowatts, I play in <strong>Project42</strong>, a band masquerading as a scientific collective.
-            </p>
-            <p>
-              It's named after 42: the ultimate random seed, and the latitude connecting Boston and Rome. We began as a few
-              Harvard Data Science Initiative scholars jamming together and grew into a 10+ person band, playing events both
-              academic and not-so-academic. Follow us on <a href="https://www.instagram.com/project42.hdsi/" target="_blank" rel="noopener">Instagram</a>.
-              More minds, more noise.
-            </p>
-          </div>
-
-          <div class="video-wrap" aria-label="Project42 video">
-            <video controls playsinline preload="metadata" poster="assets/img/video-poster.jpg">
-              <source src="assets/video/project42.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <div class="container split">
-        <h2>Contact</h2>
-        <div class="reveal">
-          <p class="lead">For press, policy and research collaborations.</p>
-          <p class="muted">
-            I’m always happy to talk with journalists, policymakers and fellow researchers about the energy, water and
-            public-health footprint of AI and data centers.
-          </p>
-          <a class="big-link" href="mailto:ggianluca@hsph.harvard.edu">ggianluca@hsph.harvard.edu</a>
-          <p class="muted">Harvard T.H. Chan School of Public Health · Cambridge, Massachusetts</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>© <span id="year"></span> Gianluca Guidi</div>
-      <div class="footer-links">
-        <a href="https://github.com/gianguidi" target="_blank" rel="noopener">GitHub</a>
+    <section class="about">
+      <p>I measure the hidden costs of AI and what they mean for society and policy.</p>
+      <p>
+        I’m a postdoctoral fellow in
+        <a href="https://scholar.google.com/citations?hl=en&user=RSwElNMAAAAJ" target="_blank" rel="noopener">Francesca Dominici</a>’s
+        group at the Harvard T.H. Chan School of Public Health. Before that, a PhD in AI for Social Sciences with
+        <a href="https://scholar.google.com/citations?hl=en&user=-tMSEmwAAAAJ" target="_blank" rel="noopener">Tiziano Squartini</a> and
+        <a href="https://scholar.google.com/citations?hl=en&user=G-WPCrMAAAAJ" target="_blank" rel="noopener">Diego Garlaschelli</a>.
+      </p>
+      <p class="links">
         <a href="https://scholar.google.com/citations?hl=it&user=mu45z3kAAAAJ" target="_blank" rel="noopener">Scholar</a>
+        <a href="https://github.com/gianguidi" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/gianluca-guidi/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://orcid.org/0009-0009-8629-4620" target="_blank" rel="me noopener noreferrer">ORCID</a>
+        <a href="mailto:ggianluca@hsph.harvard.edu">Email</a>
+      </p>
+    </section>
+
+    <section>
+      <h2>Papers <span class="count">10</span></h2>
+      <ul class="list" id="papers">
+        <li><a href="https://ajph.aphapublications.org/doi/full/10.2105/AJPH.2026.308678" target="_blank" rel="noopener">Who Pays for Artificial Intelligence? Energy, Climate, and Health</a><span class="src">American Journal of Public Health</span><span class="yr">2026</span></li>
+        <li><a href="https://arxiv.org/abs/2606.05420" target="_blank" rel="noopener">Assessing the Carbon Emissions and Energy Consumption of U.S. Hyperscale Data Centers</a><span class="src">Nature Sustainability, accepted</span><span class="yr">2026</span></li>
+        <li><a href="https://www.nature.com/articles/s41467-025-58287-3" target="_blank" rel="noopener">The environmental burden of the United States’ bitcoin mining boom</a><span class="src">Nature Communications</span><span class="yr">2025</span></li>
+        <li><a href="https://arxiv.org/abs/2607.02531" target="_blank" rel="noopener">The Hidden Water Geography of U.S. Hyperscale Data Centers in the AI Era</a><span class="src">arXiv</span><span class="yr">2026</span></li>
+        <li><a href="https://arxiv.org/abs/2411.09786" target="_blank" rel="noopener">Environmental Burden of United States Data Centers in the AI Era</a><span class="src">arXiv · 100+ citations</span><span class="yr">2024</span></li>
+        <li class="extra"><a href="https://europepmc.org/article/pmc/pmc13648786" target="_blank" rel="noopener">Delayed Coal Plant Retirements in the Era of Data Centers Carry a Measurable Mortality Cost</a><span class="src">medRxiv</span><span class="yr">2026</span></li>
+        <li class="extra"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7350551" target="_blank" rel="noopener">Public Health and Economic Burden of a Proposed 3,500-MW Natural Gas Plant in Virginia</a><span class="src">SSRN · the plant was withdrawn</span><span class="yr">2026</span></li>
+        <li class="extra"><a href="https://www.nature.com/articles/s41598-024-57351-0" target="_blank" rel="noopener">Tracing two decades of carbon emissions using a network approach</a><span class="src">Scientific Reports</span><span class="yr">2024</span></li>
+        <li class="extra"><a href="https://arxiv.org/abs/2410.09029" target="_blank" rel="noopener">Towards a Health-Based Power Grid Optimization in the AI Era</a><span class="src">arXiv</span><span class="yr">2024</span></li>
+        <li class="extra"><span class="t">The Global Carbon Trade Network</span><span class="src">working paper</span><span class="yr">—</span></li>
+      </ul>
+      <button class="more" type="button" aria-expanded="false" aria-controls="papers">Show all 10</button>
+    </section>
+
+    <section>
+      <h2>Press <span class="count">11</span></h2>
+      <ul class="list" id="press">
+        <li><a href="https://www.theguardian.com/technology/2025/jun/27/trump-tax-bill-ai-climate-emissions" target="_blank" rel="noopener">Trump’s tax bill seeks to prevent AI regulations. Experts fear a heavy toll on the planet</a><span class="src">The Guardian</span><span class="yr">2025</span></li>
+        <li><a href="https://www.technologyreview.com/2025/05/20/1116327/ai-energy-usage-climate-footprint-big-tech/" target="_blank" rel="noopener">We did the math on AI’s energy footprint</a><span class="src">MIT Technology Review</span><span class="yr">2025</span></li>
+        <li><a href="https://www.technologyreview.com/2024/12/13/1108719/ais-emissions-are-about-to-skyrocket-even-further/" target="_blank" rel="noopener">AI’s emissions are about to skyrocket even further</a><span class="src">MIT Technology Review</span><span class="yr">2024</span></li>
+        <li><a href="https://www.forbes.com/sites/francescadominici/2025/01/20/how-ai-could-help-reduce-climate-change-and-air-pollution/" target="_blank" rel="noopener">How AI Could Help Reduce Climate Change And Air Pollution</a><span class="src">Forbes</span><span class="yr">2025</span></li>
+        <li><a href="https://aiinstitute.hbs.edu/the-dual-geography-of-ais-water-footprint/" target="_blank" rel="noopener">The Dual-Geography of AI’s Water Footprint</a><span class="src">Harvard Business School AI Institute</span><span class="yr">2026</span></li>
+        <li class="extra"><a href="https://salatainstitute.harvard.edu/study-maps-water-footprint-of-ai-data-centers/" target="_blank" rel="noopener">Study maps water footprint of AI data centers</a><span class="src">Harvard Salata Institute</span><span class="yr">2026</span></li>
+        <li class="extra"><a href="https://publichealthpost.org/environment/bitcoins-toxic-footprint/" target="_blank" rel="noopener">Bitcoin’s Toxic Footprint</a><span class="src">Public Health Post</span><span class="yr">2025</span></li>
+        <li class="extra"><a href="https://grist.org/energy/this-rural-community-fought-one-of-the-countrys-biggest-gas-powered-data-centers-and-won/" target="_blank" rel="noopener">This rural community fought one of the country’s biggest gas-powered data centers, and won</a><span class="src">Grist</span><span class="yr">2025</span></li>
+        <li class="extra"><a href="https://www.faz.net/aktuell/wissen/erde-klima/energiehunger-von-ki-fossile-energietraeger-und-atomstrom-110188743.html" target="_blank" rel="noopener">The Energy Hunger of the AI Boom and its Consequences</a><span class="src">Frankfurter Allgemeine Zeitung, in German</span><span class="yr">2024</span></li>
+        <li class="extra"><a href="https://www.ai4business.it/intelligenza-artificiale/le-emissioni-dellintelligenza-artificiale-pronte-a-una-crescita-esponenziale/" target="_blank" rel="noopener">Le Emissioni dell’Intelligenza Artificiale Pronte a una Crescita Esponenziale</a><span class="src">AI4Business, in Italian</span><span class="yr">2024</span></li>
+        <li class="extra"><a href="https://www.thecooldown.com/green-business/ai-regulations-rejected-congress-trump/" target="_blank" rel="noopener">Researchers sound the alarm on controversial AI plan rejected by lawmakers</a><span class="src">The Cooldown</span><span class="yr"></span></li>
+      </ul>
+      <button class="more" type="button" aria-expanded="false" aria-controls="press">Show all 11</button>
+    </section>
+
+    <section>
+      <h2>Code &amp; data <span class="count">4</span></h2>
+      <ul class="list">
+        <li><a href="https://doi.org/10.7910/DVN/SKKTAG" target="_blank" rel="noopener">Hyperscalers Emissions and Energy Consumption in the US</a><span class="src">Harvard Dataverse</span><span class="yr">data</span></li>
+        <li><a class="mono" href="https://github.com/gianguidi/hyperscale-emissions" target="_blank" rel="noopener">hyperscale-emissions</a><span class="src">electricity and carbon of U.S. hyperscale data centers</span><span class="yr">code</span></li>
+        <li><a class="mono" href="https://github.com/gianguidi/hyperscale-water-geography" target="_blank" rel="noopener">hyperscale-water-geography</a><span class="src">their water, on site and at the power plant</span><span class="yr">code</span></li>
+        <li><a class="mono" href="https://github.com/gianguidi/bitcoin_mining_env_burden" target="_blank" rel="noopener">bitcoin_mining_env_burden</a><span class="src">electricity, PM2.5 and communities near U.S. bitcoin mines</span><span class="yr">code</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Elsewhere</h2>
+      <p>
+        I play in <a href="https://www.instagram.com/project42.hdsi/" target="_blank" rel="noopener">Project42</a>, a 10+ person
+        band that started with a few Harvard Data Science Initiative scholars. The name is the ultimate random seed, and
+        roughly the latitude of both Boston and Rome.
+        <button class="inline" type="button" aria-expanded="false" aria-controls="video">Watch us</button>
+      </p>
+      <div class="video" id="video" hidden>
+        <video controls playsinline preload="none" poster="assets/img/video-poster.jpg">
+          <source src="assets/video/project42.mp4" type="video/mp4" />
+        </video>
       </div>
-    </div>
-  </footer>
+      <p class="muted">
+        Thanks to my PhD committee, Falco J. Bargagli Stoffi, Dino Pedreschi, Giulio Rossetti and Rossana Mastrandrea.
+      </p>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <p>For press, policy or research, write to <a href="mailto:ggianluca@hsph.harvard.edu">ggianluca@hsph.harvard.edu</a>.</p>
+    </section>
+
+    <footer>
+      <span>Cambridge, MA · 42.37°N<span class="clock" aria-hidden="true"></span></span>
+      <span>© <span id="year"></span></span>
+    </footer>
+  </main>
 
   <script src="assets/js/script.js"></script>
 
-  <!-- GA4: more detailed tracking (Scholar, email, outbound, video, "more" buttons) -->
+  <!-- GA4: more detailed tracking (Scholar, email, outbound, video, "show all") -->
   <script>
     (function () {
       function ggTrack(eventName, params) {
         if (typeof gtag === "function") gtag("event", eventName, params || {});
       }
-
       function onReady(fn) {
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", fn);
-        } else {
-          fn();
-        }
+        if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
+        else fn();
       }
-
       onReady(function () {
-        // Outbound clicks (new tab)
         document.querySelectorAll('a[target="_blank"]').forEach(function (a) {
           a.addEventListener("click", function () {
-            ggTrack("outbound_click", {
-              link_url: a.href,
-              link_text: (a.textContent || "").trim().slice(0, 80)
-            });
+            ggTrack("outbound_click", { link_url: a.href, link_text: (a.textContent || "").trim().slice(0, 80) });
           });
         });
-
-        // Key CTAs
-        var scholarBtn = document.querySelector('.cta-row a[href*="scholar.google.com"]');
-        if (scholarBtn) scholarBtn.addEventListener("click", function () { ggTrack("scholar_click"); });
-
-        document.querySelectorAll('a[href^="mailto:"]').forEach(function (email) {
-          email.addEventListener("click", function () { ggTrack("email_click"); });
+        document.querySelectorAll('a[href*="scholar.google.com/citations?hl=it&user=mu45z3kAAAAJ"]').forEach(function (a) {
+          a.addEventListener("click", function () { ggTrack("scholar_click"); });
         });
-
+        document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+          a.addEventListener("click", function () { ggTrack("email_click"); });
+        });
         document.querySelectorAll("button.more").forEach(function (b) {
           b.addEventListener("click", function () { ggTrack("show_more", { list: b.getAttribute("aria-controls") }); });
         });
-
-        // Video
         var vid = document.querySelector("video");
         if (vid) {
           vid.addEventListener("play", function () { ggTrack("video_play"); });
