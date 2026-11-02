@@ -30,14 +30,8 @@ Media links are listed in `index.html` under “Media & outreach”.
 
 
 ## Photo
-Hero portrait files:
-- `assets/img/portrait.jpg`
-- `assets/img/portrait.webp`
+- Avatar (grey, colour on hover): `assets/img/avatar.jpg`
+- Share image (link previews, structured data): `assets/img/gianluca.jpg`
 
 ## Theme
 A light/dark toggle is included (button in the header). The choice is saved in localStorage.
-
-
-## Dual portrait
-- Light mode uses `assets/img/portrait-color.*`
-- Dark mode uses `assets/img/portrait-bw.*`
