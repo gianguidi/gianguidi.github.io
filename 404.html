@@ -10,6 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
   <script>
+    // the site used to live at /gian/: old links land on the same page at the root
+    if (location.pathname.indexOf("/gian/") === 0) location.replace(location.pathname.slice(5) + location.search + location.hash);
     // same light / dark choice as the home page
     (function () {
       try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
@@ -36,7 +38,7 @@
     <p class="code">404</p>
     <h1>Nowhere, man.</h1>
     <p>This page isn’t here. A momentary lapse of reason, probably mine.</p>
-    <p><a href="/gian/">Get back</a></p>
+    <p><a href="/">Get back</a></p>
   </main>
 </body>
 </html>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gianguidi.github.io/gian/sitemap.xml
+Sitemap: https://gianguidi.github.io/sitemap.xml
