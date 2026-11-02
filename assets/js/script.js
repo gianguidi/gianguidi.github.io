@@ -18,10 +18,15 @@
     clearTimeout(hide);
     if (ms) hide = setTimeout(() => note.classList.remove("show"), ms);
   };
+  const unsay = (e) => {
+    if (e.pointerType !== "mouse") return;
+    clearTimeout(hide);
+    hide = setTimeout(() => note && note.classList.remove("show"), 500);
+  };
   let flips = 0, last = 0;
   if (mode) {
     mode.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") say(song()); });
-    mode.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") { clearTimeout(hide); hide = setTimeout(() => note && note.classList.remove("show"), 500); } });
+    mode.addEventListener("pointerleave", unsay);
     mode.addEventListener("click", () => {
       const next = isDark() ? "light" : "dark";
       root.setAttribute("data-theme", next);
@@ -40,6 +45,38 @@
       if (flips === 4 && typeof gtag === "function") gtag("event", "easter_egg", { egg: "flips" });
     });
   }
+
+  // The record: the original mono mix (lowkey) or the 2026 remaster (modern). Same songs, two looks
+  const mix = document.querySelector(".mix");
+  const isRemaster = () => root.getAttribute("data-style") === "remaster";
+  const mixSong = () => isRemaster() ? "The 2026 remaster" : "The original mono mix";
+  const mixLabel = () => mix && mix.setAttribute("aria-label", isRemaster() ? "Switch to the original look" : "Switch to the modern look");
+  mixLabel();
+  if (mix) {
+    mix.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") say(mixSong()); });
+    mix.addEventListener("pointerleave", unsay);
+    mix.addEventListener("click", () => {
+      if (typeof gtag === "function") gtag("event", "style_switch", { style: isRemaster() ? "mono" : "remaster" });
+      const apply = () => {
+        if (isRemaster()) root.removeAttribute("data-style");
+        else root.setAttribute("data-style", "remaster");
+        try { localStorage.setItem("style", isRemaster() ? "remaster" : "mono"); } catch (e) {}
+        mixLabel();
+        say(mixSong(), 2200);
+      };
+      if (document.startViewTransition && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) document.startViewTransition(apply);
+      else apply();
+    });
+  }
+
+  // Sections rise in as they scroll into view (only styled in the remaster; tracked always so a mid-page switch works)
+  const sections = document.querySelectorAll("section:not(.about)");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }), { rootMargin: "0px 0px -8% 0px" });
+    sections.forEach((s) => io.observe(s));
+  } else sections.forEach((s) => s.classList.add("in"));
 
   // Footer: Cambridge time, and what is probably playing at that hour
   const clock = document.querySelector(".clock");

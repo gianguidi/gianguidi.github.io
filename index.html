@@ -53,6 +53,7 @@
       var d = document.documentElement;
       d.classList.add("js");
       try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") d.setAttribute("data-theme", t); } catch (e) {}
+      try { if (localStorage.getItem("style") === "remaster") d.setAttribute("data-style", "remaster"); } catch (e) {}
     })();
   </script>
 </head>
@@ -67,6 +68,9 @@
         <h1>Gianluca Guidi</h1>
         <p class="role">Postdoc, Harvard</p>
       </div>
+      <button class="mix" type="button" aria-label="Switch between the original and the modern look">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.25" /><circle class="groove" cx="10" cy="10" r="4.75" /><circle class="label" cx="10" cy="10" r="1.6" /><circle class="label" cx="10" cy="5.6" r=".9" /></svg>
+      </button>
       <button class="mode" type="button" aria-label="Switch between light and dark">
         <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.25" /><path d="M10 2.75a7.25 7.25 0 0 1 0 14.5z" /></svg>
       </button>
@@ -74,7 +78,26 @@
     </header>
 
     <section class="about">
-      <p>I measure the hidden costs of AI and what they mean for society and policy.</p>
+      <figure class="fig" role="img" aria-label="A prism: AI goes in, and its costs come out as energy, carbon, water, resources, health and justice.">
+        <svg class="prism" viewBox="0 0 1600 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+          <line class="beam" x1="0" y1="112" x2="783.35" y2="66.8" />
+          <path class="fan" d="M783.35 66.8 816.65 66.8 825.9 82.8z" />
+          <g class="bands">
+            <polygon class="b1" points="816.65,66.8 1600,80 1600,86 818.19,69.47" />
+            <polygon class="b2" points="818.19,69.47 1600,86 1600,92 819.73,72.13" />
+            <polygon class="b3" points="819.73,72.13 1600,92 1600,98 821.28,74.8" />
+            <polygon class="b4" points="821.28,74.8 1600,98 1600,104 822.82,77.47" />
+            <polygon class="b5" points="822.82,77.47 1600,104 1600,110 824.36,80.13" />
+            <polygon class="b6" points="824.36,80.13 1600,110 1600,116 825.9,82.8" />
+          </g>
+          <path class="tri" d="M800 38 837 102 763 102z" />
+        </svg>
+        <figcaption>
+          <span class="in">AI</span>
+          <span class="out"><span class="k1">energy</span><span class="k2">carbon</span><span class="k3">water</span><span class="k4">resources</span><span class="k5">health</span><span class="k6">justice</span></span>
+        </figcaption>
+      </figure>
+      <p>I measure the <span class="hl">hidden costs of AI</span> and what they mean for society and policy.</p>
       <p>
         I’m a postdoctoral fellow in
         <a href="https://scholar.google.com/citations?hl=en&user=RSwElNMAAAAJ" target="_blank" rel="noopener">Francesca Dominici</a>’s
