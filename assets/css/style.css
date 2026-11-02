@@ -74,7 +74,7 @@ h2{font-size:15px;font-weight:500;color:var(--muted);margin:0 0 14px}
 .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:filter .4s}
 .avatar:hover img,.avatar.flip img{filter:none}
 
-.about p:first-of-type{font-size:17px;line-height:1.5;letter-spacing:-.01em}
+.bio,.lede{font-size:17px;line-height:1.5;letter-spacing:-.01em}
 .links{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:20px}
 .links a{color:var(--muted);text-decoration:none}
 .links a:hover{color:var(--text)}
@@ -104,6 +104,13 @@ h2{font-size:15px;font-weight:500;color:var(--muted);margin:0 0 14px}
 
 .video{margin:4px 0 18px}
 .video video{display:block;width:100%;aspect-ratio:16/9;border-radius:10px;background:#000}
+.video.tall video{width:min(100%,300px);aspect-ratio:9/16}
+/* the setlist under the video: the song playing is darker, the +1 waits its turn */
+.tracks{display:flex;flex-wrap:wrap;gap:2px 18px;margin:10px 0 0;font-size:13.5px}
+.track{font:inherit;color:var(--faint);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.track span{margin-left:4px;color:var(--faint)}
+.track b{font-weight:500;margin-right:4px}
+.track:hover,.track[aria-pressed="true"]{color:var(--text)}
 
 footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;margin-top:72px;padding-top:18px;border-top:1px solid var(--line);color:var(--faint);font-size:13px;font-variant-numeric:tabular-nums}
 .clock:not(:empty)::before{content:" · "}
@@ -144,13 +151,13 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 }
 
 /* ===== The 2026 remaster: same songs, louder. Everything below only applies with data-style="remaster" ===== */
-:root{--sp1:#e5352b;--sp2:#f08c1f;--sp3:#f6d32b;--sp4:#43a047;--sp5:#2b7bd6;--sp6:#6b4fbb}
+:root{--sp1:#e5352b;--sp2:#f08c1f;--sp3:#f6d32b;--sp4:#43a047;--sp5:#2b7bd6;--sp6:#6b4fbb;--serif:"Instrument Serif","Times New Roman",Times,serif}
 [data-style="remaster"] body{font-size:16px;overflow-x:clip}
 [data-style="remaster"] ::selection{background:var(--sp6);color:#fff}
 [data-style="remaster"] .page{max-width:1080px;padding:0 40px 64px}
 
 /* sticky glass bar */
-[data-style="remaster"] .intro{position:sticky;top:0;z-index:5;margin:0 calc(50% - 50vw);padding:14px max(40px, calc((100vw - 1000px) / 2));background:var(--bg);background:color-mix(in srgb,var(--bg) 70%,transparent);-webkit-backdrop-filter:saturate(1.5) blur(16px);backdrop-filter:saturate(1.5) blur(16px);border-bottom:1px solid var(--line)}
+[data-style="remaster"] .intro{position:sticky;top:0;z-index:5;margin:0 calc(50% - 50vw);padding:14px max(40px, calc((100vw - 1000px) / 2));background:var(--bg);background:color-mix(in srgb,var(--bg) 70%,transparent);-webkit-backdrop-filter:saturate(1.5) blur(16px);backdrop-filter:saturate(1.5) blur(16px)}
 [data-style="remaster"] .intro .note{right:max(40px, calc((100vw - 1000px) / 2));margin-top:8px}
 [data-style="remaster"] .avatar{width:40px;height:40px}
 [data-style="remaster"] .mix svg{animation:spin 3.2s linear infinite}
@@ -160,7 +167,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 .fig{display:none}
 [data-style="remaster"] .fig{display:block;margin:0 0 clamp(20px,3.5vh,36px)}
 [data-style="remaster"] .prism{display:block;width:100vw;height:max(80px,8.75vw);margin:0 calc(50% - 50vw)}
-.fig figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:8px 24px;margin-top:4px;font:400 11px/1.4 var(--mono);color:var(--muted)}
+.fig figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:8px 24px;margin-top:6px;color:var(--muted)}
 .fig .in{color:var(--text)}
 .fig .out{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px 14px}
 .fig .out span{display:inline-flex;align-items:center;gap:6px;cursor:default;transition:color .2s}
@@ -189,19 +196,31 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 
 /* the hero line goes big */
 [data-style="remaster"] .about{margin-top:0;padding-top:clamp(16px,4vh,40px)}
-[data-style="remaster"] .about p:first-of-type{font-size:clamp(40px,6.6vw,80px);line-height:1;letter-spacing:-.05em;font-weight:600;max-width:17ch;margin-bottom:32px}
-[data-style="remaster"] .hl{background:linear-gradient(180deg,var(--sp1) 0 34%,var(--sp2) 34% 44%,var(--sp3) 44% 54%,var(--sp4) 54% 64%,var(--sp5) 64% 74%,var(--sp6) 74% 100%);-webkit-box-decoration-break:clone;box-decoration-break:clone;-webkit-background-clip:text;background-clip:text;color:transparent}
-[data-style="remaster"] .about p:nth-of-type(2){font-size:19px;line-height:1.6;color:var(--muted);max-width:640px}
-[data-style="remaster"] .about p:nth-of-type(2) a{color:var(--text)}
-[data-style="remaster"] .links{gap:8px;margin-top:32px}
-[data-style="remaster"] .links a{border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:14px;color:var(--text);transition:border-color .2s,background .2s}
-[data-style="remaster"] .links a:hover{background:var(--hover);border-color:var(--faint)}
+[data-style="remaster"] .lede{font-size:19px;line-height:1.6;max-width:560px;margin-bottom:32px;text-wrap:balance}
+[data-style="remaster"] .hl{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:-.02em}
+[data-style="remaster"] .bio{font-size:19px;line-height:1.6;color:var(--muted);max-width:560px;margin-bottom:6px;text-wrap:balance}
+[data-style="remaster"] .bio a{color:var(--text)}
+[data-style="remaster"] .links{gap:6px 22px;margin-top:32px}
+[data-style="remaster"] .links a{color:var(--text);text-decoration:underline;text-decoration-color:var(--faint);text-underline-offset:4px}
+[data-style="remaster"] .links a:hover{text-decoration-color:currentColor}
+
+/* labels in small tracked capitals: counts, sources, years, the legend, buttons, the setlist, the footer */
+[data-style="remaster"] :where(.role,.count,.list .src,.list .yr,.fig figcaption,.links,.more,.tracks,footer,.note){font-family:var(--sans);font-size:11px;font-weight:500;line-height:1.5;letter-spacing:.08em;text-transform:uppercase}
+[data-style="remaster"] :where(.more,.track,.np){text-transform:inherit;letter-spacing:inherit}
 
 /* sections: title on the left (sticky), content on the right */
 [data-style="remaster"] section:not(.about){display:grid;grid-template-columns:260px minmax(0,1fr);column-gap:64px;margin-top:112px;padding-top:32px;border-top:1px solid var(--line)}
 [data-style="remaster"] section:not(.about) > *{grid-column:2}
-[data-style="remaster"] section:not(.about) > h2{grid-column:1;grid-row:1 / span 12;align-self:start;position:sticky;top:104px;margin:0;font-size:24px;line-height:1.15;font-weight:600;letter-spacing:-.03em;color:var(--text)}
-[data-style="remaster"] h2 .count{display:block;margin:12px 0 0;vertical-align:0}
+[data-style="remaster"] section:not(.about) > h2{grid-column:1;grid-row:1 / span 12;align-self:start;position:sticky;top:104px;margin:0;font:italic 400 36px/1.02 var(--serif);letter-spacing:-.01em;color:var(--text)}
+[data-style="remaster"] h2 .count{display:block;margin:14px 0 0;vertical-align:0;color:var(--faint)}
+/* every section is a track on the record: side A, then side B */
+[data-style="remaster"] section:not(.about) > h2::before{display:block;margin-bottom:12px;font:500 11px/1 var(--sans);letter-spacing:.08em;color:var(--faint)}
+[data-style="remaster"] section:nth-of-type(2) > h2::before{content:"A1"}
+[data-style="remaster"] section:nth-of-type(3) > h2::before{content:"A2"}
+[data-style="remaster"] section:nth-of-type(4) > h2::before{content:"A3"}
+[data-style="remaster"] section:nth-of-type(5) > h2::before{content:"B1"}
+[data-style="remaster"] section:nth-of-type(6) > h2::before{content:"B2"}
+[data-style="remaster"] section:nth-of-type(7) > h2::before{content:"B3"}
 
 /* lists: hairlines, bigger titles, arrows always on */
 [data-style="remaster"] .list li{margin:0;padding:18px 0;border-radius:0;border-bottom:1px solid var(--line);transition:padding .3s cubic-bezier(.2,.7,.2,1)}
@@ -211,19 +230,20 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 [data-style="remaster"] .list a:hover{text-decoration:none}
 [data-style="remaster"] .list a::after{opacity:1;transform:none}
 [data-style="remaster"] .list li:hover a::after{color:var(--text);transform:translate(2px,-2px)}
-[data-style="remaster"] .list .src{font-size:14px;margin-top:3px}
-[data-style="remaster"] .list .yr{font:400 12px/2 var(--mono)}
+[data-style="remaster"] .list .src{margin-top:6px;font-size:11px}
+[data-style="remaster"] .list .yr{font-size:11px;line-height:2.2;color:var(--faint)}
 [data-style="remaster"] .list .mono{font-size:15px}
-[data-style="remaster"] .more{justify-self:start;margin-top:24px;padding:8px 16px;border:1px solid var(--line);border-radius:999px;color:var(--text);text-decoration:none;font-size:14px}
-[data-style="remaster"] .more:hover{background:var(--hover);border-color:var(--faint)}
+[data-style="remaster"] .more{justify-self:start;margin-top:24px;color:var(--text);text-underline-offset:4px}
 
-/* interests become pills */
-[data-style="remaster"] .interests{display:flex;flex-wrap:wrap;gap:8px}
-[data-style="remaster"] .interests li{padding:8px 15px;border:1px solid var(--line);border-radius:999px;font-size:14px;transition:border-color .2s}
-[data-style="remaster"] .interests li:hover{border-color:var(--faint)}
-[data-style="remaster"] .aside{margin-top:24px;font-size:14px}
+/* interests: a numbered index, and the line under it set like a pull quote */
+[data-style="remaster"] .interests{gap:0 32px;counter-reset:i}
+[data-style="remaster"] .interests li{counter-increment:i;display:flex;align-items:baseline;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+[data-style="remaster"] .interests li::before{content:counter(i,decimal-leading-zero);font:500 11px/1 var(--sans);letter-spacing:.08em;color:var(--faint)}
+[data-style="remaster"] .aside{margin-top:28px;font:italic 400 24px/1.25 var(--serif);color:var(--muted);text-wrap:balance}
 
-[data-style="remaster"] .video video{border-radius:16px}
+[data-style="remaster"] .video video{border-radius:0}
+[data-style="remaster"] .video.tall video{width:min(100%,340px)}
+[data-style="remaster"] .tracks{gap:6px 24px;margin-top:14px}
 [data-style="remaster"] section:last-of-type p{font-size:clamp(22px,2.6vw,30px);line-height:1.3;letter-spacing:-.025em}
 [data-style="remaster"] footer{margin-top:128px}
 [data-style="remaster"] .eq i:nth-child(1){background:var(--sp1)}
@@ -240,11 +260,14 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
   [data-style="remaster"] .intro{padding:12px 20px}
   [data-style="remaster"] .intro .note{right:20px}
   [data-style="remaster"] .about{padding-top:12px}
-  [data-style="remaster"] .about p:nth-of-type(2){font-size:17px}
+  [data-style="remaster"] .bio,[data-style="remaster"] .lede{font-size:17px}
   .fig .out{display:grid;grid-template-columns:repeat(3,auto);gap:4px 12px}
   [data-style="remaster"] section:not(.about){display:block;margin-top:72px;padding-top:24px}
-  [data-style="remaster"] section:not(.about) > h2{position:static;font-size:21px;margin-bottom:22px}
-  [data-style="remaster"] h2 .count{display:inline-block;margin:0 0 0 8px;vertical-align:3px}
+  [data-style="remaster"] section:not(.about) > h2{position:static;font-size:30px;margin-bottom:22px}
+  [data-style="remaster"] h2 .count{display:inline-block;margin:0 0 0 10px;vertical-align:5px}
+}
+@media (max-width:600px){
+  [data-style="remaster"] .interests{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){
   [data-style="remaster"] .mix svg{animation:none}

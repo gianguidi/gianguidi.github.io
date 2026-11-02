@@ -159,14 +159,24 @@
     });
   });
 
-  // "Watch us": open the band video inline
+  // "Watch us": the poster is already on the page, so this just starts the song
   const watch = document.querySelector("button.inline");
   const video = document.getElementById("video");
   if (watch && video) watch.addEventListener("click", () => {
-    const open = video.hidden;
-    video.hidden = !open;
-    watch.setAttribute("aria-expanded", String(open));
-    watch.textContent = open ? "Hide video" : "Watch us";
-    if (open) { const v = video.querySelector("video"); if (v) v.play().catch(() => {}); }
+    const v = video.querySelector("video");
+    if (!v) return;
+    v.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+    v.play().catch(() => {});
   });
+
+  // The setlist under the video: the main song, or the +1
+  if (video) video.querySelectorAll(".track").forEach((t) => t.addEventListener("click", () => {
+    const v = video.querySelector("video");
+    if (!v || t.getAttribute("aria-pressed") === "true") return;
+    video.querySelectorAll(".track").forEach((x) => x.setAttribute("aria-pressed", String(x === t)));
+    video.classList.toggle("tall", t.dataset.shape === "tall");
+    v.poster = t.dataset.poster;
+    v.src = t.dataset.src;
+    v.play().catch(() => {});
+  }));
 })();

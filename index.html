@@ -34,9 +34,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gianluca Guidi</title>
-  <meta name="description" content="Gianluca Guidi measures the hidden costs of AI and what they mean for society and policy. Postdoctoral Research Fellow at Harvard." />
+  <meta name="description" content="Gianluca Guidi investigates the hidden costs of AI and what they mean for society and policy. Postdoctoral Research Fellow at Harvard." />
   <meta property="og:title" content="Gianluca Guidi" />
-  <meta property="og:description" content="I measure the hidden costs of AI and what they mean for society and policy." />
+  <meta property="og:description" content="I investigate the hidden costs of AI and what they mean for society and policy." />
   <meta property="og:image" content="https://gianguidi.github.io/gian/assets/img/gianluca.jpg" />
   <meta property="og:url" content="https://gianguidi.github.io/gian/" />
   <meta name="twitter:card" content="summary" />
@@ -45,7 +45,7 @@
   <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
   <script>
     // pick light or dark before first paint: a saved choice wins, otherwise follow the system
@@ -78,7 +78,7 @@
     </header>
 
     <section class="about">
-      <figure class="fig" role="img" aria-label="A prism: AI goes in, and its costs come out as energy, carbon, water, resources, health and justice.">
+      <figure class="fig" role="img" aria-label="A prism: AI goes in, and its costs come out as energy, carbon, water, people, health and justice.">
         <svg class="prism" viewBox="0 0 1600 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
           <line class="beam" x1="0" y1="112" x2="783.35" y2="66.8" />
           <path class="fan" d="M783.35 66.8 816.65 66.8 825.9 82.8z" />
@@ -94,17 +94,15 @@
         </svg>
         <figcaption>
           <span class="in">AI</span>
-          <span class="out"><span class="k1">energy</span><span class="k2">carbon</span><span class="k3">water</span><span class="k4">resources</span><span class="k5">health</span><span class="k6">justice</span></span>
+          <span class="out"><span class="k1">energy</span><span class="k2">carbon</span><span class="k3">water</span><span class="k4">people</span><span class="k5">health</span><span class="k6">justice</span></span>
         </figcaption>
       </figure>
-      <p>I measure the <span class="hl">hidden costs of AI</span> and what they mean for society and policy.</p>
-      <p>
-        I’m a postdoctoral fellow in
+      <p class="bio">
+        I’m a postdoc at Harvard in
         <a href="https://scholar.google.com/citations?hl=en&user=RSwElNMAAAAJ" target="_blank" rel="noopener">Francesca Dominici</a>’s
-        group at the Harvard T.H. Chan School of Public Health. Before that, a PhD in AI for Social Sciences with
-        <a href="https://scholar.google.com/citations?hl=en&user=-tMSEmwAAAAJ" target="_blank" rel="noopener">Tiziano Squartini</a> and
-        <a href="https://scholar.google.com/citations?hl=en&user=G-WPCrMAAAAJ" target="_blank" rel="noopener">Diego Garlaschelli</a>.
+        group, with a PhD in AI for Social Sciences.
       </p>
+      <p class="lede">I investigate the <span class="hl">hidden costs of AI</span> and what they mean for society and policy.</p>
       <p class="links">
         <a href="https://scholar.google.com/citations?hl=it&user=mu45z3kAAAAJ" target="_blank" rel="noopener">Scholar</a>
         <a href="https://github.com/gianguidi" target="_blank" rel="noopener">GitHub</a>
@@ -181,13 +179,16 @@
         I play in <a href="https://www.instagram.com/project42.hdsi/" target="_blank" rel="noopener">Project42</a>, a 10+ person
         band that started with a few Harvard Data Science Initiative scholars. The name is the ultimate random seed, and
         roughly the latitude of both Boston and Rome.
-        <button class="inline" type="button" aria-expanded="false" aria-controls="video">Watch us</button>,
+        <button class="inline" type="button" aria-controls="video">Watch us</button>,
         not quite <i>Live at&nbsp;Pompeii</i>.
       </p>
-      <div class="video" id="video" hidden>
-        <video controls playsinline preload="none" poster="assets/img/video-poster.jpg">
-          <source src="assets/video/project42.mp4" type="video/mp4" />
-        </video>
+      <div class="video tall" id="video">
+        <video controls playsinline preload="none" poster="assets/img/ode-to-the-mets.jpg" src="assets/video/ode-to-the-mets.mp4"></video>
+        <!-- the setlist: the main song, and a +1 -->
+        <p class="tracks">
+          <button class="track" type="button" aria-pressed="true" data-src="assets/video/ode-to-the-mets.mp4" data-poster="assets/img/ode-to-the-mets.jpg" data-shape="tall">Ode to the Mets <span>The Strokes</span></button>
+          <button class="track" type="button" aria-pressed="false" data-src="assets/video/project42.mp4" data-poster="assets/img/video-poster.jpg" data-shape="wide"><b>+1</b> Get Lucky <span>Daft Punk</span></button>
+        </p>
       </div>
       <p class="muted">
         I got by with a little help from my PhD committee: Falco J. Bargagli Stoffi, Dino Pedreschi, Giulio Rossetti and Rossana Mastrandrea.
@@ -235,8 +236,9 @@
         });
         var vid = document.querySelector("video");
         if (vid) {
-          vid.addEventListener("play", function () { ggTrack("video_play"); });
-          vid.addEventListener("ended", function () { ggTrack("video_complete"); });
+          var song = function () { return /mets/.test(vid.currentSrc || vid.src) ? "ode_to_the_mets" : "get_lucky"; };
+          vid.addEventListener("play", function () { ggTrack("video_play", { track: song() }); });
+          vid.addEventListener("ended", function () { ggTrack("video_complete", { track: song() }); });
         }
       });
     })();
