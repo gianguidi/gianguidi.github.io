@@ -77,20 +77,56 @@
       mixLabel();
       show();
       light("press");
+      tuck();
+      scrolled();
     };
-    if (document.startViewTransition && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) document.startViewTransition(apply);
-    else apply();
+    if (document.startViewTransition && !document.hidden && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // if the browser skips the animation the switch still happens; just don't let it shout in the console
+      const t = document.startViewTransition(apply);
+      [t.ready, t.finished, t.updateCallbackDone].forEach((p) => p && p.catch(() => {}));
+    } else apply();
   });
+
+  // The menu. The header is sticky but pulled up by exactly the menu's offset, so as you scroll the photo and
+  // name slide away and only the menu stays on top; the section you're in gets aria-current and its colour
+  const header = document.querySelector(".intro");
+  const menu = document.querySelector(".menu");
+  const items = menu ? [...menu.querySelectorAll('a[href^="#"]')]
+    .map((a) => [a, document.getElementById(a.hash.slice(1))]).filter((p) => p[1]) : [];
+  const tuck = () => { if (header && menu) header.style.setProperty("--tuck", -menu.offsetTop + "px"); };
+  const spy = () => {
+    if (!menu) return;
+    const edge = menu.getBoundingClientRect();
+    root.classList.toggle("stuck", edge.top <= 0.5);
+    const line = edge.bottom + window.innerHeight * 0.2;
+    let on = null;
+    items.forEach(([a, s]) => { if (s.getBoundingClientRect().top <= line) on = a; });
+    // at the very bottom the last one wins, even if it's too short to reach the line
+    if (items.length && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) on = items[items.length - 1][0];
+    items.forEach(([a]) => (a === on ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current")));
+  };
+  if (menu) menu.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (a) ga("menu_click", { section: a.hash.slice(1) });
+  });
+  tuck();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(tuck);
 
   // Once the page moves, the note under the bar steps aside (only styled in the remaster, on phones)
   let ticking = false;
   const scrolled = () => {
     if (ticking) return;
     ticking = true;
-    requestAnimationFrame(() => { root.classList.toggle("scrolled", window.scrollY > 24); ticking = false; });
+    requestAnimationFrame(() => { root.classList.toggle("scrolled", window.scrollY > 24); spy(); ticking = false; });
   };
   window.addEventListener("scroll", scrolled, { passive: true });
+  window.addEventListener("resize", () => { tuck(); scrolled(); });
   scrolled();
+
+  // Press that just came out wears a small "New" until its date passes
+  document.querySelectorAll(".fresh[data-until]").forEach((li) => {
+    if (Date.now() > Date.parse(li.dataset.until)) li.classList.remove("fresh");
+  });
 
   // Leave it alone for a minute and it wonders where everybody went
   let idle, away = false, asked = false;

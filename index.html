@@ -75,6 +75,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <!-- the mastheads: a blackletter and a Didone, cut down to just the letters the journal and outlet names use -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=UnifrakturMaguntia&display=swap&text=%20ABCDFGHIJNPRSTWZabcdefghiklmnoprstuvy" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
   <script>
     // pick light or dark before first paint: a saved choice wins, otherwise follow the system
@@ -105,6 +107,15 @@
       </button>
       <!-- what's on: which pressing (the record) and which side (the moon) -->
       <span class="note" aria-hidden="true"><span class="press"></span><span class="side"></span><span class="say"></span></span>
+      <!-- the menu: plain words for the song titles; it stays on top as you scroll, and the section you're in lights up in its colour -->
+      <nav class="menu" aria-label="Sections">
+        <a href="#work">Work</a>
+        <a href="#papers">Papers</a>
+        <a href="#press">Press</a>
+        <a href="#code">Code</a>
+        <a href="#music">Music</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
     <section class="about">
@@ -144,7 +155,7 @@
     </section>
 
     <!-- the same three the prism splits into: energy, carbon and water; health; people and justice -->
-    <section>
+    <section id="work">
       <h2>Any Colour You Like <span class="count">what I work on</span></h2>
       <ol class="threads">
         <li class="t1">
@@ -162,7 +173,7 @@
       </ol>
     </section>
 
-    <section>
+    <section id="interests">
       <h2>Us and Them <span class="count">interests</span></h2>
       <ul class="interests">
         <li>AI’s energy, carbon and water use</li>
@@ -177,52 +188,55 @@
       <p class="muted aside">In short: what the great gig in the sky really costs, and who ends up paying for it.</p>
     </section>
 
-    <section>
+    <section id="papers">
       <h2>Paperback Writer <span class="count">papers · 10</span></h2>
-      <ul class="list" id="papers">
-        <li><a href="https://ajph.aphapublications.org/doi/full/10.2105/AJPH.2026.308678" target="_blank" rel="noopener">Who Pays for Artificial Intelligence? Energy, Climate, and Health</a><span class="src">American Journal of Public Health</span><span class="yr">2026</span></li>
-        <li><a href="https://arxiv.org/abs/2606.05420" target="_blank" rel="noopener">Assessing the Carbon Emissions and Energy Consumption of U.S. Hyperscale Data Centers</a><span class="src">Nature Sustainability, accepted</span><span class="yr">2026</span></li>
-        <li><a href="https://www.nature.com/articles/s41467-025-58287-3" target="_blank" rel="noopener">The environmental burden of the United States’ bitcoin mining boom</a><span class="src">Nature Communications</span><span class="yr">2025</span></li>
-        <li><a href="https://arxiv.org/abs/2607.02531" target="_blank" rel="noopener">The Hidden Water Geography of U.S. Hyperscale Data Centers in the AI Era</a><span class="src">arXiv</span><span class="yr">2026</span></li>
-        <li><a href="https://arxiv.org/abs/2411.09786" target="_blank" rel="noopener">Environmental Burden of United States Data Centers in the AI Era</a><span class="src">arXiv · 100+ citations</span><span class="yr">2024</span></li>
-        <li class="extra"><a href="https://europepmc.org/article/pmc/pmc13648786" target="_blank" rel="noopener">Delayed Coal Plant Retirements in the Era of Data Centers Carry a Measurable Mortality Cost</a><span class="src">medRxiv</span><span class="yr">2026</span></li>
-        <li class="extra"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7350551" target="_blank" rel="noopener">Public Health and Economic Burden of a Proposed 3,500-MW Natural Gas Plant in Virginia</a><span class="src">SSRN · the plant was withdrawn</span><span class="yr">2026</span></li>
-        <li class="extra"><a href="https://www.nature.com/articles/s41598-024-57351-0" target="_blank" rel="noopener">Tracing two decades of carbon emissions using a network approach</a><span class="src">Scientific Reports</span><span class="yr">2024</span></li>
-        <li class="extra"><a href="https://arxiv.org/abs/2410.09029" target="_blank" rel="noopener">Towards a Health-Based Power Grid Optimization in the AI Era</a><span class="src">arXiv</span><span class="yr">2024</span></li>
+      <!-- each venue is set a little like its own masthead: .v, styled per journal or outlet -->
+      <ul class="list" id="papers-list">
+        <li><a href="https://ajph.aphapublications.org/doi/full/10.2105/AJPH.2026.308678" target="_blank" rel="noopener">Who Pays for Artificial Intelligence? Energy, Climate, and Health</a><span class="src"><b class="v v-ajph">American Journal of Public Health</b></span><span class="yr">2026</span></li>
+        <li><a href="https://arxiv.org/abs/2606.05420" target="_blank" rel="noopener">Assessing the Carbon Emissions and Energy Consumption of U.S. Hyperscale Data Centers</a><span class="src"><b class="v v-nature">Nature Sustainability</b>, accepted</span><span class="yr">2026</span></li>
+        <li><a href="https://www.nature.com/articles/s41467-025-58287-3" target="_blank" rel="noopener">The environmental burden of the United States’ bitcoin mining boom</a><span class="src"><b class="v v-nature">Nature Communications</b></span><span class="yr">2025</span></li>
+        <li><a href="https://arxiv.org/abs/2607.02531" target="_blank" rel="noopener">The Hidden Water Geography of U.S. Hyperscale Data Centers in the AI Era</a><span class="src"><b class="v v-arxiv">arXiv</b></span><span class="yr">2026</span></li>
+        <li><a href="https://arxiv.org/abs/2411.09786" target="_blank" rel="noopener">Environmental Burden of United States Data Centers in the AI Era</a><span class="src"><b class="v v-arxiv">arXiv</b> · 100+ citations</span><span class="yr">2024</span></li>
+        <li class="extra"><a href="https://europepmc.org/article/pmc/pmc13648786" target="_blank" rel="noopener">Delayed Coal Plant Retirements in the Era of Data Centers Carry a Measurable Mortality Cost</a><span class="src"><b class="v v-medrxiv">medRxiv</b></span><span class="yr">2026</span></li>
+        <li class="extra"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7350551" target="_blank" rel="noopener">Public Health and Economic Burden of a Proposed 3,500-MW Natural Gas Plant in Virginia</a><span class="src"><b class="v v-ssrn">SSRN</b> · the plant was withdrawn</span><span class="yr">2026</span></li>
+        <li class="extra"><a href="https://www.nature.com/articles/s41598-024-57351-0" target="_blank" rel="noopener">Tracing two decades of carbon emissions using a network approach</a><span class="src"><b class="v v-nature">Scientific Reports</b></span><span class="yr">2024</span></li>
+        <li class="extra"><a href="https://arxiv.org/abs/2410.09029" target="_blank" rel="noopener">Towards a Health-Based Power Grid Optimization in the AI Era</a><span class="src"><b class="v v-arxiv">arXiv</b></span><span class="yr">2024</span></li>
         <li class="extra"><span class="t">The Global Carbon Trade Network</span><span class="src">working paper</span><span class="yr">—</span></li>
       </ul>
-      <button class="more" type="button" aria-expanded="false" aria-controls="papers">Show all 10</button>
+      <button class="more" type="button" aria-expanded="false" aria-controls="papers-list">Show all 10</button>
     </section>
 
-    <section>
-      <h2>Here, There and Everywhere <span class="count">press · 11</span></h2>
-      <ul class="list" id="press">
-        <li><a href="https://www.theguardian.com/technology/2025/jun/27/trump-tax-bill-ai-climate-emissions" target="_blank" rel="noopener">Trump’s tax bill seeks to prevent AI regulations. Experts fear a heavy toll on the planet</a><span class="src">The Guardian</span><span class="yr">2025</span></li>
-        <li><a href="https://www.technologyreview.com/2025/05/20/1116327/ai-energy-usage-climate-footprint-big-tech/" target="_blank" rel="noopener">We did the math on AI’s energy footprint</a><span class="src">MIT Technology Review</span><span class="yr">2025</span></li>
-        <li><a href="https://www.technologyreview.com/2024/12/13/1108719/ais-emissions-are-about-to-skyrocket-even-further/" target="_blank" rel="noopener">AI’s emissions are about to skyrocket even further</a><span class="src">MIT Technology Review</span><span class="yr">2024</span></li>
-        <li><a href="https://www.forbes.com/sites/francescadominici/2025/01/20/how-ai-could-help-reduce-climate-change-and-air-pollution/" target="_blank" rel="noopener">How AI Could Help Reduce Climate Change And Air Pollution</a><span class="src">Forbes</span><span class="yr">2025</span></li>
-        <li><a href="https://aiinstitute.hbs.edu/the-dual-geography-of-ais-water-footprint/" target="_blank" rel="noopener">The Dual-Geography of AI’s Water Footprint</a><span class="src">Harvard Business School AI Institute</span><span class="yr">2026</span></li>
-        <li class="extra"><a href="https://salatainstitute.harvard.edu/study-maps-water-footprint-of-ai-data-centers/" target="_blank" rel="noopener">Study maps water footprint of AI data centers</a><span class="src">Harvard Salata Institute</span><span class="yr">2026</span></li>
-        <li class="extra"><a href="https://publichealthpost.org/environment/bitcoins-toxic-footprint/" target="_blank" rel="noopener">Bitcoin’s Toxic Footprint</a><span class="src">Public Health Post</span><span class="yr">2025</span></li>
-        <li class="extra"><a href="https://grist.org/energy/this-rural-community-fought-one-of-the-countrys-biggest-gas-powered-data-centers-and-won/" target="_blank" rel="noopener">This rural community fought one of the country’s biggest gas-powered data centers, and won</a><span class="src">Grist</span><span class="yr">2025</span></li>
-        <li class="extra"><a href="https://www.faz.net/aktuell/wissen/erde-klima/energiehunger-von-ki-fossile-energietraeger-und-atomstrom-110188743.html" target="_blank" rel="noopener">The Energy Hunger of the AI Boom and its Consequences</a><span class="src">Frankfurter Allgemeine Zeitung, in German</span><span class="yr">2024</span></li>
-        <li class="extra"><a href="https://www.ai4business.it/intelligenza-artificiale/le-emissioni-dellintelligenza-artificiale-pronte-a-una-crescita-esponenziale/" target="_blank" rel="noopener">Le Emissioni dell’Intelligenza Artificiale Pronte a una Crescita Esponenziale</a><span class="src">AI4Business, in Italian</span><span class="yr">2024</span></li>
-        <li class="extra"><a href="https://www.thecooldown.com/green-business/ai-regulations-rejected-congress-trump/" target="_blank" rel="noopener">Researchers sound the alarm on controversial AI plan rejected by lawmakers</a><span class="src">The Cooldown</span><span class="yr"></span></li>
+    <section id="press">
+      <h2>Here, There and Everywhere <span class="count">press · 12</span></h2>
+      <ul class="list" id="press-list">
+        <!-- "fresh" puts a small New on it until data-until, then it quietly drops -->
+        <li class="fresh" data-until="2026-12-15"><a href="https://www.washingtonpost.com/technology/2026/10/19/big-tech-vowed-lead-climate-now-its-driving-fossil-fuel-boom/" target="_blank" rel="noopener">The tech industry is investing in mega gas plants to power their data centers</a><span class="src"><b class="v v-wapo">The Washington Post</b></span><span class="yr">2026</span></li>
+        <li><a href="https://www.theguardian.com/technology/2025/jun/27/trump-tax-bill-ai-climate-emissions" target="_blank" rel="noopener">Trump’s tax bill seeks to prevent AI regulations. Experts fear a heavy toll on the planet</a><span class="src"><b class="v v-guardian">The Guardian</b></span><span class="yr">2025</span></li>
+        <li><a href="https://www.technologyreview.com/2025/05/20/1116327/ai-energy-usage-climate-footprint-big-tech/" target="_blank" rel="noopener">We did the math on AI’s energy footprint</a><span class="src"><b class="v v-mittr">MIT Technology Review</b></span><span class="yr">2025</span></li>
+        <li><a href="https://www.technologyreview.com/2024/12/13/1108719/ais-emissions-are-about-to-skyrocket-even-further/" target="_blank" rel="noopener">AI’s emissions are about to skyrocket even further</a><span class="src"><b class="v v-mittr">MIT Technology Review</b></span><span class="yr">2024</span></li>
+        <li><a href="https://www.forbes.com/sites/francescadominici/2025/01/20/how-ai-could-help-reduce-climate-change-and-air-pollution/" target="_blank" rel="noopener">How AI Could Help Reduce Climate Change And Air Pollution</a><span class="src"><b class="v v-forbes">Forbes</b></span><span class="yr">2025</span></li>
+        <li class="extra"><a href="https://aiinstitute.hbs.edu/the-dual-geography-of-ais-water-footprint/" target="_blank" rel="noopener">The Dual-Geography of AI’s Water Footprint</a><span class="src"><b class="v v-harvard">Harvard Business School AI Institute</b></span><span class="yr">2026</span></li>
+        <li class="extra"><a href="https://salatainstitute.harvard.edu/study-maps-water-footprint-of-ai-data-centers/" target="_blank" rel="noopener">Study maps water footprint of AI data centers</a><span class="src"><b class="v v-harvard">Harvard Salata Institute</b></span><span class="yr">2026</span></li>
+        <li class="extra"><a href="https://publichealthpost.org/environment/bitcoins-toxic-footprint/" target="_blank" rel="noopener">Bitcoin’s Toxic Footprint</a><span class="src"><b class="v">Public Health Post</b></span><span class="yr">2025</span></li>
+        <li class="extra"><a href="https://grist.org/energy/this-rural-community-fought-one-of-the-countrys-biggest-gas-powered-data-centers-and-won/" target="_blank" rel="noopener">This rural community fought one of the country’s biggest gas-powered data centers, and won</a><span class="src"><b class="v v-grist">Grist</b></span><span class="yr">2025</span></li>
+        <li class="extra"><a href="https://www.faz.net/aktuell/wissen/erde-klima/energiehunger-von-ki-fossile-energietraeger-und-atomstrom-110188743.html" target="_blank" rel="noopener">The Energy Hunger of the AI Boom and its Consequences</a><span class="src"><b class="v v-faz">Frankfurter Allgemeine Zeitung</b>, in German</span><span class="yr">2024</span></li>
+        <li class="extra"><a href="https://www.ai4business.it/intelligenza-artificiale/le-emissioni-dellintelligenza-artificiale-pronte-a-una-crescita-esponenziale/" target="_blank" rel="noopener">Le Emissioni dell’Intelligenza Artificiale Pronte a una Crescita Esponenziale</a><span class="src"><b class="v">AI4Business</b>, in Italian</span><span class="yr">2024</span></li>
+        <li class="extra"><a href="https://www.thecooldown.com/green-business/ai-regulations-rejected-congress-trump/" target="_blank" rel="noopener">Researchers sound the alarm on controversial AI plan rejected by lawmakers</a><span class="src"><b class="v">The Cooldown</b></span><span class="yr"></span></li>
       </ul>
-      <button class="more" type="button" aria-expanded="false" aria-controls="press">Show all 11</button>
+      <button class="more" type="button" aria-expanded="false" aria-controls="press-list">Show all 12</button>
     </section>
 
-    <section>
+    <section id="code">
       <h2>Welcome to the Machine <span class="count">code &amp; data · 4</span></h2>
       <ul class="list">
-        <li><a href="https://doi.org/10.7910/DVN/SKKTAG" target="_blank" rel="noopener">Hyperscalers Emissions and Energy Consumption in the US</a><span class="src">Harvard Dataverse</span><span class="yr">data</span></li>
-        <li><a class="mono" href="https://github.com/gianguidi/hyperscale-emissions" target="_blank" rel="noopener">hyperscale-emissions</a><span class="src">electricity and carbon of U.S. hyperscale data centers</span><span class="yr">code</span></li>
-        <li><a class="mono" href="https://github.com/gianguidi/hyperscale-water-geography" target="_blank" rel="noopener">hyperscale-water-geography</a><span class="src">their water, on site and at the power plant</span><span class="yr">code</span></li>
-        <li><a class="mono" href="https://github.com/gianguidi/bitcoin_mining_env_burden" target="_blank" rel="noopener">bitcoin_mining_env_burden</a><span class="src">electricity, PM2.5 and communities near U.S. bitcoin mines</span><span class="yr">code</span></li>
+        <li><a href="https://doi.org/10.7910/DVN/SKKTAG" target="_blank" rel="noopener">Hyperscalers Emissions and Energy Consumption in the US</a><span class="src"><b class="v v-harvard">Harvard Dataverse</b></span><span class="yr tag data">data</span></li>
+        <li><a class="mono" href="https://github.com/gianguidi/hyperscale-emissions" target="_blank" rel="noopener">hyperscale-emissions</a><span class="src">electricity and carbon of U.S. hyperscale data centers</span><span class="yr tag code">code</span></li>
+        <li><a class="mono" href="https://github.com/gianguidi/hyperscale-water-geography" target="_blank" rel="noopener">hyperscale-water-geography</a><span class="src">their water, on site and at the power plant</span><span class="yr tag code">code</span></li>
+        <li><a class="mono" href="https://github.com/gianguidi/bitcoin_mining_env_burden" target="_blank" rel="noopener">bitcoin_mining_env_burden</a><span class="src">electricity, PM2.5 and communities near U.S. bitcoin mines</span><span class="yr tag code">code</span></li>
       </ul>
     </section>
 
-    <section>
+    <section id="music">
       <h2>A Day in the Life <span class="count">elsewhere</span></h2>
       <p>The rest of the time goes to music and art, the only parts of my life without error&nbsp;bars.</p>
       <p>
@@ -245,7 +259,7 @@
       </p>
     </section>
 
-    <section>
+    <section id="contact">
       <h2>Come Together <span class="count">contact</span></h2>
       <p>For press, policy or research, write to <a href="mailto:ggianluca@hsph.harvard.edu">ggianluca@hsph.harvard.edu</a>. “Help!” is also a valid subject line.</p>
     </section>
@@ -282,7 +296,7 @@
           a.addEventListener("click", function () { ggTrack("email_click"); });
         });
         document.querySelectorAll("button.more").forEach(function (b) {
-          b.addEventListener("click", function () { ggTrack("show_more", { list: b.getAttribute("aria-controls") }); });
+          b.addEventListener("click", function () { ggTrack("show_more", { list: b.getAttribute("aria-controls").replace("-list", "") }); });
         });
         var vid = document.querySelector("video");
         if (vid) {
