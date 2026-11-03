@@ -10,33 +10,62 @@
     gtag('config', 'G-ZJCMH1PV05');
   </script>
 
-  <!-- Structured data -->
+  <!-- Structured data: who I am, what I work on, and the papers, data and code behind it -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Gianluca Guidi",
-  "jobTitle": "Postdoctoral Research Fellow",
-  "url": "https://gianguidi.github.io/",
-  "image": "https://gianguidi.github.io/assets/img/gianluca.jpg",
-  "affiliation": [{"@type":"Organization","name":"Harvard T.H. Chan School of Public Health"}],
-  "knowsAbout": ["Environmental impact of artificial intelligence","Environmental justice","Health equity","Data center energy and emissions","Data center water use","Air pollution and public health","Energy policy"],
-  "sameAs": [
-    "https://orcid.org/0009-0009-8629-4620",
-    "https://scholar.google.com/citations?hl=it&user=mu45z3kAAAAJ",
-    "https://github.com/gianguidi",
-    "https://www.linkedin.com/in/gianluca-guidi/",
-    "https://www.researchgate.net/profile/Gianluca-Guidi"
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": "https://gianguidi.github.io/#page",
+      "url": "https://gianguidi.github.io/",
+      "name": "Gianluca Guidi",
+      "dateModified": "2026-11-03",
+      "mainEntity": {"@id": "https://gianguidi.github.io/#me"}
+    },
+    {
+      "@type": "Person",
+      "@id": "https://gianguidi.github.io/#me",
+      "name": "Gianluca Guidi",
+      "jobTitle": "Postdoctoral Research Fellow",
+      "description": "Investigates the hidden costs of AI: the electricity, carbon and water of U.S. data centers, the air pollution and health effects of the power plants that run them, and who pays.",
+      "url": "https://gianguidi.github.io/",
+      "image": "https://gianguidi.github.io/assets/img/gianluca.jpg",
+      "email": "mailto:ggianluca@hsph.harvard.edu",
+      "affiliation": [{"@type": "Organization", "name": "Harvard T.H. Chan School of Public Health"}],
+      "colleague": [{"@type": "Person", "name": "Francesca Dominici", "url": "https://scholar.google.com/citations?hl=en&user=RSwElNMAAAAJ"}],
+      "knowsAbout": ["Environmental impact of artificial intelligence", "Data center energy use", "Data center carbon emissions", "Data center water use", "Air pollution and public health", "Power plants and health", "Environmental justice", "Social justice", "Health equity", "Energy and climate policy", "Bitcoin mining", "Network science"],
+      "sameAs": [
+        "https://orcid.org/0009-0009-8629-4620",
+        "https://scholar.google.com/citations?hl=it&user=mu45z3kAAAAJ",
+        "https://github.com/gianguidi",
+        "https://www.linkedin.com/in/gianluca-guidi/",
+        "https://www.researchgate.net/profile/Gianluca-Guidi"
+      ]
+    },
+    {"@type": "ScholarlyArticle", "headline": "Who Pays for Artificial Intelligence? Energy, Climate, and Health", "url": "https://ajph.aphapublications.org/doi/full/10.2105/AJPH.2026.308678", "datePublished": "2026", "isPartOf": {"@type": "Periodical", "name": "American Journal of Public Health"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
+    {"@type": "ScholarlyArticle", "headline": "Assessing the Carbon Emissions and Energy Consumption of U.S. Hyperscale Data Centers", "url": "https://arxiv.org/abs/2606.05420", "datePublished": "2026", "creativeWorkStatus": "Accepted in Nature Sustainability", "author": {"@id": "https://gianguidi.github.io/#me"}},
+    {"@type": "ScholarlyArticle", "headline": "The environmental burden of the United States’ bitcoin mining boom", "url": "https://www.nature.com/articles/s41467-025-58287-3", "datePublished": "2025", "isPartOf": {"@type": "Periodical", "name": "Nature Communications"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
+    {"@type": "ScholarlyArticle", "headline": "The Hidden Water Geography of U.S. Hyperscale Data Centers in the AI Era", "url": "https://arxiv.org/abs/2607.02531", "datePublished": "2026", "publisher": {"@type": "Organization", "name": "arXiv"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
+    {"@type": "ScholarlyArticle", "headline": "Environmental Burden of United States Data Centers in the AI Era", "url": "https://arxiv.org/abs/2411.09786", "datePublished": "2024", "publisher": {"@type": "Organization", "name": "arXiv"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
+    {"@type": "ScholarlyArticle", "headline": "Delayed Coal Plant Retirements in the Era of Data Centers Carry a Measurable Mortality Cost", "url": "https://europepmc.org/article/pmc/pmc13648786", "datePublished": "2026", "publisher": {"@type": "Organization", "name": "medRxiv"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
+    {"@type": "ScholarlyArticle", "headline": "Public Health and Economic Burden of a Proposed 3,500-MW Natural Gas Plant in Virginia", "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7350551", "datePublished": "2026", "publisher": {"@type": "Organization", "name": "SSRN"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
+    {"@type": "ScholarlyArticle", "headline": "Tracing two decades of carbon emissions using a network approach", "url": "https://www.nature.com/articles/s41598-024-57351-0", "datePublished": "2024", "isPartOf": {"@type": "Periodical", "name": "Scientific Reports"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
+    {"@type": "ScholarlyArticle", "headline": "Towards a Health-Based Power Grid Optimization in the AI Era", "url": "https://arxiv.org/abs/2410.09029", "datePublished": "2024", "publisher": {"@type": "Organization", "name": "arXiv"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
+    {"@type": "Dataset", "name": "Hyperscalers Emissions and Energy Consumption in the US", "url": "https://doi.org/10.7910/DVN/SKKTAG", "description": "Electricity use and carbon emissions of U.S. hyperscale data centers.", "creator": {"@id": "https://gianguidi.github.io/#me"}},
+    {"@type": "SoftwareSourceCode", "name": "hyperscale-emissions", "codeRepository": "https://github.com/gianguidi/hyperscale-emissions", "description": "Electricity and carbon of U.S. hyperscale data centers.", "author": {"@id": "https://gianguidi.github.io/#me"}},
+    {"@type": "SoftwareSourceCode", "name": "hyperscale-water-geography", "codeRepository": "https://github.com/gianguidi/hyperscale-water-geography", "description": "Water use of U.S. hyperscale data centers, on site and at the power plant.", "author": {"@id": "https://gianguidi.github.io/#me"}},
+    {"@type": "SoftwareSourceCode", "name": "bitcoin_mining_env_burden", "codeRepository": "https://github.com/gianguidi/bitcoin_mining_env_burden", "description": "Electricity, PM2.5 and communities near U.S. bitcoin mines.", "author": {"@id": "https://gianguidi.github.io/#me"}}
   ]
 }
 </script>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gianluca Guidi</title>
-  <meta name="description" content="Gianluca Guidi investigates the hidden costs of AI and what they mean for society and policy. Postdoctoral Research Fellow at Harvard." />
+  <title>Gianluca Guidi · the hidden costs of AI</title>
+  <meta name="description" content="Gianluca Guidi, a postdoc at Harvard, investigates the hidden costs of AI: the energy, carbon and water of data centers, their toll on health, and who pays." />
   <meta property="og:title" content="Gianluca Guidi" />
-  <meta property="og:description" content="I investigate the hidden costs of AI and what they mean for society and policy." />
+  <meta property="og:description" content="I investigate the hidden costs of AI: the energy, carbon and water of data centers, their toll on health, and who pays." />
   <meta property="og:image" content="https://gianguidi.github.io/assets/img/gianluca.jpg" />
   <meta property="og:url" content="https://gianguidi.github.io/" />
   <meta name="twitter:card" content="summary" />
@@ -62,7 +91,7 @@
   <main class="page" id="top">
     <header class="intro">
       <button class="avatar" type="button" aria-label="Photo of Gianluca Guidi">
-        <img src="assets/img/avatar.jpg" alt="Gianluca Guidi" width="192" height="192" />
+        <img src="assets/img/avatar.jpg" alt="Gianluca Guidi" width="288" height="288" />
       </button>
       <div>
         <h1>Gianluca Guidi</h1>
@@ -74,7 +103,8 @@
       <button class="mode" type="button" aria-label="Switch between light and dark">
         <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.25" /><path d="M10 2.75a7.25 7.25 0 0 1 0 14.5z" /></svg>
       </button>
-      <span class="note" aria-hidden="true"></span>
+      <!-- what's on: which pressing (the record) and which side (the moon) -->
+      <span class="note" aria-hidden="true"><span class="press"></span><span class="side"></span><span class="say"></span></span>
     </header>
 
     <section class="about">
@@ -111,6 +141,25 @@
         <a href="https://orcid.org/0009-0009-8629-4620" target="_blank" rel="me noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z" /></svg><span>ORCID</span></a>
         <a href="mailto:ggianluca@hsph.harvard.edu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" /></svg><span>Email</span></a>
       </p>
+    </section>
+
+    <!-- the same three the prism splits into: energy, carbon and water; health; people and justice -->
+    <section>
+      <h2>Any Colour You Like <span class="count">what I work on</span></h2>
+      <ol class="threads">
+        <li class="t1">
+          <h3>Energy, carbon and water</h3>
+          <p>The <a href="https://arxiv.org/abs/2606.05420" target="_blank" rel="noopener">electricity and carbon</a> of U.S. hyperscale data centers, and <a href="https://arxiv.org/abs/2607.02531" target="_blank" rel="noopener">where they use water</a>, on site and at the power plant.</p>
+        </li>
+        <li class="t2">
+          <h3>Health</h3>
+          <p>The air pollution from the power plants that run AI, the <a href="https://europepmc.org/article/pmc/pmc13648786" target="_blank" rel="noopener">lives lost</a> when coal plants stay open to feed it, and a <a href="https://arxiv.org/abs/2410.09029" target="_blank" rel="noopener">grid planned around health</a>.</p>
+        </li>
+        <li class="t3">
+          <h3>People and justice</h3>
+          <p><a href="https://ajph.aphapublications.org/doi/full/10.2105/AJPH.2026.308678" target="_blank" rel="noopener">Who pays for AI</a>, and what it means for the communities living next to <a href="https://www.nature.com/articles/s41467-025-58287-3" target="_blank" rel="noopener">bitcoin mines</a> or a <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7350551" target="_blank" rel="noopener">proposed gas plant</a>.</p>
+        </li>
+      </ol>
     </section>
 
     <section>
@@ -187,8 +236,8 @@
         <video controls playsinline preload="none" poster="assets/img/ode-to-the-mets.jpg" src="assets/video/ode-to-the-mets.mp4"></video>
         <!-- the setlist: the main song, and a +1 -->
         <p class="tracks">
-          <button class="track" type="button" aria-pressed="true" data-src="assets/video/ode-to-the-mets.mp4" data-poster="assets/img/ode-to-the-mets.jpg" data-shape="tall">Ode to the Mets <span>The Strokes</span></button>
-          <button class="track" type="button" aria-pressed="false" data-src="assets/video/project42.mp4" data-poster="assets/img/video-poster.jpg" data-shape="wide"><b>+1</b> Get Lucky <span>Daft Punk</span></button>
+          <button class="track" type="button" aria-pressed="true" data-src="assets/video/ode-to-the-mets.mp4" data-poster="assets/img/ode-to-the-mets.jpg" data-shape="tall" data-title="Ode to the Mets">Ode to the Mets <span>The Strokes</span></button>
+          <button class="track" type="button" aria-pressed="false" data-src="assets/video/project42.mp4" data-poster="assets/img/video-poster.jpg" data-shape="wide" data-title="Get Lucky"><b>+1</b> Get Lucky <span>Daft Punk</span></button>
         </p>
       </div>
       <p class="muted">

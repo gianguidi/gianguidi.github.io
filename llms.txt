@@ -1,0 +1,45 @@
+# Gianluca Guidi
+
+> Postdoc at Harvard, working with Francesca Dominici, after a PhD in AI for Social Sciences. I investigate the hidden costs of AI and what they mean for society and policy: the electricity, carbon and water of U.S. data centers, the air pollution and health effects of the power plants that run them, and who pays.
+
+Website: https://gianguidi.github.io/
+
+## What I work on
+
+- Energy, carbon and water: the electricity use and carbon emissions of U.S. hyperscale data centers, and where they use water, on site and at the power plant.
+- Health: the air pollution from the power plants behind AI, the mortality cost of keeping coal plants open for data centers, and power grids planned around health.
+- People and justice: who pays for AI, and what it means for the communities living next to bitcoin mines or a proposed gas plant.
+
+Interests: AI's energy, carbon and water use; who pays for AI; environmental justice; health equity; air pollution and public health; social justice; energy and climate policy; network science.
+
+## Papers
+
+- [Who Pays for Artificial Intelligence? Energy, Climate, and Health](https://ajph.aphapublications.org/doi/full/10.2105/AJPH.2026.308678): American Journal of Public Health, 2026
+- [Assessing the Carbon Emissions and Energy Consumption of U.S. Hyperscale Data Centers](https://arxiv.org/abs/2606.05420): accepted in Nature Sustainability, 2026
+- [The environmental burden of the United States' bitcoin mining boom](https://www.nature.com/articles/s41467-025-58287-3): Nature Communications, 2025
+- [The Hidden Water Geography of U.S. Hyperscale Data Centers in the AI Era](https://arxiv.org/abs/2607.02531): arXiv, 2026
+- [Environmental Burden of United States Data Centers in the AI Era](https://arxiv.org/abs/2411.09786): arXiv, 2024
+- [Delayed Coal Plant Retirements in the Era of Data Centers Carry a Measurable Mortality Cost](https://europepmc.org/article/pmc/pmc13648786): medRxiv, 2026
+- [Public Health and Economic Burden of a Proposed 3,500-MW Natural Gas Plant in Virginia](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7350551): SSRN, 2026 (the plant was withdrawn)
+- [Tracing two decades of carbon emissions using a network approach](https://www.nature.com/articles/s41598-024-57351-0): Scientific Reports, 2024
+- [Towards a Health-Based Power Grid Optimization in the AI Era](https://arxiv.org/abs/2410.09029): arXiv, 2024
+- The Global Carbon Trade Network: working paper
+
+## Data and code
+
+- [Hyperscalers Emissions and Energy Consumption in the US](https://doi.org/10.7910/DVN/SKKTAG): Harvard Dataverse
+- [hyperscale-emissions](https://github.com/gianguidi/hyperscale-emissions): electricity and carbon of U.S. hyperscale data centers
+- [hyperscale-water-geography](https://github.com/gianguidi/hyperscale-water-geography): their water, on site and at the power plant
+- [bitcoin_mining_env_burden](https://github.com/gianguidi/bitcoin_mining_env_burden): electricity, PM2.5 and communities near U.S. bitcoin mines
+
+## Press
+
+Covered by The Guardian, MIT Technology Review, Forbes, Grist, the Harvard Business School AI Institute, the Harvard Salata Institute, Public Health Post and the Frankfurter Allgemeine Zeitung, among others.
+
+## Contact
+
+- Email: ggianluca@hsph.harvard.edu (press, policy or research)
+- Google Scholar: https://scholar.google.com/citations?hl=it&user=mu45z3kAAAAJ
+- GitHub: https://github.com/gianguidi
+- LinkedIn: https://www.linkedin.com/in/gianluca-guidi/
+- ORCID: https://orcid.org/0009-0009-8629-4620
