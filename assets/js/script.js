@@ -227,9 +227,56 @@
   // For whoever opens the console
   console.log("%cHey you.%c\nNo framework, no build step, and no GPUs were harmed in serving this page.\nSay hi: ggianluca@hsph.harvard.edu", "font-weight:600", "");
 
-  // Avatar: hover swaps on desktop, tap toggles on touch screens
+  // The photo says hi. Hover still brings the colour back; a click lights it up, it nods, and a bubble says hello:
+  // in the visitor's own language first, then a new one each click, and after the last a goodbye before it starts over
   const avatar = document.querySelector(".avatar");
-  if (avatar) avatar.addEventListener("click", () => avatar.classList.toggle("flip"));
+  const hi = document.querySelector(".hi");
+  if (avatar && hi) {
+    const hellos = [
+      ["it", "Ciao!"], ["en", "Hi!"], ["es", "¡Hola!"], ["fr", "Salut !"], ["de", "Hallo!"], ["pt", "Olá!"],
+      ["nl", "Hoi!"], ["sv", "Hej!"], ["pl", "Cześć!"], ["el", "Γειά σου!"], ["tr", "Merhaba!"], ["ru", "Привет!"],
+      ["ar", "مرحبا!"], ["he", "שלום!"], ["hi", "नमस्ते!"], ["sw", "Jambo!"], ["zh", "你好!"], ["ja", "こんにちは!"], ["ko", "안녕하세요!"],
+    ];
+    const mine = ((navigator.languages && navigator.languages[0]) || navigator.language || "it").slice(0, 2).toLowerCase();
+    const at = Math.max(0, hellos.findIndex((h) => h[0] === mine));
+    const order = [hellos[at], ...hellos.filter((_, i) => i !== at)];
+    let n = 0, quiet;
+    // above the photo (tail down) in the original look; out of its side (tail left) in the remaster's bar
+    const place = () => {
+      const box = hi.parentElement.getBoundingClientRect(), a = avatar.getBoundingClientRect();
+      const side = isRemaster();
+      hi.classList.toggle("side", side);
+      hi.classList.toggle("down", !side);
+      if (side) {
+        hi.style.top = a.top - box.top + (a.height - hi.offsetHeight) / 2 + "px";
+        hi.style.left = a.right - box.left + 12 + "px";
+        hi.style.right = "auto";
+      } else {
+        // never above the top of the window (the long goodbye takes two lines on a phone)
+        hi.style.top = Math.max(a.top - box.top - hi.offsetHeight - 12, 6 - box.top) + "px";
+        hi.style.right = box.right - (a.left + a.width / 2) - 27 + "px";
+        hi.style.left = "auto";
+      }
+    };
+    avatar.addEventListener("click", () => {
+      const last = n === order.length;
+      const [lang, word] = last ? ["en", "That’s every hello I know. Arrivederci!"] : order[n];
+      if (n === 0) ga("easter_egg", { egg: "hello" });
+      if (last) ga("easter_egg", { egg: "all_hellos" });
+      n = last ? 0 : n + 1;
+      hi.lang = lang;
+      hi.dir = lang === "ar" || lang === "he" ? "rtl" : "ltr";
+      hi.textContent = word;
+      place();
+      hi.classList.add("on");
+      avatar.classList.add("flip");
+      avatar.classList.remove("nod");
+      void avatar.offsetWidth; // restart the nod on every click
+      avatar.classList.add("nod");
+      clearTimeout(quiet);
+      quiet = setTimeout(() => { hi.classList.remove("on"); avatar.classList.remove("flip"); }, last ? 2600 : 1600);
+    });
+  }
 
   // "Show all": reveal the rest of a list, and fold it back
   document.querySelectorAll("button.more").forEach((btn) => {

@@ -69,11 +69,13 @@ section,.menu a{--c:var(--muted);--swatch:linear-gradient(var(--c),var(--c))}
 .menu a:hover,.menu a[aria-current]{color:var(--text)}
 .menu a:hover::after{transform:scaleX(.3)}
 .menu a[aria-current]::after{transform:none}
-/* the header sticks, pulled up (--tuck, set by the script) so only the menu row stays in view. Its background
-   reaches the window's edges with a shadow (no overflow), and a second one draws the hairline once it's stuck */
+/* the header sticks, pulled up (--tuck, set by the script) so only the menu row stays in view. Its background and,
+   once it's stuck, a hairline reach the window's edges; the page clips them, so nothing ever scrolls sideways */
+body{overflow-x:clip}
 .js .intro{position:sticky;top:var(--tuck,0px);z-index:5}
-:root:not([data-style="remaster"]).js .intro{background:var(--bg);box-shadow:0 0 0 100vmax var(--bg),0 1px 0 100vmax transparent;clip-path:inset(-12px -100vmax -1px);transition:background-color .35s ease,box-shadow .35s ease}
-:root:not([data-style="remaster"]).js.stuck .intro{box-shadow:0 0 0 100vmax var(--bg),0 1px 0 100vmax var(--line)}
+:root:not([data-style="remaster"]).js .intro::before{content:"";position:absolute;z-index:-1;inset:0 calc((100% - 100vw) / 2);background:var(--bg);transition:background-color .35s ease}
+.intro::after{content:"";position:absolute;left:calc((100% - 100vw) / 2);right:calc((100% - 100vw) / 2);bottom:0;height:1px;background:var(--line);opacity:0;pointer-events:none;transition:opacity .2s}
+.stuck .intro::after{opacity:1}
 
 /* Light / dark switch: a half-moon, under the photo at the end of the menu row (so it stays on top as you scroll) */
 .mode{grid-column:3;grid-row:5;justify-self:start;width:32px;height:32px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;transition:color .2s,background .2s,transform .5s cubic-bezier(.2,.7,.2,1)}
@@ -98,25 +100,39 @@ section,.menu a{--c:var(--muted);--swatch:linear-gradient(var(--c),var(--c))}
     .mix svg{animation:turn linear both;animation-timeline:scroll(root)}
   }
 }
-/* What's on, always there and quiet: the pressing, then the side. Point at a switch and its half lights up;
-   anything the switches have to say fades in over it for a moment */
-.note{grid-column:1;grid-row:3;justify-self:start;position:relative;margin-top:10px;font:400 11px/1.4 var(--mono);color:var(--faint);white-space:nowrap;pointer-events:none;transition:opacity .3s}
+/* What's on, always there and quiet: the pressing, then the side, right under the two switches. Point at a switch
+   and its half lights up; anything the switches have to say fades in over it for a moment. Once the menu is stuck
+   on top it steps aside, and comes back while you point at a switch */
+.note{position:absolute;top:100%;right:30px;margin-top:6px;padding:2px 0 2px 10px;background:var(--bg);font:400 11px/1.4 var(--mono);color:var(--faint);white-space:nowrap;pointer-events:none;transition:opacity .3s,background-color .35s}
 .note > span{transition:opacity .3s,color .3s}
 .note .side:not(:empty)::before{content:"·";margin:0 .6em;color:var(--faint)}
-.note .say{position:absolute;top:0;left:0;color:var(--muted);opacity:0}
+.note .say{position:absolute;top:2px;right:0;color:var(--muted);opacity:0}
+:root:not([data-style="remaster"]).stuck .note:not(.saying){opacity:0}
+:root:not([data-style="remaster"]).stuck .intro:has(.mix:hover,.mode:hover) .note{opacity:1}
 .note.saying .press,.note.saying .side{opacity:0}
 .note.saying .say{opacity:1}
 .intro:has(.mix:hover) .press,.intro:has(.mode:hover) .side,.note.lit-press .press,.note.lit-side .side{color:var(--text)}
 
 /* Intro: name, title and what's on down the left, flush with the menu and the text below; the photo on the right,
    and the two switches under it at the end of the menu row */
-.intro{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto auto;grid-template-rows:1fr auto auto 1fr auto;column-gap:4px;align-items:center;margin-bottom:28px}
+.intro{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto auto;grid-template-rows:1fr auto auto 1fr auto;column-gap:4px;align-items:center;margin-bottom:34px}
 .intro > div{grid-column:1;grid-row:2}
 .intro h1{font-size:28px;line-height:1.1;letter-spacing:-.025em}
 .role{margin:4px 0 0;font-size:16px;color:var(--muted)}
 .avatar{grid-column:2 / 4;grid-row:1 / 5;justify-self:end;position:relative;width:120px;height:120px;padding:0;border:0;border-radius:50%;overflow:hidden;background:var(--line);cursor:pointer}
 .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:filter .4s}
 .avatar:hover img,.avatar.flip img{filter:none}
+/* Click the photo: it lights up, nods, and a speech bubble says hi. Above the photo here, beside it in the remaster
+   bar (the script places it and picks the side for the tail) */
+.hi{position:absolute;z-index:6;top:0;padding:6px 12px;border-radius:14px;background:var(--text);color:var(--bg);font:500 14px/1.25 var(--sans);width:max-content;max-width:min(300px, calc(100vw - 140px));pointer-events:none;opacity:0;transform:scale(.5);transition:opacity .2s,transform .4s cubic-bezier(.3,1.6,.5,1)}
+.hi::after{content:"";position:absolute;width:10px;height:10px;background:inherit;border-radius:2px;transform:rotate(45deg)}
+.hi.down{transform-origin:calc(100% - 27px) 100%}
+.hi.down::after{bottom:-4px;right:22px}
+.hi.side{transform-origin:0 50%}
+.hi.side::after{left:-4px;top:calc(50% - 5px)}
+.hi.on{opacity:1;transform:none}
+@keyframes nod{0%,100%{transform:none}30%{transform:rotate(-9deg) scale(1.04)}65%{transform:rotate(6deg)}}
+.avatar.nod{animation:nod .55s ease}
 
 .bio,.lede{font-size:17px;line-height:1.5;letter-spacing:-.01em}
 /* Elsewhere: logos instead of words, each one's name shows up under it on hover */
@@ -222,13 +238,14 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
   .page{padding:56px 20px 48px}
   section{margin-top:44px}
   .interests{grid-template-columns:1fr}
-  /* on a phone: name and photo, then what's on (on two lines) with the switches under the photo,
+  /* on a phone: name and photo, then what's on (on two lines, right up against the switches under the photo),
      then the menu across the whole width */
   .avatar{width:96px;height:96px}
   .intro h1{font-size:24px}
   .role{font-size:15px}
   .intro{grid-template-rows:1fr auto auto 1fr auto auto}
-  :root:not([data-style="remaster"]) .note{grid-row:5;margin-top:14px}
+  :root:not([data-style="remaster"]) .note{position:relative;top:auto;right:auto;grid-column:1;grid-row:5;justify-self:end;margin-top:14px;padding:0;background:none;text-align:right}
+  :root:not([data-style="remaster"]) .note .say{top:0}
   :root:not([data-style="remaster"]) .note > span:not(.say){display:block}
   :root:not([data-style="remaster"]) .note .side:not(:empty)::before{content:none}
   .mix,.mode{grid-row:5;margin-top:14px}
@@ -239,6 +256,8 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 }
 @media (prefers-reduced-motion:reduce){
   .js .page > *{animation:none}
+  .hi{transform:none;transition:opacity .2s}
+  .avatar.nod{animation:none}
   .eq i{animation:none;transform:scaleY(.6)}
 }
 
@@ -259,8 +278,8 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 [data-style="remaster"] .intro h1{font-size:18px;line-height:1.3;letter-spacing:-.01em}
 [data-style="remaster"] .role{margin-top:2px}
 [data-style="remaster"] .mix,[data-style="remaster"] .mode{grid-row:1;align-self:end;justify-self:auto;margin-top:0}
-[data-style="remaster"] .note{grid-row:2;align-self:start;justify-self:end}
-[data-style="remaster"] .note .say{left:auto;right:0}
+[data-style="remaster"] .note{position:relative;top:auto;right:auto;grid-row:2;align-self:start;justify-self:end;padding:0;background:none}
+[data-style="remaster"] .note .say{top:0}
 [data-style="remaster"] .menu{grid-column:3;grid-row:1;align-self:center;margin:0 12px 0 0;gap:22px}
 [data-style="remaster"] .menu a{padding:6px 0}
 [data-style="remaster"] .mix{grid-column:4}
