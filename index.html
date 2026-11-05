@@ -1,9 +1,23 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJCMH1PV05"></script>
+  <!-- Google tag (gtag.js). Only real visits count: nothing from local previews, and nothing from a browser
+       that opened the site once with ?notrack=1 (my own devices); ?notrack=0 turns counting back on -->
   <script>
+    (function () {
+      var off = false;
+      try {
+        var q = new URLSearchParams(location.search).get("notrack");
+        if (q === "1") localStorage.setItem("notrack", "1");
+        if (q === "0") localStorage.removeItem("notrack");
+        off = localStorage.getItem("notrack") === "1";
+      } catch (e) {}
+      if (location.hostname !== "gianguidi.github.io" || off) return;
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=G-ZJCMH1PV05";
+      document.head.appendChild(s);
+    })();
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
