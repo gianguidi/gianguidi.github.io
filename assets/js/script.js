@@ -48,6 +48,11 @@
     clearTimeout(hide);
     if (ms) hide = setTimeout(hush, ms);
   };
+  // Anything else the page has to say: the photo says it if it's on screen, otherwise the line under the switches.
+  // (speak, shush and inView belong to the photo, further down; until then the line does the talking)
+  let speak = null, shush = () => {}, inView = () => false;
+  const tell = (text, ms = 2400) => { if (speak && inView()) speak(text, "en", ms); else say(text, ms); };
+  const egg = (name) => ga("easter_egg", { egg: name });
 
   let flips = 0, last = 0;
   if (mode) mode.addEventListener("click", () => {
@@ -70,8 +75,14 @@
     if (flips === 4) ga("easter_egg", { egg: "flips" });
   });
 
+  // Spin the record nine times fast and it knows which track that is
+  let spins = 0, lastSpin = 0;
   if (mix) mix.addEventListener("click", () => {
     ga("style_switch", { style: isRemaster() ? "mono" : "remaster" });
+    const now = Date.now();
+    spins = now - lastSpin < 1500 ? spins + 1 : 1;
+    lastSpin = now;
+    const nine = spins === 9;
     const apply = () => {
       if (isRemaster()) root.removeAttribute("data-style");
       else root.setAttribute("data-style", "remaster");
@@ -81,6 +92,7 @@
       light("press");
       tuck();
       scrolled();
+      if (nine) { say("Revolution 9.", 2600); egg("revolution_9"); }
     };
     if (document.startViewTransition && !document.hidden && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       // if the browser skips the animation the switch still happens; just don't let it shout in the console
@@ -96,6 +108,7 @@
   const items = menu ? [...menu.querySelectorAll('a[href^="#"]')]
     .map((a) => [a, document.getElementById(a.hash.slice(1))]).filter((p) => p[1]) : [];
   const tuck = () => { if (header && menu) header.style.setProperty("--tuck", -menu.offsetTop + "px"); };
+  let ended = false, steered = 0; // steered: when the page last scrolled itself (a typed title)
   const spy = () => {
     if (!menu) return;
     const edge = menu.getBoundingClientRect();
@@ -104,8 +117,11 @@
     let on = null;
     items.forEach(([a, s]) => { if (s.getBoundingClientRect().top <= line) on = a; });
     // at the very bottom the last one wins, even if it's too short to reach the line
-    if (items.length && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) on = items[items.length - 1][0];
+    const bottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    if (items.length && bottom) on = items[items.length - 1][0];
     items.forEach(([a]) => (a === on ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current")));
+    // and the first time you get all the way down, the record's over
+    if (bottom && !ended && window.scrollY > 200 && Date.now() - steered > 2500) { ended = true; tell("The End.", 2600); egg("the_end"); }
   };
   if (menu) menu.addEventListener("click", (e) => {
     const a = e.target.closest("a");
@@ -131,9 +147,7 @@
   });
 
   // Leave it alone for a minute and it wonders where everybody went. If the photo is on screen it asks, and looks
-  // around while it waits; otherwise the line under the switches does. Come back and the photo is glad to see you.
-  // (speak, shush and inView belong to the photo, further down; until then they do nothing)
-  let speak = null, shush = () => {}, inView = () => false;
+  // around while it waits; otherwise the line under the switches does. Come back and the photo is glad to see you
   let idle, away = false, asked = false, aloud = false;
   const wake = () => {
     if (away) {
@@ -154,6 +168,60 @@
   };
   ["pointermove", "pointerdown", "keydown", "scroll"].forEach((e) => window.addEventListener(e, wake, { passive: true }));
   wake();
+
+  // Type a song title anywhere on the page (not in a text box) and the page plays along
+  const go = (id, text) => {
+    const el = document.getElementById(id);
+    let done = false;
+    const sayIt = () => { if (!done) { done = true; tell(text); } }; // once it's there, the line under the menu says it
+    steered = Date.now();
+    if ("onscrollend" in window) window.addEventListener("scrollend", sayIt, { once: true });
+    setTimeout(sayIt, 1000);
+    if (el) el.scrollIntoView();
+  };
+  const flipTo = (dark) => { if (mode && isDark() !== dark) mode.click(); };
+  const typed = {
+    help: () => go("contact", "Help!"),
+    money: () => go("papers", "Money. Or: who pays for AI?"),
+    breathe: () => go("work", "Breathe."),
+    time: () => tell("Time: " + new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit", timeZone: "America/New_York" }).format(new Date()).toLowerCase() + " in Cambridge."),
+    sun: () => { flipTo(false); tell("Here comes the sun."); },
+    moon: () => { flipTo(true); tell("The dark side of the moon."); },
+    revolution: () => { if (mix) mix.click(); setTimeout(() => tell("Revolution."), 450); },
+    // back to how everyone first sees it: the original mono, on the light side
+    letitbe: () => {
+      try { localStorage.removeItem("theme"); localStorage.removeItem("style"); } catch (e) {}
+      root.removeAttribute("data-theme");
+      root.removeAttribute("data-style");
+      label(); mixLabel(); show(); tuck(); scrolled();
+      setTimeout(() => tell("Let it be."), 50);
+    },
+  };
+  let keys = "";
+  window.addEventListener("keydown", (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey || !/^[a-z]$/i.test(e.key)) return;
+    if (e.target && e.target.closest && e.target.closest("input, textarea, select, [contenteditable]")) return;
+    keys = (keys + e.key.toLowerCase()).slice(-12);
+    for (const w in typed) if (keys.endsWith(w)) { keys = ""; typed[w](); egg("typed_" + w); break; }
+  });
+
+  // Copy the email address and the page says keep talking
+  document.addEventListener("copy", () => {
+    if (String(window.getSelection && window.getSelection()).includes("ggianluca@")) { tell("Keep talking."); egg("keep_talking"); }
+  });
+
+  // In the remaster, click the prism and the light goes through it again
+  const fig = document.querySelector(".fig");
+  if (fig) fig.addEventListener("click", () => {
+    if (!isRemaster()) return;
+    fig.querySelectorAll(".beam, .fan, .bands, figcaption").forEach((el) => {
+      el.style.animation = "none";
+      void el.getBoundingClientRect();
+      el.style.animation = "";
+    });
+    tell("Shine on you crazy diamond.");
+    egg("shine_on");
+  });
 
   // Sections rise in as they scroll into view (only styled in the remaster; tracked always so a mid-page switch works)
   const sections = document.querySelectorAll("section:not(.about)");
@@ -186,6 +254,12 @@
     ["Come Together", "The Beatles"],
     ["Time", "Pink Floyd"],
     ["Eight Days a Week", "The Beatles"],
+    ["Learning to Fly", "Pink Floyd"],
+    ["Across the Universe", "The Beatles"],
+    ["Comfortably Numb", "Pink Floyd"],
+    ["Help!", "The Beatles"],
+    ["Shine On You Crazy Diamond", "Pink Floyd"],
+    ["Let It Be", "The Beatles"],
   ];
   let skipped = false, next = -1, tick = () => {};
   if (clock && window.Intl) {
@@ -229,13 +303,25 @@
     else tick();
   };
 
-  // The tab: leave it and it misses you; while the band plays it says what's on
+  // The tab: leave it and it misses you, come back and it's coming back to life for a moment; while the band plays
+  // it says what's on
   const title = document.title;
   const retitle = () => { document.title = live ? "▶︎ " + live + " · Project42" : document.hidden ? "Wish you were here" : title; };
-  document.addEventListener("visibilitychange", retitle);
+  let gone = false, revive;
+  document.addEventListener("visibilitychange", () => {
+    clearTimeout(revive);
+    if (document.hidden) gone = true;
+    else if (gone && !live) {
+      gone = false;
+      document.title = "Coming back to life";
+      revive = setTimeout(retitle, 2500);
+      return;
+    }
+    retitle();
+  });
 
   // For whoever opens the console
-  console.log("%cHey you.%c\nNo framework, no build step, and no GPUs were harmed in serving this page.\nSay hi: ggianluca@hsph.harvard.edu", "font-weight:600", "");
+  console.log("%cHey you.%c\nNo framework, no build step, and no GPUs were harmed in serving this page.\nPsst: type a song title anywhere on the page.\nSay hi: ggianluca@hsph.harvard.edu", "font-weight:600", "");
 
   // The photo says hi. Hover still brings the colour back; a click lights it up, it nods, and a bubble says hello:
   // in the visitor's own language first, then a new one each click, and after the last a goodbye before it starts over
@@ -286,7 +372,17 @@
     shush = () => { clearTimeout(quiet); hi.classList.remove("on"); avatar.classList.remove("flip", "wait"); };
     // on screen, not scrolled away or tucked under the menu
     inView = () => { const a = avatar.getBoundingClientRect(); return a.top > -20 && a.bottom < window.innerHeight; };
+    // hold it down instead of clicking and it wants to hold your hand
+    let hold, held = false;
+    avatar.addEventListener("pointerdown", () => {
+      held = false;
+      clearTimeout(hold);
+      hold = setTimeout(() => { held = true; speak("I want to hold your hand.", "en", 2400); egg("hold"); }, 650);
+    });
+    ["pointerup", "pointerleave", "pointercancel"].forEach((e) => avatar.addEventListener(e, () => clearTimeout(hold)));
+    avatar.addEventListener("contextmenu", (e) => { if (held) e.preventDefault(); });
     avatar.addEventListener("click", () => {
+      if (held) { held = false; return; } // that was a hold, not a hello
       const last = n === order.length;
       const [lang, word] = last ? ["en", "That’s every hello I know. Arrivederci!"] : order[n];
       if (n === 0) ga("easter_egg", { egg: "hello" });
