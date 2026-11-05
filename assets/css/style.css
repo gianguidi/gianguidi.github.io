@@ -344,7 +344,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 /* sections: title on the left (sticky), content on the right */
 [data-style="remaster"] section:not(.about){display:grid;grid-template-columns:260px minmax(0,1fr);column-gap:64px;margin-top:96px;padding-top:32px;border-top:1px solid var(--line)}
 [data-style="remaster"] section:not(.about) > *{grid-column:2}
-[data-style="remaster"] section:not(.about) > h2{grid-column:1;grid-row:1 / span 12;align-self:start;position:sticky;top:116px;margin:0;font:600 24px/1.2 var(--sans);letter-spacing:-.025em;color:var(--text)}
+[data-style="remaster"] section:not(.about) > h2{grid-column:1;grid-row:1 / span 12;align-self:start;position:sticky;top:116px;margin:0;font:600 24px/1.2 var(--sans);letter-spacing:-.025em;color:var(--text);text-wrap:balance}
 [data-style="remaster"] h2 .count{display:block;margin:10px 0 0;vertical-align:0;color:var(--faint)}
 /* every section is a track on the record: side A is the work, side B the rest */
 [data-style="remaster"] section:not(.about) > h2::before{display:block;width:max-content;margin-bottom:12px;padding-left:18px;font:400 11px/1 var(--mono);color:var(--faint);background:var(--swatch) 0 50% / 10px 3px no-repeat}
