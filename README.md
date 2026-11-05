@@ -33,6 +33,7 @@ Media links are listed in `index.html` under “Media & outreach”.
 - Avatar (in colour; zooms in a little on hover): `assets/img/avatar.jpg`
 - Share image (link previews, structured data): `assets/img/gianluca.jpg`
 - When you replace either photo, change the `?v=` after its file name in `index.html` (three places), so browsers fetch the new one instead of showing the copy they saved.
+- The same goes for `assets/css/style.css` and `assets/js/script.js`: their links in `index.html` carry a `?v=`; change it whenever the file changes.
 
 ## Theme
 A light/dark toggle is included (button in the header). The choice is saved in localStorage.

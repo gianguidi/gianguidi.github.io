@@ -45,8 +45,8 @@ p{margin:0 0 14px}
 .page{--pad-top:96px;max-width:600px;margin:0 auto;padding:var(--pad-top) 24px 64px}
 section{margin-top:56px;scroll-margin-top:64px}
 h1{font-size:15px;font-weight:600;margin:0;letter-spacing:-.005em}
-h2{font-size:15px;font-weight:600;color:var(--text);margin:0 0 14px}
-.count{font:400 11px/1 var(--mono);color:var(--faint);vertical-align:2px;margin-left:8px;white-space:nowrap}
+h2{font-size:18px;line-height:1.35;font-weight:600;letter-spacing:-.012em;color:var(--text);margin:0 0 16px} /* a step above the text, so each section starts clearly */
+.count{font:400 11px/1 var(--mono);letter-spacing:0;color:var(--faint);vertical-align:3px;margin-left:10px;white-space:nowrap}
 
 /* Every section has its own colour from the prism, and the menu uses the same one: a dot by the title here,
    a tint when you point at a row, the underline in the menu while you're in it */
@@ -59,7 +59,7 @@ section,.menu a{--c:var(--muted);--swatch:linear-gradient(var(--c),var(--c))}
 #code,.menu a[href="#code"]{--c:var(--sp4)}
 #music,.menu a[href="#music"]{--c:var(--sp6)}
 #contact,.menu a[href="#contact"]{--c:var(--sp2)}
-:root:not([data-style="remaster"]) section:not(.about) > h2::before{content:"";display:inline-block;width:7px;height:7px;margin-right:10px;border-radius:50%;background:var(--swatch);vertical-align:1px}
+:root:not([data-style="remaster"]) section:not(.about) > h2::before{content:"";display:inline-block;width:8px;height:8px;margin-right:11px;border-radius:50%;background:var(--swatch);vertical-align:2px}
 
 /* The menu: under the name, and once you scroll it's the only part of the header left on top */
 .menu{grid-column:1;grid-row:5;display:flex;gap:20px;margin-top:20px;overflow-x:auto;scrollbar-width:none;font-size:13.5px}
