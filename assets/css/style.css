@@ -265,7 +265,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 }
 
 /* ===== The 2026 remaster: same songs, more room. The same type as the original (one sans, the mono for small print),
-   set wider: the prism, titles beside their sections, track numbers and hairlines. Everything below only applies with
+   set wider: titles beside their sections, track numbers and hairlines. Everything below only applies with
    data-style="remaster" ===== */
 :root{--sp1:#e5352b;--sp2:#f08c1f;--sp3:#f6d32b;--sp4:#43a047;--sp5:#2b7bd6;--sp6:#6b4fbb}
 [data-style="remaster"] body{font-size:16px;overflow-x:clip}
@@ -295,41 +295,10 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 [data-style="remaster"] .mix svg{animation:spin 3.2s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* the research in one picture: AI comes in from the left, its costs fan out to the right. Hidden in the original mix */
-.fig{display:none}
-[data-style="remaster"] .fig{display:block;cursor:pointer;margin:0 0 clamp(20px,3.5vh,36px)}
-[data-style="remaster"] .prism{display:block;width:100vw;height:max(80px,8.75vw);margin:0 calc(50% - 50vw)}
-.fig figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:8px 24px;margin-top:6px;color:var(--muted)}
-.fig .in{color:var(--text)}
-.fig .out{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px 14px}
-.fig .out span{display:inline-flex;align-items:center;gap:6px;cursor:default;transition:color .2s}
-.fig .out span::before{content:"";width:10px;height:3px;border-radius:1px}
-.fig .k1::before{background:var(--sp1)} .fig .k2::before{background:var(--sp2)} .fig .k3::before{background:var(--sp3)} .fig .k4::before{background:var(--sp4)} .fig .k5::before{background:var(--sp5)} .fig .k6::before{background:var(--sp6)}
-.fig .out span:hover{color:var(--text)}
-/* point at a cost and its band lights up */
-.prism polygon{transition:opacity .3s}
-.fig:has(.k1:hover) polygon:not(.b1),.fig:has(.k2:hover) polygon:not(.b2),.fig:has(.k3:hover) polygon:not(.b3),
-.fig:has(.k4:hover) polygon:not(.b4),.fig:has(.k5:hover) polygon:not(.b5),.fig:has(.k6:hover) polygon:not(.b6){opacity:.12}
-[data-style="remaster"] .prism .beam{stroke:var(--text);stroke-width:1.4;stroke-linecap:round;opacity:.7}
-[data-style="remaster"] .prism .fan{fill:var(--text);opacity:.08}
-[data-style="remaster"] .prism .tri{fill:none;stroke:var(--text);stroke-width:1.4;stroke-linejoin:round;opacity:.7}
-[data-style="remaster"] .prism .bands{opacity:.75;transform-box:fill-box;transform-origin:left center}
-.prism .b1{fill:var(--sp1)} .prism .b2{fill:var(--sp2)} .prism .b3{fill:var(--sp3)} .prism .b4{fill:var(--sp4)} .prism .b5{fill:var(--sp5)} .prism .b6{fill:var(--sp6)}
-@media (prefers-reduced-motion:no-preference){
-  [data-style="remaster"] .prism .beam{stroke-dasharray:790;stroke-dashoffset:790;animation:beam .9s .25s cubic-bezier(.4,0,.2,1) forwards}
-  [data-style="remaster"] .prism .fan{opacity:0;animation:fan .4s 1.05s ease forwards}
-  [data-style="remaster"] .prism .bands{transform:scaleX(0);animation:bands 1.2s 1.15s cubic-bezier(.2,.7,.2,1) forwards}
-  [data-style="remaster"] .fig figcaption{opacity:0;animation:show .6s 1.7s ease forwards}
-}
-@keyframes show{to{opacity:1}}
-@keyframes beam{to{stroke-dashoffset:0}}
-@keyframes fan{to{opacity:.08}}
-@keyframes bands{to{transform:scaleX(1)}}
-
 /* the opening lines, a little bigger */
 [data-style="remaster"] .about{margin-top:0;padding-top:clamp(16px,4vh,40px)}
 [data-style="remaster"] .lede{font-size:20px;line-height:1.55;letter-spacing:-.015em;max-width:640px;margin-bottom:32px;text-wrap:pretty}
-/* the one flourish in the hero: the prism's colours, as an underline */
+/* the one flourish in the hero: the spectrum, as an underline */
 [data-style="remaster"] .hl{background:var(--spectrum) 0 100% / 100% 2px no-repeat;padding-bottom:3px}
 [data-style="remaster"] .bio{font-size:20px;line-height:1.55;letter-spacing:-.015em;color:var(--muted);max-width:640px;margin-bottom:8px;text-wrap:pretty}
 [data-style="remaster"] .bio a{color:var(--text)}
@@ -339,7 +308,6 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 
 /* small print stays small and quiet, in normal case, as in the original: no tracked capitals */
 [data-style="remaster"] .role{font-size:14px}
-[data-style="remaster"] .fig figcaption{font-size:13px}
 
 /* sections: title on the left (sticky), content on the right */
 [data-style="remaster"] section:not(.about){display:grid;grid-template-columns:260px minmax(0,1fr);column-gap:64px;margin-top:96px;padding-top:32px;border-top:1px solid var(--line)}
@@ -417,7 +385,6 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
   [data-style="remaster"] .about{padding-top:34px}
   [data-style="remaster"] .threads{grid-template-columns:1fr;gap:32px}
   [data-style="remaster"] .bio,[data-style="remaster"] .lede{font-size:17px}
-  .fig .out{display:grid;grid-template-columns:repeat(3,auto);gap:4px 12px}
   [data-style="remaster"] section:not(.about){display:block;margin-top:72px;padding-top:24px}
   [data-style="remaster"] section:not(.about) > h2{position:static;font-size:22px;margin-bottom:18px}
   [data-style="remaster"] h2 .count{display:inline-block;margin:0 0 0 10px;vertical-align:5px}

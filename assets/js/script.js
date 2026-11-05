@@ -188,6 +188,7 @@
     sun: () => { flipTo(false); tell("Here comes the sun."); },
     moon: () => { flipTo(true); tell("The dark side of the moon."); },
     revolution: () => { if (mix) mix.click(); setTimeout(() => tell("Revolution."), 450); },
+    shine: () => tell("Shine on you crazy diamond."),
     // back to how everyone first sees it: the original mono, on the light side
     letitbe: () => {
       try { localStorage.removeItem("theme"); localStorage.removeItem("style"); } catch (e) {}
@@ -208,19 +209,6 @@
   // Copy the email address and the page says keep talking
   document.addEventListener("copy", () => {
     if (String(window.getSelection && window.getSelection()).includes("ggianluca@")) { tell("Keep talking."); egg("keep_talking"); }
-  });
-
-  // In the remaster, click the prism and the light goes through it again
-  const fig = document.querySelector(".fig");
-  if (fig) fig.addEventListener("click", () => {
-    if (!isRemaster()) return;
-    fig.querySelectorAll(".beam, .fan, .bands, figcaption").forEach((el) => {
-      el.style.animation = "none";
-      void el.getBoundingClientRect();
-      el.style.animation = "";
-    });
-    tell("Shine on you crazy diamond.");
-    egg("shine_on");
   });
 
   // Sections rise in as they scroll into view (only styled in the remaster; tracked always so a mid-page switch works)
