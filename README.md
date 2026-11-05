@@ -30,7 +30,7 @@ Media links are listed in `index.html` under “Media & outreach”.
 
 
 ## Photo
-- Avatar (grey, colour on hover): `assets/img/avatar.jpg`
+- Avatar (in colour; zooms in a little on hover): `assets/img/avatar.jpg`
 - Share image (link previews, structured data): `assets/img/gianluca.jpg`
 
 ## Theme
