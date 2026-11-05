@@ -9,7 +9,7 @@
 <polygon fill="#2b7bd6" points="41.71,31.52 66.00,44.67 66.00,48.83 42.48,32.84"/>
 <polygon fill="#6b4fbb" points="42.48,32.84 66.00,48.83 66.00,53.00 43.24,34.17"/>
 <polygon fill="#fff" fill-opacity=".16" points="21.65,29.17 38.65,26.23 43.24,34.17"/>
-<line x1="-2" y1="37.5" x2="21.65" y2="29.17" stroke="#ededed" stroke-width="3" stroke-linecap="round"/>
-<path d="M31.00,13.00 L48.00,42.40 L14.00,42.40Z" fill="none" stroke="#ededed" stroke-width="3.6" stroke-linejoin="round"/>
+<line x1="-2" y1="37.5" x2="21.65" y2="29.17" stroke="#ededed" stroke-width="2.3" stroke-linecap="round"/>
+<path d="M31.00,13.00 L48.00,42.40 L14.00,42.40Z" fill="none" stroke="#ededed" stroke-width="2.7" stroke-linejoin="round"/>
 </g>
 </svg>

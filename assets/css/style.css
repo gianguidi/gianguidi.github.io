@@ -42,7 +42,7 @@ p{margin:0 0 14px}
 .muted{color:var(--muted)}
 :focus-visible{outline:1px solid var(--text);outline-offset:3px;border-radius:3px}
 
-.page{max-width:600px;margin:0 auto;padding:96px 24px 64px}
+.page{--pad-top:96px;max-width:600px;margin:0 auto;padding:var(--pad-top) 24px 64px}
 section{margin-top:56px;scroll-margin-top:64px}
 h1{font-size:15px;font-weight:600;margin:0;letter-spacing:-.005em}
 h2{font-size:15px;font-weight:600;color:var(--text);margin:0 0 14px}
@@ -77,7 +77,7 @@ body{overflow-x:clip}
 .intro::after{content:"";position:absolute;left:calc((100% - 100vw) / 2);right:calc((100% - 100vw) / 2);bottom:0;height:1px;background:var(--line);opacity:0;pointer-events:none;transition:opacity .2s}
 .stuck .intro::after{opacity:1}
 
-/* Light / dark switch: a half-moon, under the photo at the end of the menu row (so it stays on top as you scroll) */
+/* Light / dark switch: a half-moon */
 .mode{grid-column:3;grid-row:5;justify-self:start;width:32px;height:32px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;transition:color .2s,background .2s,transform .5s cubic-bezier(.2,.7,.2,1)}
 .mode:hover{color:var(--text);background:var(--hover)}
 .mode svg{width:16px;height:16px}
@@ -101,8 +101,8 @@ body{overflow-x:clip}
   }
 }
 /* What's on, always there and quiet: the pressing, then the side, right under the two switches. Point at a switch
-   and its half lights up; anything the switches have to say fades in over it for a moment. Once the menu is stuck
-   on top it steps aside, and comes back while you point at a switch */
+   and its half lights up; anything the page has to say fades in over it for a moment. Once the menu is stuck
+   on top it steps aside (under the bar), and comes back while you point at a switch */
 .note{position:absolute;top:100%;right:30px;margin-top:6px;padding:2px 0 2px 10px;background:var(--bg);font:400 11px/1.4 var(--mono);color:var(--faint);white-space:nowrap;pointer-events:none;transition:opacity .3s,background-color .35s}
 .note > span{transition:opacity .3s,color .3s}
 .note .side:not(:empty)::before{content:"·";margin:0 .6em;color:var(--faint)}
@@ -112,9 +112,28 @@ body{overflow-x:clip}
 .note.saying .press,.note.saying .side{opacity:0}
 .note.saying .say{opacity:1}
 .intro:has(.mix:hover) .press,.intro:has(.mode:hover) .side,.note.lit-press .press,.note.lit-side .side{color:var(--text)}
+/* The two switches sit in the very same spot in both looks: top right, exactly where the remaster's bar holds them,
+   so flipping from one look to the other never moves the button you just pressed. Here they hang above the header,
+   lined up with that bar rather than with this column, with what's on right under them. Once the menu is stuck on
+   top they ride in it on wide screens; on narrow ones they scroll away with the header, as in the remaster */
+:root:not([data-style="remaster"]) .intro{--sw-top:20px;--sw-right:calc(max(40px, (100vw - 1000px) / 2) - (100vw - 100%) / 2)}
+:root:not([data-style="remaster"]) .mix,:root:not([data-style="remaster"]) .mode{position:absolute;grid-area:auto;top:calc(var(--sw-top) - var(--pad-top));right:var(--sw-right);margin:0}
+:root:not([data-style="remaster"]) .mix{right:calc(var(--sw-right) + 38px)}
+:root:not([data-style="remaster"]) .note{top:calc(var(--sw-top) + 36px - var(--pad-top));right:var(--sw-right);margin-top:0;padding:0;background:none}
+:root:not([data-style="remaster"]) .note .say{top:0}
+@media (max-width:820px){
+  :root:not([data-style="remaster"]) .intro{--sw-top:34px;--sw-right:calc(20px - (100vw - 100%) / 2)}
+}
+@media (min-width:521px){
+  :root:not([data-style="remaster"]).stuck .note{top:100%;margin-top:6px;padding:2px 0 2px 10px;background:var(--bg)}
+  :root:not([data-style="remaster"]).stuck .note .say{top:2px}
+}
+@media (min-width:821px){
+  :root:not([data-style="remaster"]).stuck .mix,:root:not([data-style="remaster"]).stuck .mode{top:auto;bottom:4.5px;animation:appear .25s ease}
+}
+@keyframes appear{from{opacity:0}}
 
-/* Intro: name, title and what's on down the left, flush with the menu and the text below; the photo on the right,
-   and the two switches under it at the end of the menu row */
+/* Intro: name and title down the left, flush with the menu and the text below; the photo on the right */
 .intro{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto auto;grid-template-rows:1fr auto auto 1fr auto;column-gap:4px;align-items:center;margin-bottom:34px}
 .intro > div{grid-column:1;grid-row:2}
 .intro h1{font-size:28px;line-height:1.1;letter-spacing:-.025em}
@@ -238,20 +257,19 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 .js .page > *:nth-child(n+7){animation-delay:.36s}
 
 @media (max-width:520px){
-  .page{padding:56px 20px 48px}
+  .page{--pad-top:78px;padding:var(--pad-top) 20px 48px}
   section{margin-top:44px}
   .interests{grid-template-columns:1fr}
-  /* on a phone: name and photo, then what's on (on two lines, right up against the switches under the photo),
+  /* on a phone: the switches just above the photo, then name and photo, what's on (on two lines, under the photo),
      then the menu across the whole width */
   .avatar{width:96px;height:96px}
   .intro h1{font-size:24px}
   .role{font-size:15px}
   .intro{grid-template-rows:1fr auto auto 1fr auto auto}
-  :root:not([data-style="remaster"]) .note{position:relative;top:auto;right:auto;grid-column:1;grid-row:5;justify-self:end;margin-top:14px;padding:0;background:none;text-align:right}
+  :root:not([data-style="remaster"]) .note{position:relative;top:auto;right:auto;grid-column:1 / -1;grid-row:5;justify-self:end;margin-top:14px;padding:0;background:none;text-align:right}
   :root:not([data-style="remaster"]) .note .say{top:0}
   :root:not([data-style="remaster"]) .note > span:not(.say){display:block}
   :root:not([data-style="remaster"]) .note .side:not(:empty)::before{content:none}
-  .mix,.mode{grid-row:5;margin-top:14px}
   .menu{grid-column:1 / -1;grid-row:6;margin-top:6px;gap:12px;justify-content:space-between}
 }
 @media (prefers-reduced-motion:no-preference){
