@@ -264,8 +264,10 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
   .eq i{animation:none;transform:scaleY(.6)}
 }
 
-/* ===== The 2026 remaster: same songs, louder. Everything below only applies with data-style="remaster" ===== */
-:root{--sp1:#e5352b;--sp2:#f08c1f;--sp3:#f6d32b;--sp4:#43a047;--sp5:#2b7bd6;--sp6:#6b4fbb;--serif:"Instrument Serif","Times New Roman",Times,serif}
+/* ===== The 2026 remaster: same songs, more room. The same type as the original (one sans, the mono for small print),
+   set wider: the prism, titles beside their sections, track numbers and hairlines. Everything below only applies with
+   data-style="remaster" ===== */
+:root{--sp1:#e5352b;--sp2:#f08c1f;--sp3:#f6d32b;--sp4:#43a047;--sp5:#2b7bd6;--sp6:#6b4fbb}
 [data-style="remaster"] body{font-size:16px;overflow-x:clip}
 [data-style="remaster"] ::selection{background:var(--sp6);color:#fff}
 [data-style="remaster"] .page{max-width:1080px;padding:0 40px 64px}
@@ -324,28 +326,28 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 @keyframes fan{to{opacity:.08}}
 @keyframes bands{to{transform:scaleX(1)}}
 
-/* the hero line goes big */
+/* the opening lines, a little bigger */
 [data-style="remaster"] .about{margin-top:0;padding-top:clamp(16px,4vh,40px)}
-[data-style="remaster"] .lede{font-size:19px;line-height:1.6;max-width:560px;margin-bottom:32px;text-wrap:balance}
-[data-style="remaster"] .hl{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.12em;letter-spacing:-.02em}
-[data-style="remaster"] .bio{font-size:19px;line-height:1.6;color:var(--muted);max-width:560px;margin-bottom:6px;text-wrap:balance}
+[data-style="remaster"] .lede{font-size:20px;line-height:1.55;letter-spacing:-.015em;max-width:640px;margin-bottom:32px;text-wrap:pretty}
+/* the one flourish in the hero: the prism's colours, as an underline */
+[data-style="remaster"] .hl{background:var(--spectrum) 0 100% / 100% 2px no-repeat;padding-bottom:3px}
+[data-style="remaster"] .bio{font-size:20px;line-height:1.55;letter-spacing:-.015em;color:var(--muted);max-width:640px;margin-bottom:8px;text-wrap:pretty}
 [data-style="remaster"] .bio a{color:var(--text)}
 [data-style="remaster"] .links{gap:6px;margin:28px 0 0 -10px}
 [data-style="remaster"] .links a{width:40px;height:40px;color:var(--text)}
 [data-style="remaster"] .links svg{width:19px;height:19px}
-[data-style="remaster"] .links span{font:500 10px/1.4 var(--sans);letter-spacing:.08em;text-transform:uppercase}
 
-/* labels in small tracked capitals: counts, sources, years, the legend, buttons, the setlist, the footer */
-[data-style="remaster"] :where(.role,.count,.list .src,.list .yr,.fig figcaption,.links,.more,.tracks,footer,.note,.menu){font-family:var(--sans);font-size:11px;font-weight:500;line-height:1.5;letter-spacing:.08em;text-transform:uppercase}
-[data-style="remaster"] :where(.more,.track,.np){text-transform:inherit;letter-spacing:inherit}
+/* small print stays small and quiet, in normal case, as in the original: no tracked capitals */
+[data-style="remaster"] .role{font-size:14px}
+[data-style="remaster"] .fig figcaption{font-size:13px}
 
 /* sections: title on the left (sticky), content on the right */
-[data-style="remaster"] section:not(.about){display:grid;grid-template-columns:260px minmax(0,1fr);column-gap:64px;margin-top:112px;padding-top:32px;border-top:1px solid var(--line)}
+[data-style="remaster"] section:not(.about){display:grid;grid-template-columns:260px minmax(0,1fr);column-gap:64px;margin-top:96px;padding-top:32px;border-top:1px solid var(--line)}
 [data-style="remaster"] section:not(.about) > *{grid-column:2}
-[data-style="remaster"] section:not(.about) > h2{grid-column:1;grid-row:1 / span 12;align-self:start;position:sticky;top:116px;margin:0;font:italic 400 36px/1.02 var(--serif);letter-spacing:-.01em;color:var(--text)}
-[data-style="remaster"] h2 .count{display:block;margin:14px 0 0;vertical-align:0;color:var(--faint)}
+[data-style="remaster"] section:not(.about) > h2{grid-column:1;grid-row:1 / span 12;align-self:start;position:sticky;top:116px;margin:0;font:600 24px/1.2 var(--sans);letter-spacing:-.025em;color:var(--text)}
+[data-style="remaster"] h2 .count{display:block;margin:10px 0 0;vertical-align:0;color:var(--faint)}
 /* every section is a track on the record: side A is the work, side B the rest */
-[data-style="remaster"] section:not(.about) > h2::before{display:block;width:max-content;margin-bottom:12px;padding-left:18px;font:500 11px/1 var(--sans);letter-spacing:.08em;color:var(--faint);background:var(--swatch) 0 50% / 10px 3px no-repeat}
+[data-style="remaster"] section:not(.about) > h2::before{display:block;width:max-content;margin-bottom:12px;padding-left:18px;font:400 11px/1 var(--mono);color:var(--faint);background:var(--swatch) 0 50% / 10px 3px no-repeat}
 [data-style="remaster"] section:nth-of-type(2) > h2::before{content:"A1"}
 [data-style="remaster"] section:nth-of-type(3) > h2::before{content:"A2"}
 [data-style="remaster"] section:nth-of-type(4) > h2::before{content:"A3"}
@@ -357,37 +359,37 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 /* the three threads in three columns, each under the prism colours it stands for */
 [data-style="remaster"] .threads{grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
 [data-style="remaster"] .threads li::before{margin-bottom:20px;border-radius:0}
-[data-style="remaster"] .threads h3{font:italic 400 26px/1.1 var(--serif);letter-spacing:-.01em;margin:0 0 12px;text-wrap:balance}
+[data-style="remaster"] .threads h3{font:600 18px/1.3 var(--sans);letter-spacing:-.015em;margin:0 0 8px}
 [data-style="remaster"] .threads p{font-size:15px;line-height:1.6}
 
-/* lists: hairlines, bigger titles, arrows always on */
+/* lists: hairlines, arrows always on */
 [data-style="remaster"] .list li{margin:0;padding:18px 0;border-radius:0;border-bottom:1px solid var(--line);transition:padding .3s cubic-bezier(.2,.7,.2,1)}
 [data-style="remaster"] .list li:first-child{padding-top:0}
 [data-style="remaster"] .list li:hover{background:none;padding-left:10px}
-[data-style="remaster"] .list a,[data-style="remaster"] .list .t{font-size:17px;font-weight:500;letter-spacing:-.015em}
+[data-style="remaster"] .list a,[data-style="remaster"] .list .t{font-size:16px;font-weight:500;letter-spacing:-.015em}
 [data-style="remaster"] .list a:hover{text-decoration:none}
 [data-style="remaster"] .list a::after{opacity:1;transform:none}
 [data-style="remaster"] .list li:hover a::after{color:var(--text);transform:translate(2px,-2px)}
-[data-style="remaster"] .list .src{margin-top:6px;font-size:11px}
-[data-style="remaster"] .list .yr{font-size:11px;line-height:2.2;color:var(--faint)}
-[data-style="remaster"] .list .mono{font-size:15px}
+[data-style="remaster"] .list .src{margin-top:4px}
+[data-style="remaster"] .list .yr{font-size:13px;line-height:1.9}
+[data-style="remaster"] .list .mono{font-size:14px}
 /* the mastheads keep their own type among the small capitals */
-[data-style="remaster"] .list .v{font-size:15px;letter-spacing:-.005em;text-transform:none}
-[data-style="remaster"] .list .v-wapo,[data-style="remaster"] .list .v-faz{font-size:18px;letter-spacing:0}
+[data-style="remaster"] .list .v{font-size:14.5px}
+[data-style="remaster"] .list .v-wapo,[data-style="remaster"] .list .v-faz{font-size:17px}
 [data-style="remaster"] .list .v-mittr{letter-spacing:-.025em}
-[data-style="remaster"] .list .yr.tag{line-height:20px;letter-spacing:.06em}
+[data-style="remaster"] .list .yr.tag{line-height:20px;font-size:11px}
 [data-style="remaster"] .more{justify-self:start;margin-top:24px;color:var(--text);text-underline-offset:4px}
 
-/* interests: a numbered index, and the line under it set like a pull quote */
+/* interests: a numbered index, and the line under it */
 [data-style="remaster"] .interests{gap:0 32px;counter-reset:i}
 [data-style="remaster"] .interests li{counter-increment:i;display:flex;align-items:baseline;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
-[data-style="remaster"] .interests li::before{content:counter(i,decimal-leading-zero);font:500 11px/1 var(--sans);letter-spacing:.08em;color:var(--faint)}
-[data-style="remaster"] .aside{margin-top:28px;font:italic 400 24px/1.25 var(--serif);color:var(--muted);text-wrap:balance}
+[data-style="remaster"] .interests li::before{content:counter(i,decimal-leading-zero);font:400 11px/1 var(--mono);color:var(--faint)}
+[data-style="remaster"] .aside{margin-top:24px;font-size:17px;line-height:1.5;color:var(--muted)}
 
 [data-style="remaster"] .video video{border-radius:0}
 [data-style="remaster"] .video.tall video{width:min(100%,340px)}
 [data-style="remaster"] .tracks{gap:6px 24px;margin-top:14px}
-[data-style="remaster"] section:last-of-type p{font-size:clamp(22px,2.6vw,30px);line-height:1.3;letter-spacing:-.025em}
+[data-style="remaster"] section:last-of-type p{font-size:20px;line-height:1.5;letter-spacing:-.015em}
 [data-style="remaster"] footer{margin-top:128px}
 [data-style="remaster"] .eq i:nth-child(1){background:var(--sp1)}
 [data-style="remaster"] .eq i:nth-child(2){background:var(--sp3)}
@@ -417,7 +419,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
   [data-style="remaster"] .bio,[data-style="remaster"] .lede{font-size:17px}
   .fig .out{display:grid;grid-template-columns:repeat(3,auto);gap:4px 12px}
   [data-style="remaster"] section:not(.about){display:block;margin-top:72px;padding-top:24px}
-  [data-style="remaster"] section:not(.about) > h2{position:static;font-size:30px;margin-bottom:22px}
+  [data-style="remaster"] section:not(.about) > h2{position:static;font-size:22px;margin-bottom:18px}
   [data-style="remaster"] h2 .count{display:inline-block;margin:0 0 0 10px;vertical-align:5px}
 }
 @media (max-width:600px){
