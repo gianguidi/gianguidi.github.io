@@ -96,12 +96,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=UnifrakturMaguntia&display=swap&text=%20ABCDFGHIJNPRSTWZabcdefghiklmnoprstuvy" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
   <script>
-    // before first paint: everyone lands on the light side and the original mono; a saved choice wins
+    // before first paint: everyone lands on the light side (a saved "dark" wins). The 2026 remaster is shelved for
+    // now: its styles stay in the stylesheet under data-style="remaster", but nothing turns it on
     (function () {
       var d = document.documentElement;
       d.classList.add("js");
       try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") d.setAttribute("data-theme", t); } catch (e) {}
-      try { if (localStorage.getItem("style") === "remaster") d.setAttribute("data-style", "remaster"); } catch (e) {}
     })();
   </script>
 </head>
@@ -110,7 +110,7 @@
   <main class="page" id="top">
     <header class="intro">
       <button class="avatar" type="button" aria-label="Photo of Gianluca Guidi. Click to say hi">
-        <img src="assets/img/avatar.jpg" alt="Gianluca Guidi" width="360" height="360" />
+        <img src="assets/img/avatar.jpg" alt="Gianluca Guidi" width="400" height="400" />
       </button>
       <!-- click the photo and it says hi: in your language first, then around the world -->
       <span class="hi" aria-live="polite"></span>
@@ -118,7 +118,7 @@
         <h1>Gianluca Guidi</h1>
         <p class="role">Postdoc, Harvard</p>
       </div>
-      <button class="mix" type="button" aria-label="Switch between the original and the modern look">
+      <button class="mix" type="button" aria-label="Give the record a spin">
         <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.25" /><circle class="groove" cx="10" cy="10" r="4.75" /><circle class="label" cx="10" cy="10" r="1.6" /><circle class="label" cx="10" cy="5.6" r=".9" /></svg>
       </button>
       <button class="mode" type="button" aria-label="Switch between light and dark">

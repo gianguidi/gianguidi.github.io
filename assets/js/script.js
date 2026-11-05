@@ -14,10 +14,11 @@
   };
   label();
 
-  // The record: the original mono mix (lowkey) or the 2026 remaster (modern). Same songs, two looks
+  // The record: it just keeps turning, and a click gives it a spin. (It used to switch to the 2026 remaster, which
+  // is shelved for now; its styles still sit under data-style="remaster", and nothing here sets that)
   const mix = document.querySelector(".mix");
   const isRemaster = () => root.getAttribute("data-style") === "remaster";
-  const mixLabel = () => mix && mix.setAttribute("aria-label", isRemaster() ? "Switch to the original look" : "Switch to the modern look");
+  const mixLabel = () => mix && mix.setAttribute("aria-label", "Give the record a spin");
   mixLabel();
 
   // Under the switches, always: which pressing and which side is on. Flip one and its half lights up for a moment;
@@ -75,30 +76,16 @@
     if (flips === 4) ga("easter_egg", { egg: "flips" });
   });
 
-  // Spin the record nine times fast and it knows which track that is
+  // Give the record a spin: a turn one way, then back the other, like a scratch. Spin it nine times fast and it
+  // knows which track that is
   let spins = 0, lastSpin = 0;
   if (mix) mix.addEventListener("click", () => {
-    ga("style_switch", { style: isRemaster() ? "mono" : "remaster" });
     const now = Date.now();
     spins = now - lastSpin < 1500 ? spins + 1 : 1;
     lastSpin = now;
-    const nine = spins === 9;
-    const apply = () => {
-      if (isRemaster()) root.removeAttribute("data-style");
-      else root.setAttribute("data-style", "remaster");
-      try { localStorage.setItem("style", isRemaster() ? "remaster" : "mono"); } catch (e) {}
-      mixLabel();
-      show();
-      light("press");
-      tuck();
-      scrolled();
-      if (nine) { say("Revolution 9.", 2600); egg("revolution_9"); }
-    };
-    if (document.startViewTransition && !document.hidden && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      // if the browser skips the animation the switch still happens; just don't let it shout in the console
-      const t = document.startViewTransition(apply);
-      [t.ready, t.finished, t.updateCallbackDone].forEach((p) => p && p.catch(() => {}));
-    } else apply();
+    mix.classList.toggle("push");
+    light("press");
+    if (spins === 9) { say("Revolution 9.", 2600); egg("revolution_9"); }
   });
 
   // The menu. The header is sticky but pulled up by exactly the menu's offset, so as you scroll the photo and

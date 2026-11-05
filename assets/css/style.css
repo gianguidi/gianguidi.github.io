@@ -85,7 +85,7 @@ body{overflow-x:clip}
 .mode path{fill:currentColor}
 .mode.spin{transform:rotate(180deg)}
 /* The record: switches between the original mix and the remaster */
-.mix{grid-column:2;grid-row:5;justify-self:end;width:32px;height:32px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;transition:color .2s,background .2s}
+.mix{grid-column:2;grid-row:5;justify-self:end;width:32px;height:32px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;transition:color .2s,background .2s,transform .8s cubic-bezier(.2,.7,.2,1)}
 .mix:hover{color:var(--text);background:var(--hover)}
 .mix svg{width:16px;height:16px}
 .mix circle{fill:none;stroke:currentColor;stroke-width:1.4}
@@ -93,12 +93,11 @@ body{overflow-x:clip}
 .mix .label{fill:currentColor;stroke:none}
 .mix + .mode{margin-left:-8px}
 .mix,.mode{margin-top:20px}
-/* In the original mix the record turns as you scroll */
-@keyframes turn{to{transform:rotate(1080deg)}}
-@supports (animation-timeline:scroll()){
-  @media (prefers-reduced-motion:no-preference){
-    .mix svg{animation:turn linear both;animation-timeline:scroll(root)}
-  }
+/* The record is always playing; a click gives it an extra turn (and the next one turns it back) */
+.mix.push{transform:rotate(1turn)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:no-preference){
+  .mix svg{animation:spin 3.2s linear infinite}
 }
 /* What's on, always there and quiet: the pressing, then the side, right under the two switches. Point at a switch
    and its half lights up; anything the page has to say fades in over it for a moment. Once the menu is stuck
@@ -139,9 +138,8 @@ body{overflow-x:clip}
 .intro > div{grid-column:1;grid-row:2}
 .intro h1{font-size:28px;line-height:1.1;letter-spacing:-.025em}
 .role{margin:4px 0 0;font-size:16px;color:var(--muted)}
-.avatar{grid-column:2 / 4;grid-row:1 / 5;justify-self:end;position:relative;width:150px;height:150px;padding:0;border:0;border-radius:50%;overflow:hidden;background:var(--line);cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:manipulation}
-.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:filter .4s,transform .6s cubic-bezier(.2,.7,.2,1);-webkit-user-drag:none}
-.avatar:hover img,.avatar.flip img{filter:none}
+.avatar{grid-column:2 / 4;grid-row:1 / 5;justify-self:end;position:relative;width:170px;height:170px;padding:0;border:0;border-radius:50%;overflow:hidden;background:var(--line);cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1);-webkit-user-drag:none}
 /* point at it and it leans in a little */
 @media (hover:hover) and (prefers-reduced-motion:no-preference){
   .avatar:hover img{transform:scale(1.08)}
@@ -267,7 +265,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
   .interests{grid-template-columns:1fr}
   /* on a phone: the switches just above the photo, then name and photo, what's on (on two lines, under the photo),
      then the menu across the whole width */
-  .avatar{width:112px;height:112px}
+  .avatar{width:124px;height:124px}
   .intro h1{font-size:24px}
   .role{font-size:15px}
   .intro{grid-template-rows:1fr auto auto 1fr auto auto}
@@ -284,6 +282,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
   .js .page > *{animation:none}
   .hi{transform:none;transition:opacity .2s}
   .avatar.nod,.avatar.wait{animation:none}
+  .mix.push{transform:none}
   .eq i{animation:none;transform:scaleY(.6)}
 }
 
@@ -317,8 +316,6 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 [data-style="remaster"] .note{grid-column:3 / 6;margin-top:4px}
 [data-style="remaster"] .avatar{width:var(--bar-photo);height:var(--bar-photo)}
 [data-style="remaster"] section{scroll-margin-top:calc(var(--bar-photo) + 28px)}
-[data-style="remaster"] .mix svg{animation:spin 3.2s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
 
 /* the opening lines, a little bigger */
 [data-style="remaster"] .about{margin-top:0;padding-top:clamp(16px,4vh,40px)}
