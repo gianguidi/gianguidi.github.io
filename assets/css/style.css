@@ -133,6 +133,9 @@ body{overflow-x:clip}
 .hi.on{opacity:1;transform:none}
 @keyframes nod{0%,100%{transform:none}30%{transform:rotate(-9deg) scale(1.04)}65%{transform:rotate(6deg)}}
 .avatar.nod{animation:nod .55s ease}
+/* left alone for a minute, it looks around while it asks if anybody is out there */
+@keyframes look{0%,100%{transform:none}25%{transform:rotate(-7deg)}75%{transform:rotate(7deg)}}
+.avatar.wait{animation:look 2.8s ease-in-out infinite}
 
 .bio,.lede{font-size:17px;line-height:1.5;letter-spacing:-.01em}
 /* Elsewhere: logos instead of words, each one's name shows up under it on hover */
@@ -257,7 +260,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 @media (prefers-reduced-motion:reduce){
   .js .page > *{animation:none}
   .hi{transform:none;transition:opacity .2s}
-  .avatar.nod{animation:none}
+  .avatar.nod,.avatar.wait{animation:none}
   .eq i{animation:none;transform:scaleY(.6)}
 }
 

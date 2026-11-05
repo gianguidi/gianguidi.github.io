@@ -130,15 +130,25 @@
     if (Date.now() > Date.parse(li.dataset.until)) li.classList.remove("fresh");
   });
 
-  // Leave it alone for a minute and it wonders where everybody went
-  let idle, away = false, asked = false;
+  // Leave it alone for a minute and it wonders where everybody went. If the photo is on screen it asks, and looks
+  // around while it waits; otherwise the line under the switches does. Come back and the photo is glad to see you.
+  // (speak, shush and inView belong to the photo, further down; until then they do nothing)
+  let speak = null, shush = () => {}, inView = () => false;
+  let idle, away = false, asked = false, aloud = false;
   const wake = () => {
-    if (away) { away = false; hush(); }
+    if (away) {
+      away = false;
+      hush();
+      if (aloud && speak) speak("Oh, there you are.", "en", 1800);
+      aloud = false;
+    }
     clearTimeout(idle);
     idle = setTimeout(() => {
       if (live) return;
       away = true;
-      say("Is there anybody out there?");
+      aloud = !!speak && inView();
+      if (aloud) speak("Is there anybody out there?", "en", 0, true);
+      else say("Is there anybody out there?");
       if (!asked) { asked = true; ga("easter_egg", { egg: "idle" }); }
     }, 60000);
   };
@@ -258,23 +268,31 @@
         hi.style.left = "auto";
       }
     };
-    avatar.addEventListener("click", () => {
-      const last = n === order.length;
-      const [lang, word] = last ? ["en", "That’s every hello I know. Arrivederci!"] : order[n];
-      if (n === 0) ga("easter_egg", { egg: "hello" });
-      if (last) ga("easter_egg", { egg: "all_hellos" });
-      n = last ? 0 : n + 1;
+    // the photo talks: the words in the bubble, lit up, with a nod (or, while it waits, looking around).
+    // ms is how long it stays; 0 keeps it up until shush
+    speak = (word, lang = "en", ms = 1600, waiting = false) => {
       hi.lang = lang;
       hi.dir = lang === "ar" || lang === "he" ? "rtl" : "ltr";
       hi.textContent = word;
       place();
       hi.classList.add("on");
       avatar.classList.add("flip");
-      avatar.classList.remove("nod");
-      void avatar.offsetWidth; // restart the nod on every click
-      avatar.classList.add("nod");
+      avatar.classList.remove("nod", "wait");
+      void avatar.offsetWidth; // restart the animation every time
+      avatar.classList.add(waiting ? "wait" : "nod");
       clearTimeout(quiet);
-      quiet = setTimeout(() => { hi.classList.remove("on"); avatar.classList.remove("flip"); }, last ? 2600 : 1600);
+      if (ms) quiet = setTimeout(shush, ms);
+    };
+    shush = () => { clearTimeout(quiet); hi.classList.remove("on"); avatar.classList.remove("flip", "wait"); };
+    // on screen, not scrolled away or tucked under the menu
+    inView = () => { const a = avatar.getBoundingClientRect(); return a.top > -20 && a.bottom < window.innerHeight; };
+    avatar.addEventListener("click", () => {
+      const last = n === order.length;
+      const [lang, word] = last ? ["en", "That’s every hello I know. Arrivederci!"] : order[n];
+      if (n === 0) ga("easter_egg", { egg: "hello" });
+      if (last) ga("easter_egg", { egg: "all_hellos" });
+      n = last ? 0 : n + 1;
+      speak(word, lang, last ? 2600 : 1600);
     });
   }
 
