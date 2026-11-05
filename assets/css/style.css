@@ -60,10 +60,9 @@ section,.menu a{--c:var(--muted);--swatch:linear-gradient(var(--c),var(--c))}
 #music,.menu a[href="#music"]{--c:var(--sp6)}
 #contact,.menu a[href="#contact"]{--c:var(--sp2)}
 :root:not([data-style="remaster"]) section:not(.about) > h2::before{content:"";display:inline-block;width:7px;height:7px;margin-right:10px;border-radius:50%;background:var(--swatch);vertical-align:1px}
-.hl{font-weight:600}
 
 /* The menu: under the name, and once you scroll it's the only part of the header left on top */
-.menu{grid-column:1 / -1;grid-row:3;display:flex;gap:20px;margin-top:20px;overflow-x:auto;scrollbar-width:none;font-size:13.5px}
+.menu{grid-column:1;grid-row:5;display:flex;gap:20px;margin-top:20px;overflow-x:auto;scrollbar-width:none;font-size:13.5px}
 .menu::-webkit-scrollbar{display:none}
 .menu a{position:relative;flex:none;padding:9px 0 10px;color:var(--muted);text-decoration:none;transition:color .2s}
 .menu a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:var(--swatch);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
@@ -76,21 +75,22 @@ section,.menu a{--c:var(--muted);--swatch:linear-gradient(var(--c),var(--c))}
 :root:not([data-style="remaster"]).js .intro{background:var(--bg);box-shadow:0 0 0 100vmax var(--bg),0 1px 0 100vmax transparent;clip-path:inset(-12px -100vmax -1px);transition:background-color .35s ease,box-shadow .35s ease}
 :root:not([data-style="remaster"]).js.stuck .intro{box-shadow:0 0 0 100vmax var(--bg),0 1px 0 100vmax var(--line)}
 
-/* Light / dark switch: a half-moon in the corner */
-.mode{grid-column:4;grid-row:1;align-self:end;width:32px;height:32px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;transition:color .2s,background .2s,transform .5s cubic-bezier(.2,.7,.2,1)}
+/* Light / dark switch: a half-moon, under the photo at the end of the menu row (so it stays on top as you scroll) */
+.mode{grid-column:3;grid-row:5;justify-self:start;width:32px;height:32px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;transition:color .2s,background .2s,transform .5s cubic-bezier(.2,.7,.2,1)}
 .mode:hover{color:var(--text);background:var(--hover)}
 .mode svg{width:16px;height:16px}
 .mode circle{fill:none;stroke:currentColor;stroke-width:1.4}
 .mode path{fill:currentColor}
 .mode.spin{transform:rotate(180deg)}
 /* The record: switches between the original mix and the remaster */
-.mix{grid-column:3;grid-row:1;align-self:end;width:32px;height:32px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;transition:color .2s,background .2s}
+.mix{grid-column:2;grid-row:5;justify-self:end;width:32px;height:32px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;transition:color .2s,background .2s}
 .mix:hover{color:var(--text);background:var(--hover)}
 .mix svg{width:16px;height:16px}
 .mix circle{fill:none;stroke:currentColor;stroke-width:1.4}
 .mix .groove{stroke-width:.8;opacity:.55}
 .mix .label{fill:currentColor;stroke:none}
 .mix + .mode{margin-left:-8px}
+.mix,.mode{margin-top:20px}
 /* In the original mix the record turns as you scroll */
 @keyframes turn{to{transform:rotate(1080deg)}}
 @supports (animation-timeline:scroll()){
@@ -100,19 +100,21 @@ section,.menu a{--c:var(--muted);--swatch:linear-gradient(var(--c),var(--c))}
 }
 /* What's on, always there and quiet: the pressing, then the side. Point at a switch and its half lights up;
    anything the switches have to say fades in over it for a moment */
-.note{grid-column:2 / 5;grid-row:2;align-self:start;justify-self:end;position:relative;margin-top:6px;font:400 11px/1.4 var(--mono);color:var(--faint);white-space:nowrap;pointer-events:none;transition:opacity .3s}
+.note{grid-column:1;grid-row:3;justify-self:start;position:relative;margin-top:10px;font:400 11px/1.4 var(--mono);color:var(--faint);white-space:nowrap;pointer-events:none;transition:opacity .3s}
 .note > span{transition:opacity .3s,color .3s}
 .note .side:not(:empty)::before{content:"·";margin:0 .6em;color:var(--faint)}
-.note .say{position:absolute;top:0;right:0;color:var(--muted);opacity:0}
+.note .say{position:absolute;top:0;left:0;color:var(--muted);opacity:0}
 .note.saying .press,.note.saying .side{opacity:0}
 .note.saying .say{opacity:1}
 .intro:has(.mix:hover) .press,.intro:has(.mode:hover) .side,.note.lit-press .press,.note.lit-side .side{color:var(--text)}
 
-/* Intro: photo and name on the left; on the right the two switches, and what's on under them */
-.intro{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;grid-template-rows:1fr 1fr;column-gap:14px;align-items:center;margin-bottom:28px}
-.intro > div{grid-column:2;grid-row:1 / 3}
-.role{margin:0;color:var(--muted)}
-.avatar{grid-column:1;grid-row:1 / 3;position:relative;width:120px;height:120px;padding:0;border:0;border-radius:50%;overflow:hidden;background:var(--line);cursor:pointer}
+/* Intro: name, title and what's on down the left, flush with the menu and the text below; the photo on the right,
+   and the two switches under it at the end of the menu row */
+.intro{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto auto;grid-template-rows:1fr auto auto 1fr auto;column-gap:4px;align-items:center;margin-bottom:28px}
+.intro > div{grid-column:1;grid-row:2}
+.intro h1{font-size:28px;line-height:1.1;letter-spacing:-.025em}
+.role{margin:4px 0 0;font-size:16px;color:var(--muted)}
+.avatar{grid-column:2 / 4;grid-row:1 / 5;justify-self:end;position:relative;width:120px;height:120px;padding:0;border:0;border-radius:50%;overflow:hidden;background:var(--line);cursor:pointer}
 .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:filter .4s}
 .avatar:hover img,.avatar.flip img{filter:none}
 
@@ -218,12 +220,19 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 
 @media (max-width:520px){
   .page{padding:56px 20px 48px}
-  .avatar{width:104px;height:104px}
   section{margin-top:44px}
   .interests{grid-template-columns:1fr}
-  /* no room beside the name: what's on drops under the whole row, and the menu under that */
-  .note{grid-column:1 / -1;grid-row:3;margin-top:10px}
-  .menu{grid-row:4;margin-top:12px;gap:12px;justify-content:space-between}
+  /* on a phone: name and photo, then what's on (on two lines) with the switches under the photo,
+     then the menu across the whole width */
+  .avatar{width:96px;height:96px}
+  .intro h1{font-size:24px}
+  .role{font-size:15px}
+  .intro{grid-template-rows:1fr auto auto 1fr auto auto}
+  :root:not([data-style="remaster"]) .note{grid-row:5;margin-top:14px}
+  :root:not([data-style="remaster"]) .note > span:not(.say){display:block}
+  :root:not([data-style="remaster"]) .note .side:not(:empty)::before{content:none}
+  .mix,.mode{grid-row:5;margin-top:14px}
+  .menu{grid-column:1 / -1;grid-row:6;margin-top:6px;gap:12px;justify-content:space-between}
 }
 @media (prefers-reduced-motion:no-preference){
   html{scroll-behavior:smooth}
@@ -244,7 +253,14 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 [data-style="remaster"] .intro::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line);opacity:0;pointer-events:none;transition:opacity .2s}
 [data-style="remaster"].stuck .intro::after{opacity:1}
 /* in the bar: photo and name on the left; the menu and the two switches on the right, and what's on under them */
-[data-style="remaster"] .intro{grid-template-columns:auto minmax(0,1fr) auto auto auto}
+[data-style="remaster"] .intro{grid-template-columns:auto minmax(0,1fr) auto auto auto;grid-template-rows:1fr 1fr;column-gap:14px}
+[data-style="remaster"] .avatar{grid-column:1;grid-row:1 / 3;justify-self:auto}
+[data-style="remaster"] .intro > div{grid-column:2;grid-row:1 / 3}
+[data-style="remaster"] .intro h1{font-size:18px;line-height:1.3;letter-spacing:-.01em}
+[data-style="remaster"] .role{margin-top:2px}
+[data-style="remaster"] .mix,[data-style="remaster"] .mode{grid-row:1;align-self:end;justify-self:auto;margin-top:0}
+[data-style="remaster"] .note{grid-row:2;align-self:start;justify-self:end}
+[data-style="remaster"] .note .say{left:auto;right:0}
 [data-style="remaster"] .menu{grid-column:3;grid-row:1;align-self:center;margin:0 12px 0 0;gap:22px}
 [data-style="remaster"] .menu a{padding:6px 0}
 [data-style="remaster"] .mix{grid-column:4}
