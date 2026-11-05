@@ -1,5 +1,7 @@
-/* Lowkey: one narrow column, small type, lots of air. Follows the system light/dark setting. */
+/* Lowkey: one narrow column, small type, lots of air. Everyone lands on the light side (here comes the sun);
+   dark is one click away and remembered. */
 :root{
+  color-scheme:light;
   --bg:#fbfbfa;
   --text:#1c1c1c;
   --muted:#7a7a7a;
@@ -15,21 +17,7 @@
   --crimson:#a51c30;
   --arxiv:#b31b1b;
 }
-/* Dark: follows the system unless the visitor picked light; a saved "dark" always wins */
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0f0f0f;
-    --text:#ededed;
-    --muted:#8b8b8b;
-    --faint:#5c5c5c;
-    --line:rgba(255,255,255,.08);
-    --hover:rgba(255,255,255,.04);
-    --guardian:#8fb4ec;
-    --crimson:#e5707c;
-    --arxiv:#f07068;
-    color-scheme:dark;
-  }
-}
+/* Dark: only when the visitor flips to it (the choice is saved) */
 :root[data-theme="dark"]{
   --bg:#0f0f0f;
   --text:#ededed;

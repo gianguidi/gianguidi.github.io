@@ -3,11 +3,15 @@
   const ga = (name, params) => { if (typeof gtag === "function") gtag("event", name, params); };
   let live = null; // the band's song, while the video plays
 
-  // Light / dark: the initial choice is made in <head>; this flips it and remembers
+  // Light / dark: everyone starts on the light side; a saved "dark" is applied in <head>. This flips it and remembers,
+  // and keeps the browser's own bar (theme-color) in step
   const mode = document.querySelector(".mode");
-  const isDark = () => root.getAttribute("data-theme") === "dark" ||
-    (!root.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
-  const label = () => mode && mode.setAttribute("aria-label", isDark() ? "Switch to light mode" : "Switch to dark mode");
+  const tint = document.querySelector('meta[name="theme-color"]');
+  const isDark = () => root.getAttribute("data-theme") === "dark";
+  const label = () => {
+    if (mode) mode.setAttribute("aria-label", isDark() ? "Switch to light mode" : "Switch to dark mode");
+    if (tint) tint.setAttribute("content", isDark() ? "#0f0f0f" : "#fbfbfa");
+  };
   label();
 
   // The record: the original mono mix (lowkey) or the 2026 remaster (modern). Same songs, two looks
@@ -28,8 +32,6 @@
     if (side) side.textContent = song();
   };
   show();
-  const scheme = window.matchMedia("(prefers-color-scheme: dark)");
-  if (scheme.addEventListener) scheme.addEventListener("change", () => { label(); show(); });
   let glow, hide;
   const light = (which) => {
     if (!note) return;
