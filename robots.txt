@@ -1,4 +1,19 @@
 User-agent: *
 Allow: /
 
+# The photos stay out of image search and AI training crawls.
+# Link previews (iMessage, WhatsApp, LinkedIn, X, Slack) still fetch the share image.
+User-agent: Googlebot-Image
+User-agent: GPTBot
+User-agent: CCBot
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bytespider
+User-agent: meta-externalagent
+User-agent: PerplexityBot
+User-agent: Amazonbot
+Disallow: /assets/img/
+
 Sitemap: https://gianguidi.github.io/sitemap.xml

@@ -355,7 +355,9 @@
       hold = setTimeout(() => { held = true; speak("I want to hold your hand.", "en", 2400); egg("hold"); }, 650);
     });
     ["pointerup", "pointerleave", "pointercancel"].forEach((e) => avatar.addEventListener(e, () => clearTimeout(hold)));
-    avatar.addEventListener("contextmenu", (e) => { if (held) e.preventDefault(); });
+    // no "Save image" menu and no dragging the photo out of the page
+    avatar.addEventListener("contextmenu", (e) => e.preventDefault());
+    avatar.addEventListener("dragstart", (e) => e.preventDefault());
     avatar.addEventListener("click", () => {
       if (held) { held = false; return; } // that was a hold, not a hello
       const last = n === order.length;
