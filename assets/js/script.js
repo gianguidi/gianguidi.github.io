@@ -3,7 +3,7 @@
   const ga = (name, params) => { if (typeof gtag === "function") gtag("event", name, params); };
   let live = null; // the band's song, while the video plays
 
-  // Light / dark: everyone starts on the light side; a saved "dark" is applied in <head>. This flips it and remembers,
+  // Light / dark: every visit starts on the light side. This flips it for the rest of the visit (nothing is saved),
   // and keeps the browser's own bar (theme-color) in step
   const mode = document.querySelector(".mode");
   const tint = document.querySelector('meta[name="theme-color"]');
@@ -59,7 +59,6 @@
   if (mode) mode.addEventListener("click", () => {
     const next = isDark() ? "light" : "dark";
     root.setAttribute("data-theme", next);
-    try { localStorage.setItem("theme", next); } catch (e) {}
     mode.classList.toggle("spin");
     label();
     show();

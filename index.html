@@ -96,14 +96,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
   <!-- the mastheads: a blackletter and a Didone, cut down to just the letters the journal and outlet names use -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=UnifrakturMaguntia&display=swap&text=%20ABCDFGHIJNPRSTWZabcdefghiklmnoprstuvy" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=58ed94b" />
+  <link rel="stylesheet" href="assets/css/style.css?v=dce9fc4" />
   <script>
-    // before first paint: everyone lands on the light side (a saved "dark" wins). The 2026 remaster is shelved for
-    // now: its styles stay in the stylesheet under data-style="remaster", but nothing turns it on
+    // before first paint: every visit lands on the light side (here comes the sun), even for someone who flipped to
+    // dark last time; the old saved choice is cleared. The 2026 remaster is shelved for now: its styles stay in the
+    // stylesheet under data-style="remaster", but nothing turns it on
     (function () {
-      var d = document.documentElement;
-      d.classList.add("js");
-      try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") d.setAttribute("data-theme", t); } catch (e) {}
+      document.documentElement.classList.add("js");
+      try { localStorage.removeItem("theme"); } catch (e) {}
     })();
   </script>
 </head>
@@ -273,7 +273,7 @@
     </footer>
   </main>
 
-  <script src="assets/js/script.js?v=dee7ac8"></script>
+  <script src="assets/js/script.js?v=8c8b6c9"></script>
 
   <!-- GA4: more detailed tracking (Scholar, email, outbound, video, "show all") -->
   <script>

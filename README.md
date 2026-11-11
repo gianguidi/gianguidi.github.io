@@ -36,4 +36,4 @@ Media links are listed in `index.html` under “Media & outreach”.
 - The same goes for `assets/css/style.css` and `assets/js/script.js`: their links in `index.html` carry a `?v=`; change it whenever the file changes.
 
 ## Theme
-A light/dark toggle is included (button in the header). The choice is saved in localStorage.
+Every visit opens on the light side ("Here comes the sun"). The toggle next to the record switches to dark ("The dark side of the moon") for the rest of that visit; nothing is saved, so the next visit is light again.
