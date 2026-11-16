@@ -237,7 +237,7 @@ body{overflow-x:clip}
 
 /* Journals and outlets, each set a little like its own masthead */
 .v{font-weight:600;font-style:normal;font-size:1.04em;color:var(--text)}
-.v-wapo,.v-faz{font-family:var(--gothic);font-weight:400;font-size:1.22em;line-height:1}
+.v-wapo,.v-faz,.v-nyt{font-family:var(--gothic);font-weight:400;font-size:1.22em;line-height:1}
 .v-nature,.v-ajph,.v-guardian,.v-harvard{font-family:var(--didone);font-weight:700}
 .v-forbes{font-family:var(--didone);font-weight:900;letter-spacing:-.01em}
 .v-mittr{font-weight:700;letter-spacing:-.025em}
