@@ -167,34 +167,33 @@ body{overflow-x:clip}
 :root:not([data-style="remaster"]) .bio{color:var(--muted)}
 :root:not([data-style="remaster"]) .bio a{color:var(--text)}
 :root:not([data-style="remaster"]) .lede{font-size:23px;line-height:1.4;letter-spacing:-.022em;text-wrap:pretty}
-/* The project: its main screen on top (the cloud is a place, over America in points of light), then a dark band in
-   the project's own colours (its near-black, its periwinkle) with what it is, three numbers and the way in. The same
-   on both sides of the moon; the link is stretched over the whole card */
-.project{--p-bg:#121211;--p-ink:#faf8f3;--p-mute:rgba(250,248,243,.68);--p-rule:rgba(250,248,243,.14);--p-acc:#8fa3ff;position:relative;overflow:hidden;margin:56px 0 0;border-radius:18px;background:var(--p-bg);color:var(--p-ink);box-shadow:inset 0 0 0 1px rgba(250,248,243,.07);transition:box-shadow .3s}
-.project-art{display:block;width:100%;height:auto;aspect-ratio:1200/630;background:var(--p-bg);pointer-events:none;-webkit-user-drag:none;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.project-body{padding:4px 30px 26px}
+/* The project: a small picture of its main screen (the cloud is a place, over America in points of light), and
+   beside it the name and the way in, in the project's periwinkle. The link is stretched over the whole row */
+.project{--p-acc:#6f8bff;position:relative;display:grid;grid-template-columns:240px minmax(0,1fr);align-items:center;gap:24px;margin:52px 0 0}
+:root[data-theme="dark"] .project{--p-acc:#8fa3ff}
+.project-art{display:block;width:100%;height:auto;aspect-ratio:1200/630;border-radius:12px;background:#121211;box-shadow:0 0 0 1px var(--line);pointer-events:none;-webkit-user-drag:none;transition:transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
 .project p{margin:0}
-.project-kicker{display:flex;align-items:center;gap:8px;margin:0;font:400 12px/1.4 var(--mono);letter-spacing:0;color:var(--p-acc)}
-.project-kicker::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px rgba(143,163,255,.2)}
-.project-kicker a{color:inherit;text-decoration:none}
-.project-kicker span{color:var(--p-mute)}
-.project-kicker a::after{content:"";position:absolute;inset:0;z-index:1}
-.project-kicker a:focus-visible{outline:none}
-.project:has(a:focus-visible){box-shadow:inset 0 0 0 1px rgba(250,248,243,.07),0 0 0 2px var(--bg),0 0 0 4px var(--p-acc)}
-.project-about{max-width:500px;margin-top:14px !important;font-size:14.5px;line-height:1.55;color:var(--p-mute)}
-.project-facts{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0 0;padding:18px 0 0;border-top:1px solid var(--p-rule);font-size:12.5px;line-height:1.4;color:var(--p-mute)}
-.project-facts b{display:block;margin-bottom:5px;font:500 22px/1.1 var(--sans);letter-spacing:-.025em;color:var(--p-ink);white-space:nowrap}
-.project-go{margin-top:22px !important;font:500 14px/1 var(--sans);color:var(--p-acc)}
+.project-kicker{display:flex;align-items:center;gap:8px;font:400 12px/1.4 var(--mono);color:var(--p-acc)}
+.project-kicker::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px color-mix(in srgb,var(--p-acc) 22%,transparent)}
+.project-name{margin:8px 0 0;font:600 22px/1.15 var(--sans);letter-spacing:-.025em;color:var(--text)}
+.project-name a{color:inherit;text-decoration:none}
+.project-name a::after{content:"";position:absolute;inset:-8px;z-index:1;border-radius:16px}
+.project-name a:focus-visible{outline:none}
+.project-name a:focus-visible::after{outline:1px solid var(--text);outline-offset:0}
+.project-go{margin-top:10px !important;font:400 13.5px/1 var(--sans);color:var(--muted);transition:color .2s}
 .project-go span{display:inline-block;margin-left:2px;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
-@media (hover:hover) and (prefers-reduced-motion:no-preference){
-  .project:hover .project-art{transform:scale(1.025)}
+@media (hover:hover){
+  .project:hover .project-go{color:var(--p-acc)}
   .project:hover .project-go span{transform:translate(2px,-2px)}
 }
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .project:hover .project-art{transform:scale(1.02)}
+}
 @media (max-width:520px){
-  .project{margin-top:44px;border-radius:16px}
-  .project-body{padding:2px 20px 22px}
-  .project-facts{gap:12px}
-  .project-facts b{font-size:19px}
+  .project{grid-template-columns:150px minmax(0,1fr);gap:16px;margin-top:44px}
+  .project-art{border-radius:9px}
+  .project-name{font-size:18px}
+  .project-go{font-size:12.5px}
 }
 
 /* Elsewhere: logos instead of words, each one's name shows up under it on hover */
