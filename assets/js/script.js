@@ -197,9 +197,11 @@
     if (String(window.getSelection && window.getSelection()).includes("ggianluca@")) { tell("Keep talking."); egg("keep_talking"); }
   });
 
-  // Sections rise in as they scroll into view (only styled in the remaster; tracked always so a mid-page switch works)
+  // Sections rise in as they scroll into view. "reveal" tells the stylesheet someone is watching, so a page whose
+  // script never ran still shows every section
   const sections = document.querySelectorAll("section:not(.about)");
   if ("IntersectionObserver" in window) {
+    root.classList.add("reveal");
     const io = new IntersectionObserver((entries) => entries.forEach((e) => {
       if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
     }), { rootMargin: "0px 0px -8% 0px" });
