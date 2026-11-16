@@ -40,4 +40,4 @@ Media links are listed in `index.html` under “Media & outreach”.
 Every visit opens on the light side ("Here comes the sun"), with the photo in colour. The toggle next to the record switches to dark ("The dark side of the moon") for the rest of that visit, and the photo fades to black and white; nothing is saved, so the next visit is light again.
 
 ## Design
-Liner notes: one column, the name set big, the photo as the record's label with two fine grooves round it, the opening line a size up with the prism under "hidden costs of AI", each section a track (A1 to B2) under a hairline that rises in as it scrolls into view, and a faint film grain over the page.
+Liner notes: one column, the name set big, the photo as the record's label with two fine grooves round it, the opening line a size up, each section a track (A1 to B2) under a hairline that rises in as it scrolls into view, and a faint film grain over the page.

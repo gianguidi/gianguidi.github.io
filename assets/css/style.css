@@ -180,11 +180,10 @@ body{overflow-x:clip}
 .avatar.wait{animation:look 2.8s ease-in-out infinite}
 
 .bio,.lede{font-size:17px;line-height:1.5;letter-spacing:-.01em}
-/* the opening line, a size up, with the prism under the words that matter */
+/* the opening line, a size up */
 :root:not([data-style="remaster"]) .bio{color:var(--muted)}
 :root:not([data-style="remaster"]) .bio a{color:var(--text)}
 :root:not([data-style="remaster"]) .lede{font-size:23px;line-height:1.4;letter-spacing:-.022em;text-wrap:pretty}
-.hl{background:var(--spectrum) 0 100% / 100% 2px no-repeat;padding-bottom:2px}
 /* Elsewhere: logos instead of words, each one's name shows up under it on hover */
 .links{display:flex;flex-wrap:wrap;gap:4px;margin:16px 0 0 -8px}
 .links a{position:relative;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;color:var(--muted);text-decoration:none;transition:color .2s,background .2s}
