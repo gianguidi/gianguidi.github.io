@@ -96,7 +96,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
   <!-- the mastheads: a blackletter and a Didone, cut down to just the letters the journal and outlet names use -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=UnifrakturMaguntia&display=swap&text=%20ABCDFGHIJNPRSTWZabcdefghiklmnoprstuvy" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=ad8ae7d" />
+  <!-- the project's own serif, for its name and line only -->
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;1,400&display=swap&text=%20.BJNTabcdeghilnoprstuv" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=c107648" />
   <script>
     // before first paint: every visit lands on the light side (here comes the sun), even for someone who flipped to
     // dark last time; the old saved choice is cleared. The 2026 remaster is shelved for now: its styles stay in the
@@ -111,13 +113,9 @@
 <body>
   <main class="page" id="top">
     <header class="intro">
-      <button class="avatar" type="button" aria-label="Photo of Gianluca Guidi. Click to say hi">
+      <div class="avatar">
         <img src="assets/img/avatar.jpg?v=1662b2f" alt="Gianluca Guidi" width="400" height="400" draggable="false" />
-        <!-- on the dark side of the moon the photo goes mono -->
-        <img class="bw" src="assets/img/avatar-mono.jpg?v=0c0f09b" alt="" width="400" height="400" draggable="false" aria-hidden="true" />
-      </button>
-      <!-- click the photo and it says hi: in your language first, then around the world -->
-      <span class="hi" aria-live="polite"></span>
+      </div>
       <div>
         <h1>Gianluca Guidi</h1>
         <p class="role">Postdoc, Harvard</p>
@@ -157,6 +155,21 @@
         <a href="mailto:ggianluca@hsph.harvard.edu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" /></svg><span>Email</span></a>
       </p>
     </section>
+
+    <!-- the project: the public face of the Nature Sustainability study, and what comes next. A dark card in the
+         project's own colours, on both sides of the moon; the whole card opens the project's site -->
+    <aside class="project" id="project" aria-labelledby="project-name">
+      <p class="project-kicker">Project</p>
+      <h2 class="project-name" id="project-name"><a href="https://neverjustabuilding.org/" target="_blank" rel="noopener">Never Just a Building</a></h2>
+      <p class="project-line">The cloud is a <i>place.</i></p>
+      <p class="project-about">Our study in <i>Nature Sustainability</i> traces a year of electricity and carbon at America’s 403 hyperscale data centers back to the power plants that supply them. Next: one set of independent facts for any proposed data center, before anything is built.</p>
+      <ul class="project-facts">
+        <li><b>403</b> hyperscale data centers</li>
+        <li><b>21–31&nbsp;Mt</b> of CO₂ in a year</li>
+        <li><b>54%</b> of their power from fossil fuels</li>
+      </ul>
+      <p class="project-go" aria-hidden="true">neverjustabuilding.org <span>↗</span></p>
+    </aside>
 
     <!-- three threads, in the spectrum colours: energy, carbon and water; health; people and justice -->
     <section id="work">
@@ -275,7 +288,7 @@
     </footer>
   </main>
 
-  <script src="assets/js/script.js?v=68a1fb7"></script>
+  <script src="assets/js/script.js?v=c771d9a"></script>
 
   <!-- GA4: more detailed tracking (Scholar, email, outbound, video, "show all") -->
   <script>

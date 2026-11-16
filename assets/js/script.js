@@ -50,7 +50,7 @@
     if (ms) hide = setTimeout(hush, ms);
   };
   // Anything else the page has to say: the photo says it if it's on screen, otherwise the line under the switches.
-  // (speak, shush and inView belong to the photo, further down; until then the line does the talking)
+  // (the photo used to do the talking; now the line under the switches always does)
   let speak = null, shush = () => {}, inView = () => false;
   const tell = (text, ms = 2400) => { if (speak && inView()) speak(text, "en", ms); else say(text, ms); };
   const egg = (name) => ga("easter_egg", { egg: name });
@@ -299,76 +299,9 @@
   // For whoever opens the console
   console.log("%cHey you.%c\nNo framework, no build step, and no GPUs were harmed in serving this page.\nPsst: type a song title anywhere on the page.\nSay hi: ggianluca@hsph.harvard.edu", "font-weight:600", "");
 
-  // The photo says hi. Hover still brings the colour back; a click lights it up, it nods, and a bubble says hello:
-  // in the visitor's own language first, then a new one each click, and after the last a goodbye before it starts over
+  // The photo is just a photo: no "Save image" menu and no dragging it out of the page
   const avatar = document.querySelector(".avatar");
-  const hi = document.querySelector(".hi");
-  if (avatar && hi) {
-    const hellos = [
-      ["it", "Ciao!"], ["en", "Hi!"], ["es", "¡Hola!"], ["fr", "Salut !"], ["de", "Hallo!"], ["pt", "Olá!"],
-      ["nl", "Hoi!"], ["sv", "Hej!"], ["pl", "Cześć!"], ["el", "Γειά σου!"], ["tr", "Merhaba!"], ["ru", "Привет!"],
-      ["ar", "مرحبا!"], ["he", "שלום!"], ["hi", "नमस्ते!"], ["sw", "Jambo!"], ["zh", "你好!"], ["ja", "こんにちは!"], ["ko", "안녕하세요!"],
-    ];
-    const mine = ((navigator.languages && navigator.languages[0]) || navigator.language || "it").slice(0, 2).toLowerCase();
-    const at = Math.max(0, hellos.findIndex((h) => h[0] === mine));
-    const order = [hellos[at], ...hellos.filter((_, i) => i !== at)];
-    let n = 0, quiet;
-    // above the photo (tail down) in the original look; out of its side (tail left) in the remaster's bar
-    const place = () => {
-      const box = hi.parentElement.getBoundingClientRect(), a = avatar.getBoundingClientRect();
-      const side = isRemaster();
-      hi.classList.toggle("side", side);
-      hi.classList.toggle("down", !side);
-      if (side) {
-        hi.style.top = a.top - box.top + (a.height - hi.offsetHeight) / 2 + "px";
-        hi.style.left = a.right - box.left + 12 + "px";
-        hi.style.right = "auto";
-      } else {
-        // never above the top of the window (the long goodbye takes two lines on a phone)
-        hi.style.top = Math.max(a.top - box.top - hi.offsetHeight - 12, 6 - box.top) + "px";
-        hi.style.right = box.right - (a.left + a.width / 2) - 27 + "px";
-        hi.style.left = "auto";
-      }
-    };
-    // the photo talks: the words in the bubble, lit up, with a nod (or, while it waits, looking around).
-    // ms is how long it stays; 0 keeps it up until shush
-    speak = (word, lang = "en", ms = 1600, waiting = false) => {
-      hi.lang = lang;
-      hi.dir = lang === "ar" || lang === "he" ? "rtl" : "ltr";
-      hi.textContent = word;
-      place();
-      hi.classList.add("on");
-      avatar.classList.add("flip");
-      avatar.classList.remove("nod", "wait");
-      void avatar.offsetWidth; // restart the animation every time
-      avatar.classList.add(waiting ? "wait" : "nod");
-      clearTimeout(quiet);
-      if (ms) quiet = setTimeout(shush, ms);
-    };
-    shush = () => { clearTimeout(quiet); hi.classList.remove("on"); avatar.classList.remove("flip", "wait"); };
-    // on screen, not scrolled away or tucked under the menu
-    inView = () => { const a = avatar.getBoundingClientRect(); return a.top > -20 && a.bottom < window.innerHeight; };
-    // hold it down instead of clicking and it wants to hold your hand
-    let hold, held = false;
-    avatar.addEventListener("pointerdown", () => {
-      held = false;
-      clearTimeout(hold);
-      hold = setTimeout(() => { held = true; speak("I want to hold your hand.", "en", 2400); egg("hold"); }, 650);
-    });
-    ["pointerup", "pointerleave", "pointercancel"].forEach((e) => avatar.addEventListener(e, () => clearTimeout(hold)));
-    // no "Save image" menu and no dragging the photo out of the page
-    avatar.addEventListener("contextmenu", (e) => e.preventDefault());
-    avatar.addEventListener("dragstart", (e) => e.preventDefault());
-    avatar.addEventListener("click", () => {
-      if (held) { held = false; return; } // that was a hold, not a hello
-      const last = n === order.length;
-      const [lang, word] = last ? ["en", "That’s every hello I know. Arrivederci!"] : order[n];
-      if (n === 0) ga("easter_egg", { egg: "hello" });
-      if (last) ga("easter_egg", { egg: "all_hellos" });
-      n = last ? 0 : n + 1;
-      speak(word, lang, last ? 2600 : 1600);
-    });
-  }
+  if (avatar) ["contextmenu", "dragstart"].forEach((t) => avatar.addEventListener(t, (e) => e.preventDefault()));
 
   // "Show all": reveal the rest of a list, and fold it back
   document.querySelectorAll("button.more").forEach((btn) => {

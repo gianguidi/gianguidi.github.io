@@ -154,36 +154,52 @@ body{overflow-x:clip}
 .intro h1{font-size:clamp(36px,5.6vw,52px);line-height:1;letter-spacing:-.045em;text-wrap:balance}
 .role{margin:12px 0 0;font:400 13px/1.4 var(--mono);color:var(--muted)}
 /* the photo is the record's label: two fine grooves run round it */
-.avatar{grid-column:2 / 4;grid-row:1 / 5;justify-self:end;position:relative;width:196px;height:196px;margin:18px;padding:0;border:0;border-radius:50%;overflow:hidden;background:var(--line);box-shadow:0 0 0 9px var(--bg),0 0 0 10px var(--line),0 0 0 17px var(--bg),0 0 0 18px var(--line);cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:manipulation;transition:box-shadow .35s ease}
+.avatar{grid-column:2 / 4;grid-row:1 / 5;justify-self:end;position:relative;width:196px;height:196px;margin:18px;padding:0;border:0;border-radius:50%;overflow:hidden;background:var(--line);box-shadow:0 0 0 9px var(--bg),0 0 0 10px var(--line),0 0 0 17px var(--bg),0 0 0 18px var(--line);-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:manipulation;transition:box-shadow .35s ease}
 /* the photo can't be grabbed: clicks, right-clicks and long presses land on the button, never on the image itself */
-.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1),opacity .6s ease;-webkit-user-drag:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;pointer-events:none}
-/* in colour on the light side; on the dark side of the moon it fades to mono */
-.avatar .bw{opacity:0}
-:root[data-theme="dark"] .avatar .bw{opacity:1}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1);-webkit-user-drag:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;pointer-events:none}
 /* point at it and it leans in a little */
 @media (hover:hover) and (prefers-reduced-motion:no-preference){
   .avatar:hover img{transform:scale(1.08)}
 }
-/* Click the photo: it lights up, nods, and a speech bubble says hi. Above the photo here, beside it in the remaster
-   bar (the script places it and picks the side for the tail) */
-.hi{position:absolute;z-index:6;top:0;padding:6px 12px;border-radius:14px;background:var(--text);color:var(--bg);font:500 14px/1.25 var(--sans);width:max-content;max-width:min(300px, calc(100vw - 140px));pointer-events:none;opacity:0;transform:scale(.5);transition:opacity .2s,transform .4s cubic-bezier(.3,1.6,.5,1)}
-.hi::after{content:"";position:absolute;width:10px;height:10px;background:inherit;border-radius:2px;transform:rotate(45deg)}
-.hi.down{transform-origin:calc(100% - 27px) 100%}
-.hi.down::after{bottom:-4px;right:22px}
-.hi.side{transform-origin:0 50%}
-.hi.side::after{left:-4px;top:calc(50% - 5px)}
-.hi.on{opacity:1;transform:none}
-@keyframes nod{0%,100%{transform:none}30%{transform:rotate(-9deg) scale(1.04)}65%{transform:rotate(6deg)}}
-.avatar.nod{animation:nod .55s ease}
-/* left alone for a minute, it looks around while it asks if anybody is out there */
-@keyframes look{0%,100%{transform:none}25%{transform:rotate(-7deg)}75%{transform:rotate(7deg)}}
-.avatar.wait{animation:look 2.8s ease-in-out infinite}
 
 .bio,.lede{font-size:17px;line-height:1.5;letter-spacing:-.01em}
 /* the opening line, a size up */
 :root:not([data-style="remaster"]) .bio{color:var(--muted)}
 :root:not([data-style="remaster"]) .bio a{color:var(--text)}
 :root:not([data-style="remaster"]) .lede{font-size:23px;line-height:1.4;letter-spacing:-.022em;text-wrap:pretty}
+/* The project: a dark card in the project's own colours (its near-black, its periwinkle, its serif) on both sides
+   of the moon, with a field of points of light glowing in from the top corner, like its map of America. The name is
+   the link, stretched over the whole card */
+:root{--serif:Newsreader, Georgia, "Times New Roman", serif}
+.project{--p-bg:#121211;--p-ink:#faf8f3;--p-mute:rgba(250,248,243,.68);--p-rule:rgba(250,248,243,.14);--p-acc:#8fa3ff;position:relative;isolation:isolate;overflow:hidden;margin:56px 0 0;padding:28px 30px 26px;border-radius:18px;background:var(--p-bg);color:var(--p-ink);box-shadow:inset 0 0 0 1px rgba(250,248,243,.07);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.project::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(70% 90% at 100% 0,rgba(111,139,255,.38),transparent 70%),radial-gradient(circle,rgba(250,248,243,.32) 0 .8px,transparent 1.3px) 0 0 / 13px 13px;-webkit-mask-image:radial-gradient(85% 115% at 100% 0,#000 25%,transparent 72%);mask-image:radial-gradient(85% 115% at 100% 0,#000 25%,transparent 72%);opacity:.8;transition:opacity .4s}
+.project p{margin:0}
+.project-kicker{display:flex;align-items:center;gap:8px;font:400 12px/1 var(--mono);color:var(--p-acc)}
+.project-kicker::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px rgba(143,163,255,.2)}
+.project-name{margin:18px 0 0;font:400 38px/1.02 var(--serif);letter-spacing:-.015em;color:var(--p-ink)}
+.project-name a{color:inherit;text-decoration:none}
+.project-name a::after{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit}
+.project-name a:focus-visible{outline:none}
+.project:has(a:focus-visible){box-shadow:inset 0 0 0 1px rgba(250,248,243,.07),0 0 0 2px var(--bg),0 0 0 4px var(--p-acc)}
+.project-line{margin-top:6px !important;font:400 21px/1.3 var(--serif);color:var(--p-mute)}
+.project-line i{color:var(--p-ink)}
+.project-about{max-width:470px;margin-top:18px !important;font-size:14.5px;line-height:1.55;color:var(--p-mute)}
+.project-facts{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:22px 0 0;padding:18px 0 0;border-top:1px solid var(--p-rule);font-size:12.5px;line-height:1.4;color:var(--p-mute)}
+.project-facts b{display:block;margin-bottom:5px;font:500 22px/1.1 var(--sans);letter-spacing:-.025em;color:var(--p-ink);white-space:nowrap}
+.project-go{margin-top:22px !important;font:500 14px/1 var(--sans);color:var(--p-acc)}
+.project-go span{display:inline-block;margin-left:2px;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){
+  .project:hover::before{opacity:1}
+  .project:hover .project-go span{transform:translate(2px,-2px)}
+}
+@media (max-width:520px){
+  .project{margin-top:44px;padding:24px 20px 22px;border-radius:16px}
+  .project-name{font-size:32px}
+  .project-line{font-size:19px}
+  .project-facts{gap:12px}
+  .project-facts b{font-size:19px}
+}
+
 /* Elsewhere: logos instead of words, each one's name shows up under it on hover */
 .links{display:flex;flex-wrap:wrap;gap:4px;margin:16px 0 0 -8px}
 .links a{position:relative;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;color:var(--muted);text-decoration:none;transition:color .2s,background .2s}
@@ -316,8 +332,6 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 @media (prefers-reduced-motion:reduce){
   .js .page > *{animation:none}
   :root:not([data-style="remaster"]).reveal section:not(.about):not(.in){opacity:1;transform:none}
-  .hi{transform:none;transition:opacity .2s}
-  .avatar.nod,.avatar.wait{animation:none}
   .mix.push{transform:none}
   .eq i{animation:none;transform:scaleY(.6)}
 }

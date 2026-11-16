@@ -31,13 +31,15 @@ Media links are listed in `index.html` under “Media & outreach”.
 
 ## Photo
 - Avatar (in colour; zooms in a little on hover): `assets/img/avatar.jpg`
-- Avatar on the dark side (black and white, fades in when the visitor switches to dark): `assets/img/avatar-mono.jpg`
 - Share image (link previews, structured data): `assets/img/gianluca.jpg`
 - When you replace either photo, change the `?v=` after its file name in `index.html` (three places), so browsers fetch the new one instead of showing the copy they saved.
 - The same goes for `assets/css/style.css` and `assets/js/script.js`: their links in `index.html` carry a `?v=`; change it whenever the file changes.
 
 ## Theme
-Every visit opens on the light side ("Here comes the sun"), with the photo in colour. The toggle next to the record switches to dark ("The dark side of the moon") for the rest of that visit, and the photo fades to black and white; nothing is saved, so the next visit is light again.
+Every visit opens on the light side ("Here comes the sun"). The toggle next to the record switches to dark ("The dark side of the moon") for the rest of that visit; nothing is saved, so the next visit is light again.
 
 ## Design
-Liner notes: one column, the name set big, the photo as the record's label with two fine grooves round it, the opening line a size up, each section a track (A1 to B2) under a hairline that rises in as it scrolls into view, and a faint film grain over the page.
+Liner notes: one column, the name set big, the photo as the record's label with two fine grooves round it, the opening line a size up, each section a track (A1 to B2) under a hairline that rises in as it scrolls into view, and a faint film grain over the page. The photo is just a photo (it zooms a little on hover; clicking it does nothing).
+
+## Project
+Right under the opening lines, a dark card in the project's own colours features [Never Just a Building](https://neverjustabuilding.org/), the public site for the Nature Sustainability study. Its text and three numbers (403 data centers, 21–31 Mt of CO₂, 54% fossil power) come from that site; the whole card links to it.
