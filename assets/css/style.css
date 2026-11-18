@@ -57,7 +57,6 @@ h2{font-size:18px;line-height:1.35;font-weight:600;letter-spacing:-.012em;color:
 :root{--spectrum:linear-gradient(90deg,var(--sp1),var(--sp2),var(--sp3),var(--sp4),var(--sp5),var(--sp6))}
 section,.menu a{--c:var(--muted);--swatch:linear-gradient(var(--c),var(--c))}
 #work,.menu a[href="#work"]{--c:var(--sp2);--swatch:var(--spectrum)}
-#interests{--c:var(--sp3)}
 #papers,.menu a[href="#papers"]{--c:var(--sp5)}
 #press,.menu a[href="#press"]{--c:var(--sp1)}
 #code,.menu a[href="#code"]{--c:var(--sp4)}
@@ -204,22 +203,44 @@ body{overflow-x:clip}
 .links span{position:absolute;top:100%;left:50%;transform:translate(-50%,-2px);font:400 11px/1.4 var(--mono);color:var(--muted);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
 .links a:hover span,.links a:focus-visible span{opacity:1;transform:translate(-50%,2px)}
 
-/* Interests: two quiet columns, one on phones */
-.interests{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 24px}
 .aside{margin:16px 0 0;font-size:13.5px}
 
-/* What I work on: three threads, each under the prism colours it stands for, a heading and one line,
-   with the papers inside the line underlined in the thread's colour */
-.threads{list-style:none;margin:0;padding:0;display:grid;gap:18px}
-.threads li::before{content:"";display:block;height:3px;margin-bottom:10px;border-radius:1px}
-.threads .t1::before{width:38px;background:linear-gradient(90deg,var(--sp1) 0 10px,transparent 0 14px,var(--sp2) 0 24px,transparent 0 28px,var(--sp3) 0)}
-.threads .t2::before{width:10px;background:var(--sp5)}
-.threads .t3::before{width:24px;background:linear-gradient(90deg,var(--sp4) 0 10px,transparent 0 14px,var(--sp6) 0)}
-.threads .t1{--c:var(--sp2)} .threads .t2{--c:var(--sp5)} .threads .t3{--c:var(--sp6)}
-.threads h3{font-size:15px;font-weight:600;margin:0 0 2px}
+/* What I work on, with what I'm interested in folded in. A beam of light goes into a small prism and leaves as three
+   colours; each colour runs down the gutter and turns into one thread's heading (the right-most line turns first, so
+   the lines never cross). Under each thread, its interests as tags in its colour, and the papers inside the line
+   underlined in that colour. The lines draw themselves in when the section comes into view */
+.spectrum{position:relative;padding-top:46px}
+.prism{position:absolute;left:0;top:0;width:52px;height:46px;overflow:visible}
+.prism path{fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.prism .beam{stroke:var(--muted)}
+.prism .glass{fill:color-mix(in srgb,var(--text) 5%,transparent);stroke:var(--faint);stroke-width:1.2}
+.prism .ray{stroke-width:1.3}
+.prism .out{stroke-width:3;stroke-linecap:butt}
+.prism .r1{stroke:var(--sp2)} .prism .r2{stroke:var(--sp5)} .prism .r3{stroke:var(--sp6)}
+.threads{--g:52px;list-style:none;margin:0;padding:0 0 0 var(--g);display:grid;gap:28px}
+.threads > li{position:relative}
+.threads .t1{--c:var(--sp2);--x:32px} .threads .t2{--c:var(--sp5);--x:22px} .threads .t3{--c:var(--sp6);--x:12px}
+/* the thread's own line: down from above, round the corner, into the heading */
+.threads > li::before{content:"";position:absolute;top:0;left:calc(var(--x) - var(--g) - 1.5px);width:calc(var(--g) - var(--x) - 6px);height:12px;border:solid var(--c);border-width:0 0 3px 3px;border-bottom-left-radius:8px;box-sizing:border-box}
+/* the lines still on their way to a thread further down pass by on the left, across the gap */
+.threads > li::after{content:"";position:absolute;top:0;bottom:-28px;left:calc(-1 * var(--g));width:var(--g);pointer-events:none}
+.threads .t1::after{background:linear-gradient(var(--sp5),var(--sp5)) 20.5px 0/3px 100% no-repeat,linear-gradient(var(--sp6),var(--sp6)) 10.5px 0/3px 100% no-repeat}
+.threads .t2::after{background:linear-gradient(var(--sp6),var(--sp6)) 10.5px 0/3px 100% no-repeat}
+.threads .t3::after{content:none}
+.threads h3{font-size:15px;line-height:24px;font-weight:600;margin:0 0 2px}
 .threads p{margin:0;color:var(--muted)}
 .threads a{text-decoration-color:var(--c);text-decoration-color:color-mix(in srgb,var(--c) 55%,transparent);text-decoration-thickness:1.5px}
 .threads a:hover{text-decoration-color:var(--c)}
+.tags{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0}
+.tags li{font:500 12px/1 var(--sans);padding:6px 10px;border-radius:99px;color:color-mix(in srgb,var(--c) 62%,var(--text));background:color-mix(in srgb,var(--c) 12%,transparent)}
+.threads > li::before,.threads > li::after{transition:clip-path .45s ease-out}
+.threads .t1::before{transition-delay:.25s} .threads .t1::after{transition-delay:.35s}
+.threads .t2::before{transition-delay:.7s} .threads .t2::after{transition-delay:.8s}
+.threads .t3::before{transition-delay:1.15s}
+.reveal #work:not(.in) .threads > li::before,.reveal #work:not(.in) .threads > li::after{clip-path:inset(0 0 100% 0)}
+@media (prefers-reduced-motion:reduce){
+  .threads > li::before,.threads > li::after{transition:none}
+}
 
 /* Lists: title, then source, year on the right */
 .list{list-style:none;margin:0;padding:0}
@@ -310,7 +331,6 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 @media (max-width:520px){
   .page{--pad-top:88px;padding:var(--pad-top) 20px 48px}
   section{margin-top:44px}
-  .interests{grid-template-columns:1fr}
   /* on a phone: the switches just above the photo, then name and photo, what's on (on two lines, under the photo),
      then the menu across the whole width */
   .avatar{width:118px;height:118px;margin:12px 12px 12px 8px;box-shadow:0 0 0 6px var(--bg),0 0 0 7px var(--line),0 0 0 11px var(--bg),0 0 0 12px var(--line)}
@@ -476,5 +496,6 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;ma
 /* on paper: every section shows, no grain */
 @media print{
   .reveal section{opacity:1 !important;transform:none !important}
+  .threads > li::before,.threads > li::after{clip-path:none !important}
   body::after{content:none !important}
 }
