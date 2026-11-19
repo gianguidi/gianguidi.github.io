@@ -96,7 +96,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
   <!-- the mastheads: a blackletter and a Didone, cut down to just the letters the journal and outlet names use -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=UnifrakturMaguntia&display=swap&text=%20ABCDFGHIJNPRSTWYZabcdefghiklmnoprstuvwy" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=77bd14b" />
+  <link rel="stylesheet" href="assets/css/style.css?v=c6600f8" />
   <script>
     // before first paint: every visit lands on the light side (here comes the sun), even for someone who flipped to
     // dark last time; the old saved choice is cleared. The 2026 remaster is shelved for now: its styles stay in the
@@ -208,19 +208,28 @@
     </section>
 
     <section id="press">
-      <h2>Here, There and Everywhere <span class="count">press · 39</span></h2>
+      <h2>Here, There and Everywhere <span class="count">press · 42</span></h2>
+      <!-- On air: the TV interviews, set apart above the clippings; each card opens the clip -->
+      <div class="onair">
+        <p class="onair-head"><span class="light" aria-hidden="true"></span>On air</p>
+        <ul class="clips" aria-label="TV interviews">
+          <li><a href="https://www.pbs.org/newshour/show/study-reveals-energy-demands-and-emissions-of-americas-data-centers" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="who"><b class="v">PBS NewsHour</b></span><span class="what">Study reveals energy demands and emissions of America’s data centers</span><span class="meta">With Amna Nawaz · 5:55</span></a></li>
+          <li><a href="https://www.cbsnews.com/video/some-data-centers-using-as-much-power-as-entire-states-study-warns/" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="who"><b class="v">CBS News</b> · The Daily Report</span><span class="what">Large-scale data centers using as much power as some states and countries, study warns</span><span class="meta">With Lindsey Reiser · 3:25</span></a></li>
+        </ul>
+      </div>
       <ul class="list" id="press-list">
         <!-- "fresh" puts a small New on it until data-until, then it quietly drops; "extra" waits behind Show all -->
         <li class="fresh" data-until="2026-12-31"><a href="https://www.nytimes.com/interactive/2026/11/16/climate/ai-data-center-pollution-carbon-emissions.html" target="_blank" rel="noopener">Carbon emissions of biggest U.S. data centers already rival entire countries, study reveals</a><span class="src"><b class="v v-nyt">The New York Times</b></span><span class="yr">2026</span></li>
         <li class="fresh" data-until="2026-12-31"><a href="https://www.washingtonpost.com/technology/2026/11/16/data-centers-take-up-almost-2-percent-us-electricity-use-study-shows/" target="_blank" rel="noopener">Largest data centers take up about 2 percent of U.S. electricity use, study says</a><span class="src"><b class="v v-wapo">The Washington Post</b></span><span class="yr">2026</span></li>
         <li class="fresh" data-until="2026-12-31"><a href="https://www.reuters.com/legal/litigation/us-hyperscale-data-centers-emit-much-denmark-report-says-2026-11-16/" target="_blank" rel="noopener">US hyperscale data centers emit as much as Denmark, report says</a><span class="src"><b class="v">Reuters</b></span><span class="yr">2026</span></li>
         <li class="fresh" data-until="2026-12-31"><a href="https://apnews.com/article/cop31-climate-data-centers-ai-pollution-a1b338e7f781976f89260d172a7c65e2" target="_blank" rel="noopener">Study estimates magnitude of US data center pollution as climate talks unveil clean AI pledge</a><span class="src"><b class="v">Associated Press</b></span><span class="yr">2026</span></li>
+        <li class="fresh" data-until="2026-12-31"><a href="https://www.cbsnews.com/news/hyperscale-data-centers-electricity-harvard-study/" target="_blank" rel="noopener">Largest U.S. data centers use as much electricity as some states and countries, study finds</a><span class="src"><b class="v">CBS News</b></span><span class="yr">2026</span></li>
         <li class="fresh" data-until="2026-12-31"><a href="https://www.theguardian.com/us-news/2026/nov/16/datacenter-emissions-study" target="_blank" rel="noopener">Surge of US datacenters adds equivalent of Denmark’s annual emissions, study finds</a><span class="src"><b class="v v-guardian">The Guardian</b></span><span class="yr">2026</span></li>
         <li class="fresh" data-until="2026-12-31"><a href="https://www.wired.com/story/data-centers-use-more-electricity-than-michigan/" target="_blank" rel="noopener">Just 400 US Data Centers Use More Electricity Than Michigan</a><span class="src"><b class="v">WIRED</b></span><span class="yr">2026</span></li>
         <li class="fresh" data-until="2026-12-31"><a href="https://time.com/article/2026/11/16/ai-data-centers-electricity-carbon-emissions-study/" target="_blank" rel="noopener">Over 400 American AI Data Centers Use As Much Electricity As Wisconsin, Michigan, or Indiana</a><span class="src"><b class="v">TIME</b></span><span class="yr">2026</span></li>
         <li class="fresh" data-until="2026-12-31"><a href="https://www.newscientist.com/article/2599078-massive-datacentres-use-as-much-electricity-as-an-entire-us-state/" target="_blank" rel="noopener">Massive data centres collectively use as much electricity as an entire US state</a><span class="src"><b class="v">New Scientist</b></span><span class="yr">2026</span></li>
         <li class="fresh" data-until="2026-12-31"><a href="https://www.theverge.com/ai-artificial-intelligence/1034668/data-centers-electricity-climate-pollution-study-harvard" target="_blank" rel="noopener">US data centers now burn more electricity than a midsized country</a><span class="src"><b class="v">The Verge</b></span><span class="yr">2026</span></li>
-        <li class="fresh" data-until="2026-12-31"><a href="https://www.france24.com/en/live-news/20261116-us-data-centers-carbon-footprint-rivals-small-european-countries" target="_blank" rel="noopener">US data centers’ carbon footprint rivals small European countries</a><span class="src"><b class="v">AFP</b> · via France 24</span><span class="yr">2026</span></li>
+        <li class="fresh extra" data-until="2026-12-31"><a href="https://www.france24.com/en/live-news/20261116-us-data-centers-carbon-footprint-rivals-small-european-countries" target="_blank" rel="noopener">US data centers’ carbon footprint rivals small European countries</a><span class="src"><b class="v">AFP</b> · via France 24</span><span class="yr">2026</span></li>
         <li class="fresh extra" data-until="2026-12-31"><a href="https://www.politico.com/newsletters/politico-surge/2026/11/16/big-tech-lays-low-at-cop31-01167143" target="_blank" rel="noopener">Big Tech lays low at COP31</a><span class="src"><b class="v">POLITICO</b> · Surge newsletter</span><span class="yr">2026</span></li>
         <li class="fresh extra" data-until="2026-12-31"><a href="https://arstechnica.com/science/2026/11/hyperscale-data-centers-use-2-of-us-electricity/" target="_blank" rel="noopener">Hyperscale data centers use 2% of US electricity</a><span class="src"><b class="v">Ars Technica</b></span><span class="yr">2026</span></li>
         <li class="fresh extra" data-until="2026-12-31"><a href="https://english.elpais.com/technology/2026-11-16/large-data-centers-in-the-us-already-consume-as-much-energy-as-the-whole-of-chile.html" target="_blank" rel="noopener">Large data centers in the US already consume as much energy as the whole of Chile</a><span class="src"><b class="v">EL PAÍS</b></span><span class="yr">2026</span></li>
@@ -251,7 +260,7 @@
         <li class="extra"><a href="https://www.ai4business.it/intelligenza-artificiale/le-emissioni-dellintelligenza-artificiale-pronte-a-una-crescita-esponenziale/" target="_blank" rel="noopener">Le Emissioni dell’Intelligenza Artificiale Pronte a una Crescita Esponenziale</a><span class="src"><b class="v">AI4Business</b>, in Italian</span><span class="yr">2024</span></li>
         <li class="extra"><a href="https://www.thecooldown.com/green-business/ai-regulations-rejected-congress-trump/" target="_blank" rel="noopener">Researchers sound the alarm on controversial AI plan rejected by lawmakers</a><span class="src"><b class="v">The Cooldown</b></span><span class="yr"></span></li>
       </ul>
-      <button class="more" type="button" aria-expanded="false" aria-controls="press-list">Show all 39</button>
+      <button class="more" type="button" aria-expanded="false" aria-controls="press-list">Show all 40</button>
     </section>
 
     <section id="code">
