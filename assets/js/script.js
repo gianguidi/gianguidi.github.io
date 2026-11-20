@@ -402,56 +402,21 @@
     draw();
   }
 
-  // Beatles or Floyd? Eight song titles, four from each band, one tap each
-  const quiz = document.querySelector(".quiz");
-  if (quiz) {
-    const B = ["Piggies", "Taxman", "Blackbird", "Something", "Because", "Flying", "Birthday", "Sun King", "Julia",
-      "Yer Blues", "Nowhere Man", "Penny Lane", "Two of Us", "Helter Skelter", "Octopus’s Garden", "Dig a Pony", "Rain",
-      "Glass Onion", "Savoy Truffle", "I Am the Walrus"];
-    const F = ["Pigs on the Wing", "Dogs", "Sheep", "Echoes", "Fearless", "Brain Damage", "Mother", "Hey You",
-      "Run Like Hell", "Goodbye Blue Sky", "Nobody Home", "Have a Cigar", "Astronomy Domine", "See Emily Play",
-      "Arnold Layne", "Bike", "One of These Days", "Fat Old Sun", "Julia Dream", "Lucifer Sam", "Cirrus Minor", "Free Four"];
-    const opener = quiz.querySelector(".q-start"), board = quiz.querySelector(".q-board");
-    const count = quiz.querySelector(".q-count"), qTitle = quiz.querySelector(".q-title"), qPick = quiz.querySelector(".q-pick");
-    const shuffle = (xs) => { const s = xs.slice(); for (let i = s.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [s[i], s[j]] = [s[j], s[i]]; } return s; };
-    const two = '<button type="button" data-band="b">The Beatles</button><button type="button" data-band="f">Pink Floyd</button>';
-    let round = [], at = 0, right = 0;
-    const ask = () => {
-      count.textContent = (at + 1) + " of " + round.length + (at ? " · " + right + " right" : "");
-      qTitle.textContent = round[at][0];
-      qPick.querySelectorAll("button").forEach((b) => { b.disabled = false; b.className = ""; });
-    };
-    const begin = () => {
-      round = shuffle(shuffle(B).slice(0, 4).map((t) => [t, "b"]).concat(shuffle(F).slice(0, 4).map((t) => [t, "f"])));
-      at = 0; right = 0;
-      qPick.innerHTML = two;
-      ask();
-    };
-    const end = () => {
-      count.textContent = "Final score";
-      qTitle.textContent = right + " of " + round.length + ". " +
-        (right === round.length ? "The fifth Beatle." : right >= 6 ? "Shine on." : right >= 3 ? "Getting better." : "Help!");
-      qPick.innerHTML = '<button type="button" data-again>Play again</button>';
-      ga("quiz_done", { score: right });
-    };
-    qPick.addEventListener("click", (e) => {
-      const b = e.target.closest("button");
-      if (!b || b.disabled) return;
-      if (b.hasAttribute("data-again")) { begin(); return; }
-      const answer = round[at][1], ok = b.dataset.band === answer;
-      if (ok) right++;
-      qPick.querySelectorAll("button").forEach((x) => {
-        x.disabled = true;
-        if (x.dataset.band === answer) x.classList.add("right");
-        else if (x === b) x.classList.add("wrong");
-      });
-      setTimeout(() => { at++; if (at < round.length) ask(); else end(); }, ok ? 600 : 1200);
-    });
-    opener.addEventListener("click", () => {
-      const open = board.hidden;
-      board.hidden = !open;
-      opener.setAttribute("aria-expanded", String(open));
-      if (open && !round.length) { begin(); ga("easter_egg", { egg: "quiz" }); }
+  // Next on the setlist: a song for the band to cover. It goes to Analytics as typed, minus anything that looks like
+  // an email address, a link or a phone number, and at most five a visit
+  const sug = document.querySelector(".suggest");
+  if (sug) {
+    const box = sug.querySelector("input"), thanks = sug.querySelector(".thanks");
+    let sent = 0;
+    sug.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const t = box.value.replace(/\S+@\S+|https?:\/\/\S+|www\.\S+|\+?\d[\d\s().-]{6,}\d/g, " ").replace(/\s+/g, " ").trim().slice(0, 80);
+      if (t.length < 2) { thanks.textContent = "A song, and who it’s by."; return; }
+      if (sent >= 5) { thanks.textContent = "That’s a full setlist already. Thank you!"; return; }
+      sent++;
+      ga("cover_suggestion", { suggestion: t });
+      thanks.textContent = "♪ " + t + ": on the list for the band. Thank you!";
+      box.value = "";
     });
   }
 

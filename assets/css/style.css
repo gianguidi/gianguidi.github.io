@@ -252,6 +252,8 @@ body{overflow-x:clip}
 .v-guardian{color:var(--guardian)}
 .v-harvard{color:var(--crimson)}
 .v-arxiv{color:var(--arxiv)}
+/* National Geographic: its yellow frame, small, before the name */
+.v-natgeo::before{content:"";display:inline-block;width:.6em;height:.8em;margin-right:.32em;border:2px solid #ffce00;vertical-align:-.08em}
 
 /* New in the press: a small red tag by the year, gone on its own after a few weeks */
 .js .fresh .yr::before{content:"New";display:inline-block;margin-right:8px;padding:0 7px;border-radius:99px;font:600 10.5px/18px var(--sans);letter-spacing:.02em;text-transform:none;color:#fff;background:var(--sp1);vertical-align:1px}
@@ -292,11 +294,11 @@ body{overflow-x:clip}
 .clips .meta a:hover{color:var(--text);text-decoration-color:var(--faint)}
 @media (max-width:640px){.clips{grid-template-columns:1fr}}
 
-/* The three small games: only there when the script is (they need it), and quiet: the site's muted grey, the
+/* The small interactive bits: only there when the script is (they need it), and quiet: the site's muted grey, the
    section's colour only on what can be touched */
-.calc,.quiz,.request{display:none}
-.js .calc,.js .quiz{display:block}
-.js .request{display:flex}
+.calc,.suggest,.request{display:none}
+.js .calc{display:block}
+.js .suggest,.js .request{display:flex}
 
 /* Eight Days a Week: a sentence with a number in it you can change, and an album you can flip */
 .calc{margin:10px 0 0;font-size:13.5px;color:var(--muted)}
@@ -312,19 +314,14 @@ body{overflow-x:clip}
 .calc-src a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px}
 .calc-src a:hover{color:var(--muted)}
 
-/* Beatles or Floyd? */
-.quiz{margin-top:14px}
-.quiz > p{margin:0;font-size:14px}
-.q-board{margin-top:12px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;max-width:420px}
-.q-board p{margin:0}
-.q-count{font:400 11px/1 var(--mono);color:var(--faint)}
-.q-board .q-title{margin:8px 0 12px;font-size:19px;font-weight:500;letter-spacing:-.015em;font-style:italic;min-height:1.3em}
-.q-pick{display:flex;flex-wrap:wrap;gap:8px}
-.q-pick button{font:500 13.5px/1 var(--sans);color:var(--text);background:none;border:1px solid var(--line);border-radius:99px;padding:8px 14px;cursor:pointer;transition:background .15s,border-color .15s}
-.q-pick button:hover{border-color:color-mix(in srgb,var(--c) 50%,transparent);background:color-mix(in srgb,var(--c) 7%,transparent)}
-.q-pick button.right{border-color:var(--sp4);background:color-mix(in srgb,var(--sp4) 16%,transparent)}
-.q-pick button.wrong{border-color:var(--sp1);background:color-mix(in srgb,var(--sp1) 12%,transparent)}
-.q-pick button:disabled{cursor:default}
+/* Next on the setlist: one line, a box and a small button */
+.suggest{flex-wrap:wrap;align-items:baseline;column-gap:8px;row-gap:6px;margin-top:14px;font-size:14px;color:var(--muted)}
+.suggest input{flex:0 1 240px;min-width:0;padding:2px 0;font:inherit;color:var(--text);background:none;border:0;border-bottom:1px solid var(--line);border-radius:0}
+.suggest input::placeholder{color:var(--faint)}
+.suggest input:focus{outline:none;border-bottom-color:var(--c)}
+.suggest button{font:500 12.5px/1 var(--sans);color:var(--text);background:none;border:1px solid var(--line);border-radius:99px;padding:6px 12px;cursor:pointer;transition:background .15s,border-color .15s}
+.suggest button:hover{border-color:color-mix(in srgb,var(--c) 50%,transparent);background:color-mix(in srgb,var(--c) 7%,transparent)}
+.thanks{flex-basis:100%;min-height:1.4em;color:var(--text)}
 
 /* The request line */
 .request{flex-wrap:wrap;align-items:baseline;column-gap:8px;row-gap:4px;margin-top:14px;font-size:14px;color:var(--muted)}
@@ -333,7 +330,7 @@ body{overflow-x:clip}
 .request input:focus{outline:none;border-bottom-color:var(--c)}
 .dj{flex-basis:100%;min-height:1.4em;color:var(--text)}
 /* phones zoom into any text box set under 16px, so on a phone both boxes are 16px */
-@media (max-width:640px){.request input,.calc input{font-size:16px}}
+@media (max-width:640px){.request input,.suggest input,.calc input{font-size:16px}}
 
 /* "Show all" and other quiet buttons */
 .more,.inline{font:inherit;color:var(--muted);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-decoration-color:var(--faint);text-underline-offset:3px}
