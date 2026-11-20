@@ -63,7 +63,7 @@
     {"@type": "ScholarlyArticle", "headline": "The Hidden Water Geography of U.S. Hyperscale Data Centers in the AI Era", "url": "https://arxiv.org/abs/2607.02531", "datePublished": "2026", "publisher": {"@type": "Organization", "name": "arXiv"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
     {"@type": "ScholarlyArticle", "headline": "Environmental Burden of United States Data Centers in the AI Era", "url": "https://arxiv.org/abs/2411.09786", "datePublished": "2024", "publisher": {"@type": "Organization", "name": "arXiv"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
     {"@type": "ScholarlyArticle", "headline": "Delayed Coal Plant Retirements in the Era of Data Centers Carry a Measurable Mortality Cost", "url": "https://europepmc.org/article/pmc/pmc13648786", "datePublished": "2026", "publisher": {"@type": "Organization", "name": "medRxiv"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
-    {"@type": "ScholarlyArticle", "headline": "Public Health and Economic Burden of a Proposed 3,500-MW Natural Gas Plant in Virginia", "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7350551", "datePublished": "2026", "publisher": {"@type": "Organization", "name": "SSRN"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
+    {"@type": "ScholarlyArticle", "headline": "Public health and economic burden of a proposed 3500-MW natural gas plant in Virginia: A PM2.5 dispersion and impact analysis", "url": "https://doi.org/10.1016/j.envpol.2026.129556", "datePublished": "2026-11", "isPartOf": {"@type": "Periodical", "name": "Environmental Pollution"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
     {"@type": "ScholarlyArticle", "headline": "Tracing two decades of carbon emissions using a network approach", "url": "https://www.nature.com/articles/s41598-024-57351-0", "datePublished": "2024", "isPartOf": {"@type": "Periodical", "name": "Scientific Reports"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
     {"@type": "ScholarlyArticle", "headline": "Towards a Health-Based Power Grid Optimization in the AI Era", "url": "https://arxiv.org/abs/2410.09029", "datePublished": "2024", "publisher": {"@type": "Organization", "name": "arXiv"}, "author": {"@id": "https://gianguidi.github.io/#me"}},
     {"@type": "Dataset", "name": "Hyperscalers Emissions and Energy Consumption in the US", "url": "https://doi.org/10.7910/DVN/SKKTAG", "description": "Electricity use and carbon emissions of U.S. hyperscale data centers.", "creator": {"@id": "https://gianguidi.github.io/#me"}},
@@ -96,7 +96,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
   <!-- the mastheads: a blackletter and a Didone, cut down to just the letters the journal and outlet names use -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=UnifrakturMaguntia&display=swap&text=%20ABCDFGHIJNPRSTWYZabcdefghiklmnoprstuvwy" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=c6600f8" />
+  <link rel="stylesheet" href="assets/css/style.css?v=6362955" />
   <script>
     // before first paint: every visit lands on the light side (here comes the sun), even for someone who flipped to
     // dark last time; the old saved choice is cleared. The 2026 remaster is shelved for now: its styles stay in the
@@ -182,11 +182,19 @@
         </li>
         <li class="t3">
           <h3>People and justice</h3>
-          <p><a href="https://ajph.aphapublications.org/doi/full/10.2105/AJPH.2026.308678" target="_blank" rel="noopener">Who pays for AI</a>, and what it means for the communities living next to <a href="https://www.nature.com/articles/s41467-025-58287-3" target="_blank" rel="noopener">bitcoin mines</a> or a <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7350551" target="_blank" rel="noopener">proposed gas plant</a>.</p>
+          <p><a href="https://ajph.aphapublications.org/doi/full/10.2105/AJPH.2026.308678" target="_blank" rel="noopener">Who pays for AI</a>, and what it means for the communities living next to <a href="https://www.nature.com/articles/s41467-025-58287-3" target="_blank" rel="noopener">bitcoin mines</a> or a <a href="https://doi.org/10.1016/j.envpol.2026.129556" target="_blank" rel="noopener">proposed gas plant</a>.</p>
           <ul class="points" aria-label="Interests"><li>Who pays for AI</li><li>Environmental justice</li><li>Social justice</li></ul>
         </li>
       </ol>
       <p class="muted aside">In short: what the great gig in the sky really costs, and who ends up paying for it.</p>
+      <!-- Eight Days a Week: a prompt habit, in album plays. 0.3 Wh a text prompt (between Google's 0.24 and OpenAI's
+           0.34, both 2025), a 50-watt stereo, 42:49 and 47:03 a play, and the study's 82 TWh. Only shown with the script -->
+      <div class="calc" id="prompts">
+        <p><span class="calc-name">Eight Days a Week.</span> <label for="calc-n">AI prompts a day:</label> <input id="calc-n" type="number" inputmode="numeric" min="0" max="10000" step="1" value="10">
+          That’s about <output class="kwh">1.1 kWh</output> a year, or <button class="album" type="button" title="Switch album"><i>The Dark Side of the Moon</i></button> played <output class="plays">31 times</output> on a 50-watt stereo.
+          The 403 data centers in our study used enough for <output class="all">2.3 trillion</output> plays.</p>
+        <p class="calc-src">At about 0.3 Wh a text prompt, between <a href="https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference" target="_blank" rel="noopener">Google’s 0.24</a> and <a href="https://blog.samaltman.com/the-gentle-singularity" target="_blank" rel="noopener">OpenAI’s 0.34</a> (2025), and the study’s 82 TWh for May 2024 to April 2025.</p>
+      </div>
     </section>
 
     <section id="papers">
@@ -194,12 +202,12 @@
       <!-- each venue is set a little like its own masthead: .v, styled per journal or outlet -->
       <ul class="list" id="papers-list">
         <li class="fresh" data-until="2026-12-31"><a href="https://www.nature.com/articles/s41893-026-01985-7" target="_blank" rel="noopener">Assessing the carbon emissions and energy consumption of US hyperscale data centres</a><span class="src"><b class="v v-nature">Nature Sustainability</b></span><span class="yr">2026</span></li>
+        <li class="fresh" data-until="2026-12-31"><a href="https://doi.org/10.1016/j.envpol.2026.129556" target="_blank" rel="noopener">Public health and economic burden of a proposed 3500-MW natural gas plant in Virginia</a><span class="src"><b class="v">Environmental Pollution</b></span><span class="yr">2026</span></li>
         <li><a href="https://ajph.aphapublications.org/doi/full/10.2105/AJPH.2026.308678" target="_blank" rel="noopener">Who Pays for Artificial Intelligence? Energy, Climate, and Health</a><span class="src"><b class="v v-ajph">American Journal of Public Health</b></span><span class="yr">2026</span></li>
         <li><a href="https://www.nature.com/articles/s41467-025-58287-3" target="_blank" rel="noopener">The environmental burden of the United States’ bitcoin mining boom</a><span class="src"><b class="v v-nature">Nature Communications</b></span><span class="yr">2025</span></li>
         <li><a href="https://arxiv.org/abs/2607.02531" target="_blank" rel="noopener">The Hidden Water Geography of U.S. Hyperscale Data Centers in the AI Era</a><span class="src"><b class="v v-arxiv">arXiv</b></span><span class="yr">2026</span></li>
         <li><a href="https://arxiv.org/abs/2411.09786" target="_blank" rel="noopener">Environmental Burden of United States Data Centers in the AI Era</a><span class="src"><b class="v v-arxiv">arXiv</b> · 100+ citations</span><span class="yr">2024</span></li>
         <li class="extra"><a href="https://europepmc.org/article/pmc/pmc13648786" target="_blank" rel="noopener">Delayed Coal Plant Retirements in the Era of Data Centers Carry a Measurable Mortality Cost</a><span class="src"><b class="v v-medrxiv">medRxiv</b></span><span class="yr">2026</span></li>
-        <li class="extra"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7350551" target="_blank" rel="noopener">Public Health and Economic Burden of a Proposed 3,500-MW Natural Gas Plant in Virginia</a><span class="src"><b class="v v-ssrn">SSRN</b> · the plant was withdrawn</span><span class="yr">2026</span></li>
         <li class="extra"><a href="https://www.nature.com/articles/s41598-024-57351-0" target="_blank" rel="noopener">Tracing two decades of carbon emissions using a network approach</a><span class="src"><b class="v v-nature">Scientific Reports</b></span><span class="yr">2024</span></li>
         <li class="extra"><a href="https://arxiv.org/abs/2410.09029" target="_blank" rel="noopener">Towards a Health-Based Power Grid Optimization in the AI Era</a><span class="src"><b class="v v-arxiv">arXiv</b></span><span class="yr">2024</span></li>
         <li class="extra"><span class="t">The Global Carbon Trade Network</span><span class="src">working paper</span><span class="yr">—</span></li>
@@ -209,12 +217,16 @@
 
     <section id="press">
       <h2>Here, There and Everywhere <span class="count">press · 42</span></h2>
-      <!-- On air: the TV interviews, set apart above the clippings; each card opens the clip -->
+      <!-- On air: the TV interviews, above the clippings. The screen shows a still and loads YouTube (privacy-enhanced
+           mode) only when someone presses play; the two cards switch the channel. Without the script, both open YouTube -->
       <div class="onair">
         <p class="onair-head"><span class="light" aria-hidden="true"></span>On air</p>
+        <div class="screen">
+          <a class="tv" href="https://www.youtube.com/watch?v=K4EC5fYrbUc" data-yt="K4EC5fYrbUc" aria-label="Play the PBS NewsHour interview"><img src="https://i.ytimg.com/vi/K4EC5fYrbUc/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="play" aria-hidden="true"></span></a>
+        </div>
         <ul class="clips" aria-label="TV interviews">
-          <li><a href="https://www.pbs.org/newshour/show/study-reveals-energy-demands-and-emissions-of-americas-data-centers" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="who"><b class="v">PBS NewsHour</b></span><span class="what">Study reveals energy demands and emissions of America’s data centers</span><span class="meta">With Amna Nawaz · 5:55</span></a></li>
-          <li><a href="https://www.cbsnews.com/video/some-data-centers-using-as-much-power-as-entire-states-study-warns/" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><span class="who"><b class="v">CBS News</b> · The Daily Report</span><span class="what">Large-scale data centers using as much power as some states and countries, study warns</span><span class="meta">With Lindsey Reiser · 3:25</span></a></li>
+          <li aria-current="true"><a class="cue" href="https://www.youtube.com/watch?v=K4EC5fYrbUc" data-yt="K4EC5fYrbUc" data-name="PBS NewsHour"><span class="play" aria-hidden="true"></span><span class="who"><b class="v">PBS NewsHour</b></span><span class="what">Study reveals energy demands and emissions of America’s data centers</span></a><span class="meta"><span>With Amna Nawaz · 5:55</span><a href="https://www.pbs.org/newshour/show/study-reveals-energy-demands-and-emissions-of-americas-data-centers" target="_blank" rel="noopener">pbs.org</a></span></li>
+          <li><a class="cue" href="https://www.youtube.com/watch?v=KNPdnbTsxiA" data-yt="KNPdnbTsxiA" data-name="CBS News"><span class="play" aria-hidden="true"></span><span class="who"><b class="v">CBS News</b> · The Daily Report</span><span class="what">Large-scale data centers using as much power as some states and countries, study warns</span></a><span class="meta"><span>With Lindsey Reiser · 3:25</span><a href="https://www.cbsnews.com/video/some-data-centers-using-as-much-power-as-entire-states-study-warns/" target="_blank" rel="noopener">cbsnews.com</a></span></li>
         </ul>
       </div>
       <ul class="list" id="press-list">
@@ -294,11 +306,26 @@
       <p class="muted">
         I got by with a little help from my PhD committee: Falco J. Bargagli Stoffi, Dino Pedreschi, Giulio Rossetti and Rossana Mastrandrea.
       </p>
+      <!-- Beatles or Floyd? Eight song titles (titles only), one tap each. Only shown with the script -->
+      <div class="quiz">
+        <p class="muted">Beatles or Floyd? <button class="inline q-start" type="button" aria-controls="quiz-board" aria-expanded="false">Play a quick round</button></p>
+        <div class="q-board" id="quiz-board" hidden>
+          <p class="q-count" aria-live="polite"></p>
+          <p class="q-title"></p>
+          <p class="q-pick"><button type="button" data-band="b">The Beatles</button><button type="button" data-band="f">Pink Floyd</button></p>
+        </div>
+      </div>
     </section>
 
     <section id="contact">
       <h2>Come Together <span class="count">contact</span></h2>
       <p>For press, policy or research, write to <a href="mailto:ggianluca@hsph.harvard.edu">ggianluca@hsph.harvard.edu</a>. “Help!” is also a valid subject line.</p>
+      <!-- The request line: a Beatles or Pink Floyd title, and the page plays along. Only shown with the script -->
+      <form class="request" autocomplete="off">
+        <label for="req">Or call the request line:</label>
+        <input id="req" type="text" maxlength="60" placeholder="a Beatles or Pink Floyd title" enterkeyhint="go" spellcheck="false">
+        <output class="dj" for="req" aria-live="polite"></output>
+      </form>
     </section>
 
     <footer>
@@ -308,7 +335,7 @@
     </footer>
   </main>
 
-  <script src="assets/js/script.js?v=c771d9a"></script>
+  <script src="assets/js/script.js?v=fd45e5a"></script>
 
   <!-- GA4: more detailed tracking (Scholar, email, outbound, video, "show all") -->
   <script>

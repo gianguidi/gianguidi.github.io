@@ -316,7 +316,7 @@
   });
 
   // "Watch us": the poster is already on the page, so this just starts the song
-  const watch = document.querySelector("button.inline");
+  const watch = document.querySelector('button.inline[aria-controls="video"]');
   const video = document.getElementById("video");
   if (watch && video) watch.addEventListener("click", () => {
     const v = video.querySelector("video");
@@ -350,5 +350,195 @@
       retitle();
       onAir();
     }));
+  }
+
+  // On air: the screen shows a still until someone presses play, then YouTube in its privacy-enhanced mode (nothing
+  // from YouTube but the still until then). The cards switch the channel and roll it; without this script, both
+  // simply open YouTube
+  const onair = document.querySelector(".onair");
+  if (onair) {
+    const screen = onair.querySelector(".screen"), tv = onair.querySelector(".tv");
+    const cues = [...onair.querySelectorAll(".cue")];
+    const roll = (cue) => {
+      cues.forEach((c) => c === cue ? c.parentElement.setAttribute("aria-current", "true") : c.parentElement.removeAttribute("aria-current"));
+      const f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + cue.dataset.yt + "?autoplay=1&rel=0&playsinline=1";
+      f.title = cue.dataset.name + " interview";
+      f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+      f.allowFullscreen = true;
+      screen.replaceChildren(f);
+      if (stage && !stage.paused) stage.pause();
+      if (screen.getBoundingClientRect().top < 0) screen.scrollIntoView({ block: "start" });
+      ga("interview_play", { outlet: cue.dataset.name });
+    };
+    if (tv) tv.addEventListener("click", (e) => {
+      e.preventDefault();
+      roll(cues.find((c) => c.parentElement.getAttribute("aria-current") === "true") || cues[0]);
+    });
+    cues.forEach((c) => c.addEventListener("click", (e) => { e.preventDefault(); roll(c); }));
+  }
+
+  // Eight Days a Week: a prompt habit, in album plays. About 0.3 Wh a text prompt, a 50-watt stereo, and the study's
+  // 82 TWh (the sources are on the page, under it)
+  const calc = document.getElementById("prompts");
+  if (calc) {
+    const WH = 0.3, STEREO = 50, STUDY = 82e12;
+    const albums = [["The Dark Side of the Moon", 42 * 60 + 49], ["Abbey Road", 47 * 60 + 3]];
+    const n = calc.querySelector("input"), album = calc.querySelector(".album");
+    const put = (c, t) => { calc.querySelector(c).textContent = t; };
+    const num = (x, d) => x.toLocaleString("en-US", { maximumFractionDigits: d });
+    const per = () => Math.max(0, Math.min(10000, Math.round(Number(n.value)) || 0));
+    let a = 0;
+    const draw = () => {
+      const wh = per() * 365 * WH, play = STEREO * albums[a][1] / 3600, times = Math.round(wh / play);
+      put(".kwh", wh >= 1000 ? num(wh / 1000, wh < 10000 ? 1 : 0) + " kWh" : num(wh, 0) + " Wh");
+      put(".plays", times === 1 ? "once" : num(times, 0) + " times");
+      put(".all", num(STUDY / play / 1e12, 1) + " trillion");
+      album.querySelector("i").textContent = albums[a][0];
+    };
+    n.addEventListener("input", draw);
+    n.addEventListener("change", () => ga("calculator", { prompts: String(per()) }));
+    album.addEventListener("click", () => { a = 1 - a; draw(); ga("calculator", { album: albums[a][0] }); });
+    draw();
+  }
+
+  // Beatles or Floyd? Eight song titles, four from each band, one tap each
+  const quiz = document.querySelector(".quiz");
+  if (quiz) {
+    const B = ["Piggies", "Taxman", "Blackbird", "Something", "Because", "Flying", "Birthday", "Sun King", "Julia",
+      "Yer Blues", "Nowhere Man", "Penny Lane", "Two of Us", "Helter Skelter", "Octopus’s Garden", "Dig a Pony", "Rain",
+      "Glass Onion", "Savoy Truffle", "I Am the Walrus"];
+    const F = ["Pigs on the Wing", "Dogs", "Sheep", "Echoes", "Fearless", "Brain Damage", "Mother", "Hey You",
+      "Run Like Hell", "Goodbye Blue Sky", "Nobody Home", "Have a Cigar", "Astronomy Domine", "See Emily Play",
+      "Arnold Layne", "Bike", "One of These Days", "Fat Old Sun", "Julia Dream", "Lucifer Sam", "Cirrus Minor", "Free Four"];
+    const opener = quiz.querySelector(".q-start"), board = quiz.querySelector(".q-board");
+    const count = quiz.querySelector(".q-count"), qTitle = quiz.querySelector(".q-title"), qPick = quiz.querySelector(".q-pick");
+    const shuffle = (xs) => { const s = xs.slice(); for (let i = s.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [s[i], s[j]] = [s[j], s[i]]; } return s; };
+    const two = '<button type="button" data-band="b">The Beatles</button><button type="button" data-band="f">Pink Floyd</button>';
+    let round = [], at = 0, right = 0;
+    const ask = () => {
+      count.textContent = (at + 1) + " of " + round.length + (at ? " · " + right + " right" : "");
+      qTitle.textContent = round[at][0];
+      qPick.querySelectorAll("button").forEach((b) => { b.disabled = false; b.className = ""; });
+    };
+    const begin = () => {
+      round = shuffle(shuffle(B).slice(0, 4).map((t) => [t, "b"]).concat(shuffle(F).slice(0, 4).map((t) => [t, "f"])));
+      at = 0; right = 0;
+      qPick.innerHTML = two;
+      ask();
+    };
+    const end = () => {
+      count.textContent = "Final score";
+      qTitle.textContent = right + " of " + round.length + ". " +
+        (right === round.length ? "The fifth Beatle." : right >= 6 ? "Shine on." : right >= 3 ? "Getting better." : "Help!");
+      qPick.innerHTML = '<button type="button" data-again>Play again</button>';
+      ga("quiz_done", { score: right });
+    };
+    qPick.addEventListener("click", (e) => {
+      const b = e.target.closest("button");
+      if (!b || b.disabled) return;
+      if (b.hasAttribute("data-again")) { begin(); return; }
+      const answer = round[at][1], ok = b.dataset.band === answer;
+      if (ok) right++;
+      qPick.querySelectorAll("button").forEach((x) => {
+        x.disabled = true;
+        if (x.dataset.band === answer) x.classList.add("right");
+        else if (x === b) x.classList.add("wrong");
+      });
+      setTimeout(() => { at++; if (at < round.length) ask(); else end(); }, ok ? 600 : 1200);
+    });
+    opener.addEventListener("click", () => {
+      const open = board.hidden;
+      board.hidden = !open;
+      opener.setAttribute("aria-expanded", String(open));
+      if (open && !round.length) { begin(); ga("easter_egg", { egg: "quiz" }); }
+    });
+  }
+
+  // The request line: a Beatles or Pink Floyd title, and the page plays along. Requests go to Analytics as the
+  // title it recognised, or as typed if it is only letters (anything else is just "(other)")
+  const req = document.querySelector(".request");
+  if (req) {
+    const field = req.querySelector("input"), dj = req.querySelector(".dj");
+    const key = (t) => t.normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase()
+      .replace(/\b(by )?(the )?(beatles|pink floyd)\b/g, " ").replace(/[’‘'`]/g, "").replace(/[^a-z0-9 ]+/g, " ")
+      .replace(/\s+/g, " ").trim().replace(/^the /, "");
+    const PF = "Pink Floyd", TB = "The Beatles";
+    const cambridge = () => new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit", timeZone: "America/New_York" }).format(new Date()).toLowerCase();
+    const top = () => { steered = Date.now(); window.scrollTo({ top: 0 }); };
+    // title: [band, the reply, what the page does]
+    const hits = {
+      "Money": [PF, "To the papers: who pays for AI?", () => go("papers", "Money.")],
+      "Taxman": [TB, "To the papers: who pays for AI?", () => go("papers", "Taxman.")],
+      "Paperback Writer": [TB, "To the papers.", () => go("papers", "Paperback Writer.")],
+      "Breathe": [PF, "To the work on air and health.", () => go("work", "Breathe.")],
+      "Us and Them": [PF, "To the work.", () => go("work", "Us and Them.")],
+      "Welcome to the Machine": [PF, "To the data centers.", () => go("work", "Welcome to the Machine.")],
+      "The Great Gig in the Sky": [PF, "To what the cloud really costs.", () => go("work", "The Great Gig in the Sky.")],
+      "Eight Days a Week": [TB, "To the calculator.", () => go("prompts", "Eight Days a Week.")],
+      "Here, There and Everywhere": [TB, "To the press.", () => go("press", "Here, There and Everywhere.")],
+      "A Day in the Life": [TB, "To the band.", () => go("music", "A Day in the Life.")],
+      "Wish You Were Here": [PF, "Rolling the band’s video.", () => { if (watch) watch.click(); }],
+      "Time": [PF, "", null],
+      "Here Comes the Sun": [TB, "Lights on.", () => flipTo(false)],
+      "Good Day Sunshine": [TB, "Lights on.", () => flipTo(false)],
+      "The Dark Side of the Moon": [PF, "Lights off.", () => flipTo(true)],
+      "Brain Damage": [PF, "Lights off.", () => flipTo(true)],
+      "Eclipse": [PF, "Lights off.", () => flipTo(true)],
+      "Let It Be": [TB, "Back to how everyone first sees it.", typed.letitbe],
+      "Revolution": [TB, "Spinning the record.", () => { if (mix) mix.click(); }],
+      "Get Back": [TB, "Back to the top.", top],
+      "Come Together": [TB, "The email’s just above.", null],
+      "Help!": [TB, "It’s a valid subject line. The email’s just above.", null],
+      "Speak to Me": [PF, "The email’s just above.", null],
+      "Keep Talking": [PF, "The email’s just above.", null],
+      "Is There Anybody Out There?": [PF, "Yes: you.", null],
+      "Hello, Goodbye": [TB, "Hello.", null],
+      "The End": [TB, "Thanks for listening.", null],
+      "Shine On You Crazy Diamond": [PF, "Shining on.", null],
+    };
+    // and the rest it knows, without a trick of their own
+    const more = {
+      [TB]: ["Yesterday", "Hey Jude", "In My Life", "Strawberry Fields Forever", "All You Need Is Love",
+        "Twist and Shout", "Yellow Submarine", "Norwegian Wood", "Michelle", "Ticket to Ride", "A Hard Day’s Night",
+        "Love Me Do", "She Loves You", "I Want to Hold Your Hand", "Lucy in the Sky with Diamonds",
+        "With a Little Help from My Friends", "Sgt. Pepper’s Lonely Hearts Club Band", "While My Guitar Gently Weeps",
+        "Golden Slumbers", "The Long and Winding Road", "Across the Universe", "Something", "Blackbird", "Piggies",
+        "Because", "Birthday", "Sun King", "Julia", "Penny Lane", "Nowhere Man", "Helter Skelter", "I Am the Walrus",
+        "Octopus’s Garden", "Rain", "Two of Us", "Day Tripper", "Eleanor Rigby", "Get Back", "Don’t Let Me Down"],
+      [PF]: ["Comfortably Numb", "Another Brick in the Wall", "Learning to Fly", "High Hopes", "Hey You",
+        "Echoes", "On the Run", "Any Colour You Like", "Have a Cigar", "Dogs", "Pigs (Three Different Ones)", "Sheep",
+        "Run Like Hell", "Young Lust", "Coming Back to Life", "Marooned", "Sorrow", "One of These Days",
+        "Interstellar Overdrive", "Careful with That Axe, Eugene", "Set the Controls for the Heart of the Sun",
+        "Nobody Home", "Mother", "Goodbye Blue Sky", "The Show Must Go On", "In the Flesh", "Astronomy Domine",
+        "See Emily Play", "Arnold Layne", "Fearless", "Time", "Us and Them"],
+    };
+    const book = new Map();
+    Object.entries(more).forEach(([band, titles]) => titles.forEach((t) => book.set(key(t), [t, band, "", null])));
+    Object.entries(hits).forEach(([t, h]) => book.set(key(t), [t, ...h]));
+    const find = (k) => {
+      if (book.has(k)) return book.get(k);
+      let best = null; // "comfortably numb live", or just "comfortably"
+      book.forEach((v, bk) => {
+        if ((k.startsWith(bk + " ") || (k.length >= 6 && bk.startsWith(k))) && (!best || bk.length > best[0].length)) best = [bk, v];
+      });
+      return best && best[1];
+    };
+    req.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const k = key(field.value);
+      if (!k) return;
+      const hit = find(k);
+      if (!hit) {
+        dj.textContent = "Not in the crates. Try a Beatles or Pink Floyd title.";
+      } else {
+        const [t, band, line, act] = hit;
+        const reply = t === "Time" ? "It’s " + cambridge() + " in Cambridge." : line || "Good pick. Not on tonight’s setlist, but noted.";
+        dj.textContent = "♪ " + t + " · " + band + ". " + reply;
+        if (act) setTimeout(act, 500);
+      }
+      ga("song_request", { song: hit ? hit[0] : /^[a-z ]{2,40}$/.test(k) ? k : "(other)", known: hit ? "yes" : "no" });
+      field.value = "";
+    });
   }
 })();
